@@ -3,7 +3,8 @@
  * "Kontakt för rådgivning": a pill that widens into an email field. Enter (or the arrow)
  * sends the address and the pill folds into a checkmark.
  * Without JS the pill is a plain mailto link. Submits like the other forms (Netlify Forms
- * or PUBLIC_FORM_ENDPOINT); in `astro dev` the request is simulated so the flow can be tried.
+ * or PUBLIC_FORM_ENDPOINT); in `astro dev` and when PUBLIC_FORMS_DEMO=true (GitHub Pages preview)
+ * the request is simulated so the flow can be tried.
  */
 import { EMAIL } from '../config/company';
 import { FORMS } from '../config/site';
@@ -36,7 +37,7 @@ const msgId = `advice-msg-${uid}`;
     netlify-honeypot="bot-field"
     data-provider={FORMS.provider}
     data-endpoint={FORMS.endpoint || undefined}
-    data-dev={import.meta.env.DEV ? 'true' : undefined}
+    data-dev={import.meta.env.DEV || import.meta.env.PUBLIC_FORMS_DEMO === 'true' ? 'true' : undefined}
     data-invalid-msg={a.invalid}
     data-error-msg={a.error}
     data-thanks-msg={a.thanks}
@@ -235,6 +236,7 @@ const msgId = `advice-msg-${uid}`;
   .advice-check {
     position: absolute;
     inset: 0;
+    pointer-events: none; /* invisible overlay – must not swallow clicks on the label */
     display: grid;
     place-items: center;
     opacity: 0;
