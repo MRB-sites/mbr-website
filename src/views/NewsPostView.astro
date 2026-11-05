@@ -1,0 +1,81 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import { COMPANY_NAME } from '../config/company';
+import { breadcrumbSchema, orgId } from '../data/schema';
+import { formatDate, useT } from '../i18n';
+import { path, type Alternates, type Locale } from '../i18n/routes';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Button from '../components/Button.astro';
+import CTABand from '../components/CTABand.astro';
+import Container from '../components/Container.astro';
+import Photo from '../components/Photo.astro';
+import Text from '../components/Text.astro';
+
+interface Props {
+  locale: Locale;
+  alternates: Alternates;
+  entry: CollectionEntry<'news'>;
+}
+const { locale, alternates, entry } = Astro.props;
+const t = useT(locale);
+const d = entry.data;
+const site = Astro.site!;
+const { Content } = await render(entry);
+const url = new URL(alternates[locale], site).href;
+const crumbs = [
+  { label: t.nav.home, href: path('home', locale) },
+  { label: t.nav.news, href: path('news', locale) },
+  { label: d.title.replace(/^\[[^\]]*\]\s*/, ''), href: alternates[locale] },
+];
+const article = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  headline: d.title,
+  description: d.description,
+  datePublished: d.date.toISOString(),
+  inLanguage: locale,
+  mainEntityOfPage: url,
+  author: { '@type': 'Organization', name: COMPANY_NAME },
+  publisher: { '@id': orgId(site) },
+};
+---
+
+<BaseLayout
+  locale={locale}
+  title={d.title}
+  description={d.description}
+  alternates={alternates}
+  ogImage={d.image}
+  ogImageAlt={d.imageAlt || d.title}
+  ogType="article"
+  jsonLd={[article, breadcrumbSchema(crumbs.map((c) => ({ label: c.label, url: new URL(c.href, site).href })))]}
+>
+  <article>
+    <header class="border-b border-line bg-concrete">
+      <Container size="narrow" class="py-10 md:py-14">
+        <Breadcrumbs items={crumbs} label={t.a11y.breadcrumb} />
+        <p class="inline-flex items-center gap-2 text-sm font-semibold text-accent-strong">
+          {t.news.published}
+          <time datetime={d.date.toISOString().slice(0, 10)}>{formatDate(d.date, locale)}</time>
+        </p>
+        <h1 class="mt-5 text-[2rem]"><Text text={d.title} /></h1>
+        <p class="mt-3 font-bold"><Text text={d.description} /></p>
+      </Container>
+    </header>
+    {
+      d.image && (
+        <Container size="narrow" class="pt-10">
+          <Photo src={d.image} alt={d.imageAlt} width={1200} height={675} sizes="(min-width: 896px) 56rem, 100vw" priority figureClass="aspect-video" />
+        </Container>
+      )
+    }
+    <Container size="narrow" class="py-10 md:py-14">
+      <div class="prose-site">
+        <Content />
+      </div>
+      <Button href={path('news', locale)} variant="secondary" class="mt-12" icon="arrow-left" iconPosition="start">{t.news.back}</Button>
+    </Container>
+  </article>
+  <CTABand locale={locale} />
+</BaseLayout>

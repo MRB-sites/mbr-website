@@ -1,0 +1,81 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import { published } from '../data/collections';
+import { EMAIL } from '../config/company';
+import { breadcrumbSchema } from '../data/schema';
+import { fmt, useT } from '../i18n';
+import { path, type Alternates, type Locale } from '../i18n/routes';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ApplicationForm from '../components/ApplicationForm.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Button from '../components/Button.astro';
+import Container from '../components/Container.astro';
+import Text from '../components/Text.astro';
+
+interface Props {
+  locale: Locale;
+  alternates: Alternates;
+  entry: CollectionEntry<'jobs'>;
+}
+const { locale, alternates, entry } = Astro.props;
+const t = useT(locale);
+const c = t.careers;
+const d = entry.data;
+const site = Astro.site!;
+const { Content } = await render(entry);
+const jobs = await published('jobs', (e) => e.id.startsWith(`${locale}/`));
+const crumbs = [
+  { label: t.nav.home, href: path('home', locale) },
+  { label: t.nav.careers, href: path('careers', locale) },
+  { label: d.title.replace(/^\[[^\]]*\]\s*/, ''), href: alternates[locale] },
+];
+const facts = [
+  { label: c.positions.location, value: d.location },
+  { label: c.positions.type, value: d.employment },
+  ...(d.deadline ? [{ label: c.positions.deadline, value: d.deadline }] : []),
+];
+---
+
+<BaseLayout
+  locale={locale}
+  title={d.title}
+  description={d.summary}
+  alternates={alternates}
+  jsonLd={[breadcrumbSchema(crumbs.map((x) => ({ label: x.label, url: new URL(x.href, site).href })))]}
+>
+  <article>
+    <header class="border-b border-line bg-concrete">
+      <Container size="narrow" class="py-10 md:py-14">
+        <Breadcrumbs items={crumbs} label={t.a11y.breadcrumb} />
+        <h1 class="text-[2rem]"><Text text={d.title} /></h1>
+        <dl class="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+          {
+            facts.map((f) => (
+              <div>
+                <dt class="text-sm text-ink-muted">{f.label}</dt>
+                <dd class="text-lg font-bold">
+                  <Text text={f.value} />
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+        <Button href="#ansok" class="mt-8" icon="arrow">{c.positions.apply}</Button>
+      </Container>
+    </header>
+    <Container size="narrow" class="py-10 md:py-14">
+      <div class="prose-site">
+        <Content />
+      </div>
+    </Container>
+  </article>
+
+  <section id="ansok" class="bg-concrete py-14 md:py-20" aria-labelledby="apply-title">
+    <Container size="narrow">
+      <h2 id="apply-title" class="text-[1.625rem]">{c.job.applyTitle}</h2>
+      <p class="mt-3 mb-8 text-ink-muted"><Text text={fmt(c.job.applyText, { email: EMAIL })} /></p>
+      <ApplicationForm locale={locale} position={d.title} positions={jobs.map((j) => j.data.title)} />
+      <Button href={path('careers', locale)} variant="secondary" class="mt-10" icon="arrow-left" iconPosition="start">{c.job.back}</Button>
+    </Container>
+  </section>
+</BaseLayout>

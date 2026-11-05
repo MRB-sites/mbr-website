@@ -1,0 +1,201 @@
+@import 'tailwindcss';
+@import '@fontsource/source-sans-3/400.css';
+@import '@fontsource/source-sans-3/600.css';
+@import '@fontsource/source-sans-3/700.css';
+
+/*
+ * Design tokens ("Nordic industrial corporate"). Light grey canvas, white flat
+ * blocks, one orange accent, brand green for footer and dark panels.
+ * Tailwind utilities (bg-paper, text-ink, bg-accent …) read from these variables.
+ */
+:root {
+  --paper: #f4f4f4; /* page canvas, always */
+  --concrete: #ffffff; /* white content panels/sections */
+  --concrete-strong: #e6e6e6;
+  --surface: #ffffff; /* cards */
+  --ink: #333333; /* all body text and headings, never pure black */
+  --ink-muted: #5e5e5e;
+  --line: #e6e6e6; /* hairlines */
+  --line-strong: #cccccc; /* inputs, secondary borders */
+  --accent: #c2510e; /* filled buttons – white text 4.7:1 */
+  --accent-strong: #a3440b; /* accent headings/links, hover */
+  --on-accent: #ffffff;
+  --highlight: #ea761f; /* logo orange – rules, carets, icons only, never text */
+  --on-highlight: #333333;
+  --inverse: #13714f; /* logo green – footer, menus, dark panels */
+  --on-inverse: #ffffff;
+  --on-inverse-muted: rgba(255, 255, 255, 0.9); /* ≥ 4.5:1 on --inverse (WCAG AA) */
+  --success: #13714f;
+  --danger: #b3261e;
+  --shadow-header: 0 2px 8px rgba(0, 0, 0, 0.16); /* only the sticky header has a shadow */
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-concrete: var(--concrete);
+  --color-concrete-strong: var(--concrete-strong);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-on-accent: var(--on-accent);
+  --color-highlight: var(--highlight);
+  --color-on-highlight: var(--on-highlight);
+  --color-inverse: var(--inverse);
+  --color-on-inverse: var(--on-inverse);
+  --color-on-inverse-muted: var(--on-inverse-muted);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+}
+
+@theme static {
+  --font-display: 'Source Sans 3', Arial, sans-serif;
+  --font-sans: 'Source Sans 3', Arial, sans-serif;
+  --font-mono: 'Source Sans 3', Arial, sans-serif; /* one family only */
+  --breakpoint-xs: 22.5rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 9rem;
+    scroll-padding-bottom: 5rem; /* keeps focused fields clear of the sticky mobile action bar */
+  }
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    hyphens: auto;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  a {
+    text-underline-offset: 0.15em;
+  }
+  :focus-visible {
+    outline: 2px solid var(--highlight);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--highlight);
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  /* On green panels the accent turns white so it stays legible. */
+  .bg-inverse {
+    --accent: #ffffff;
+    --accent-strong: #ffffff;
+    --on-accent: var(--inverse);
+    --highlight: #ffffff;
+    --ink-muted: rgba(255, 255, 255, 0.78);
+    --line: rgba(255, 255, 255, 0.3);
+  }
+  .eyebrow {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--accent-strong);
+  }
+  /* Section heading with a 3px orange rule beneath (spec 6.8). */
+  .rule-heading {
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--accent-strong);
+  }
+  /* Small solid orange caret before list links (spec 6.9). */
+  .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-block: 4px solid transparent;
+    border-left: 6px solid var(--highlight);
+  }
+  .prose-site {
+    max-width: 68ch;
+  }
+  .prose-site :where(p, ul, ol) {
+    margin-block: 1em;
+  }
+  .prose-site :where(h2) {
+    font-size: 1.625rem;
+    margin-block: 1.5em 0.5em;
+  }
+  .prose-site :where(h3) {
+    font-size: 1.375rem;
+    margin-block: 1.4em 0.4em;
+  }
+  .prose-site :where(ul) {
+    list-style: square;
+    padding-left: 1.25em;
+  }
+  .prose-site :where(ol) {
+    list-style: decimal;
+    padding-left: 1.25em;
+  }
+  .prose-site :where(li::marker) {
+    color: var(--highlight);
+  }
+  .prose-site :where(a),
+  .link-underline {
+    color: var(--ink);
+    text-decoration: underline;
+  }
+  .prose-site :where(strong) {
+    font-weight: 700;
+  }
+  .placeholder-mark {
+    background: color-mix(in srgb, var(--highlight) 18%, transparent);
+    outline: 1px dashed var(--highlight);
+    outline-offset: 1px;
+    padding-inline: 0.15em;
+  }
+}
+
+/* Home intro: header and mobile bar stay hidden until the first scroll (class set by BaseLayout). */
+html.intro [data-chrome] {
+  transition:
+    transform 0.3s ease-out,
+    opacity 0.3s ease-out,
+    visibility 0.3s;
+}
+html.intro [data-chrome='top'] {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+}
+html.intro:not(.intro-open) [data-chrome] {
+  visibility: hidden;
+  opacity: 0;
+}
+html.intro:not(.intro-open) [data-chrome='top'] {
+  transform: translateY(-100%);
+}
+html.intro:not(.intro-open) [data-chrome='bottom'] {
+  transform: translateY(100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

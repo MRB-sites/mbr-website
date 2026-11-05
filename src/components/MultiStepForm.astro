@@ -1,0 +1,473 @@
+---
+/**
+ * Five-step quote request.
+ * Mobbin patterns: HubSpot "Creating a quote" (labelled stepper + Back/Next bar + autosave note),
+ * Laravel Cloud survey (one topic per step, segmented progress, large option cards),
+ * WeTransfer upload dropzone, Upwork "Save & Continue".
+ *
+ * Without JavaScript every step is shown at once and the form posts normally
+ * (Netlify redirects to the thank-you page). With JavaScript it becomes a
+ * stepped flow with validation, session save and an inline success screen.
+ */
+import { COMPANY_NAME, EMAIL, HAS_PHONE, PHONE, RESPONSE_TIME, hasValue, telHref } from '../config/company';
+import { FORMS } from '../config/site';
+import { fmt, useT } from '../i18n';
+import { path, type Locale } from '../i18n/routes';
+import ChoiceGroup from './form/ChoiceGroup.astro';
+import Consent from './form/Consent.astro';
+import Field from './form/Field.astro';
+import Honeypot from './form/Honeypot.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useT(locale);
+const f = t.form;
+const req = { requiredLabel: f.required, optionalLabel: f.optional };
+const opts = (o: Record<string, string>) => Object.entries(o).map(([value, label]) => ({ value, label }));
+const steps = f.steps;
+const action = FORMS.provider === 'netlify' ? path('contactThanks', locale) : FORMS.endpoint;
+const today = new Date().toISOString().slice(0, 10);
+---
+
+<div class="relative" data-quote-root>
+  <form
+    id="offert-form"
+    name={FORMS.names.quote}
+    method="POST"
+    action={action}
+    enctype="multipart/form-data"
+    data-netlify={FORMS.provider === 'netlify' ? 'true' : undefined}
+    netlify-honeypot="bot-field"
+    data-provider={FORMS.provider}
+    data-endpoint={FORMS.endpoint || undefined}
+    data-messages={JSON.stringify(f.errors)}
+    data-max-files={FORMS.maxFiles}
+    data-max-mb={FORMS.maxTotalMb}
+    data-step-of={f.stepOf}
+    data-selected={f.upload.selected}
+    data-remove={f.upload.remove}
+    data-none={f.upload.none}
+    data-sending={f.sending}
+    class="bg-surface"
+  >
+    <input type="hidden" name="form-name" value={FORMS.names.quote} />
+    <input type="hidden" name="sprak" value={locale} />
+    <Honeypot label={f.honeypot} />
+
+    <!-- Progress (shown when JS is active) -->
+    <div class="border-b border-line p-5 md:p-6" data-progress hidden>
+      <div class="flex items-center justify-between gap-4">
+        <p class="text-xs" data-step-label aria-live="polite"></p>
+        <p class="flex items-center gap-1 text-xs text-ink-muted" data-saved hidden>
+          <Icon name="check" class="h-3.5 w-3.5 text-success" />{f.saved}
+        </p>
+      </div>
+      <ol class="mt-3 grid grid-cols-5 gap-1.5" aria-hidden="true">
+        {
+          steps.map((s, i) => (
+            <li data-step-dot={i + 1} class="group">
+              <span class="block h-1.5 bg-line group-data-[state=current]:bg-ink group-data-[state=done]:bg-accent" />
+              <span class="mt-2 hidden text-xs font-semibold text-ink-muted group-data-[state=current]:text-ink sm:block">
+                {i + 1}. {s.short}
+              </span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <div class="p-5 md:p-8">
+      <p class="mb-6 border-l-[3px] border-accent bg-concrete p-4 text-sm" data-nojs>{f.noJs}</p>
+
+      <div role="alert" tabindex="-1" class="mb-8 border border-danger p-4 outline-none" data-summary hidden>
+        <p class="flex items-center gap-2 font-semibold text-danger"><Icon name="alert" />{f.errorSummary}</p>
+        <ul class="mt-2 list-disc space-y-1 pl-6 text-sm"></ul>
+      </div>
+
+      <!-- Step 1: service -->
+      <fieldset data-step="1" class="space-y-8">
+        <legend class="mb-6 text-[1.625rem] font-bold" tabindex="-1" data-step-heading>{steps[0].title}</legend>
+        <ChoiceGroup id="q-tjanst" name="tjanst" legend={f.fields.services} hint={f.fields.servicesHint} type="checkbox" required options={opts(f.options.services)} {...req} />
+        <ChoiceGroup id="q-kundtyp" name="kundtyp" legend={f.fields.customerType} type="radio" options={opts(f.options.customerType)} columns={3} {...req} />
+      </fieldset>
+
+      <!-- Step 2: property -->
+      <fieldset data-step="2" class="mt-12 space-y-6">
+        <legend class="mb-6 text-[1.625rem] font-bold" tabindex="-1" data-step-heading>{steps[1].title}</legend>
+        <ChoiceGroup id="q-fastighet" name="fastighetstyp" legend={f.fields.propertyType} type="radio" required options={opts(f.options.propertyType)} columns={3} {...req} />
+        <Field id="q-adress" name="adress" label={f.fields.street} required autocomplete="street-address" {...req} />
+        <div class="grid gap-6 sm:grid-cols-[12rem_1fr]">
+          <Field id="q-postnummer" name="postnummer" label={f.fields.postalCode} autocomplete="postal-code" inputmode="numeric" maxlength={6} {...req} />
+          <Field id="q-ort" name="ort" label={f.fields.city} required autocomplete="address-level2" {...req} />
+        </div>
+      </fieldset>
+
+      <!-- Step 3: scope & timing -->
+      <fieldset data-step="3" class="mt-12 space-y-6">
+        <legend class="mb-6 text-[1.625rem] font-bold" tabindex="-1" data-step-heading>{steps[2].title}</legend>
+        <Field id="q-beskrivning" name="beskrivning" as="textarea" label={f.fields.description} hint={f.fields.descriptionHint} required minlength={10} maxlength={4000} {...req} />
+        <div class="grid gap-6 sm:grid-cols-2">
+          <Field id="q-yta" name="yta" label={f.fields.area} inputmode="numeric" maxlength={8} {...req} />
+          <Field id="q-byggar" name="byggar" label={f.fields.buildYear} hint={f.fields.buildYearHint} inputmode="numeric" maxlength={4} {...req} />
+        </div>
+        <ChoiceGroup id="q-start" name="start" legend={f.fields.start} type="radio" required options={opts(f.options.start)} {...req} />
+        <Field id="q-startdatum" name="startdatum" type="date" min={today} label={f.fields.startDate} class="sm:max-w-xs" {...req} />
+      </fieldset>
+
+      <!-- Step 4: files -->
+      <fieldset data-step="4" class="mt-12">
+        <legend class="mb-6 text-[1.625rem] font-bold" tabindex="-1" data-step-heading>{steps[3].title}</legend>
+        <div class="field" data-field data-files>
+          <label for="q-bilagor" class="block font-semibold">
+            {f.fields.files} <span class="text-sm font-normal text-ink-muted">({f.optional})</span>
+          </label>
+          <p id="q-bilagor-hint" class="mt-1 text-sm text-ink-muted">{fmt(f.upload.hint, { count: FORMS.maxFiles, mb: FORMS.maxTotalMb })}</p>
+          <div class="relative mt-3 flex flex-col items-center justify-center gap-3 border border-dashed border-ink-muted bg-paper px-6 py-10 text-center data-[drag=true]:border-accent data-[drag=true]:bg-concrete" data-dropzone>
+            <Icon name="upload" class="h-8 w-8 text-ink-muted" />
+            <p class="text-lg font-bold">{f.upload.drop}</p>
+            <p class="text-sm text-ink-muted">{f.upload.or}</p>
+            <span class="inline-flex min-h-[2.6875rem] items-center rounded-full bg-inverse px-6 font-bold text-on-inverse" aria-hidden="true">{f.upload.browse}</span>
+            <input
+              id="q-bilagor"
+              name="bilagor"
+              type="file"
+              multiple
+              accept={FORMS.accept}
+              aria-describedby="q-bilagor-hint q-bilagor-error q-bilagor-list"
+              class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+            />
+          </div>
+          <ul id="q-bilagor-list" class="mt-4 space-y-2" data-file-list aria-live="polite"></ul>
+          <p id="q-bilagor-error" class="mt-2 text-sm font-semibold text-danger" data-error hidden></p>
+        </div>
+      </fieldset>
+
+      <!-- Step 5: contact -->
+      <fieldset data-step="5" class="mt-12 space-y-6">
+        <legend class="mb-6 text-[1.625rem] font-bold" tabindex="-1" data-step-heading>{steps[4].title}</legend>
+        <div class="border border-line bg-paper p-5" data-review hidden>
+          <h3 class="text-[1.375rem] font-bold">{f.summary}</h3>
+          <dl class="mt-3 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-[10rem_1fr]" data-review-list></dl>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2">
+          <Field id="q-namn" name="namn" label={f.fields.name} required autocomplete="name" {...req} />
+          <Field id="q-foretag" name="foretag" label={f.fields.company} autocomplete="organization" {...req} />
+          <Field id="q-epost" name="epost" type="email" label={f.fields.email} required autocomplete="email" {...req} />
+          <Field id="q-telefon" name="telefon" type="tel" label={f.fields.phone} required autocomplete="tel" inputmode="tel" {...req} />
+        </div>
+        <ChoiceGroup id="q-kontakt" name="kontaktsatt" legend={f.fields.contactPref} type="radio" options={opts(f.options.contactPref)} checked="telefon" {...req} />
+        <Consent id="q-samtycke" text={fmt(f.consent, { company: COMPANY_NAME })} linkText={f.consentLink} href={path('privacy', locale)} />
+      </fieldset>
+    </div>
+
+    <!-- Action bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 border-t border-line bg-paper p-5 md:p-6">
+      <button type="button" data-back hidden class="inline-flex min-h-[2.6875rem] items-center justify-center rounded-full border-2 border-line-strong bg-surface px-6 font-bold text-ink transition-colors duration-200 ease-out hover:border-ink">
+        <Icon name="arrow-left" />{f.back}
+      </button>
+      <div class="ml-auto flex items-center gap-3">
+        <button type="button" data-skip hidden class="min-h-12 px-3 font-semibold underline underline-offset-4">{f.upload.skip}</button>
+        <button type="button" data-next hidden class="inline-flex min-h-[2.6875rem] items-center justify-center rounded-full border-2 border-accent bg-accent px-6 font-bold text-on-accent transition-colors duration-200 ease-out hover:border-accent-strong hover:bg-accent-strong">
+          {f.next}<Icon name="arrow" />
+        </button>
+        <button type="submit" data-submit class="inline-flex min-h-[2.6875rem] items-center justify-center rounded-full border-2 border-accent bg-accent px-6 font-bold text-on-accent transition-colors duration-200 ease-out hover:border-accent-strong hover:bg-accent-strong">
+          <span data-submit-label>{f.submit}</span><Icon name="arrow" />
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Success (pattern: Laravel Cloud completion screen) -->
+  <div data-success hidden class="bg-surface p-8 md:p-12" role="status">
+    <span class="grid h-14 w-14 place-items-center bg-accent text-on-accent"><Icon name="check" class="h-7 w-7" /></span>
+    <h2 class="mt-6 text-[1.625rem]" tabindex="-1" data-success-heading>{f.success.title}</h2>
+    <p class="mt-3">{f.success.text}</p>
+    {hasValue(RESPONSE_TIME[locale]) && <p class="mt-2 font-bold">{fmt(f.success.responseTime, { time: RESPONSE_TIME[locale] })}</p>}
+    {
+      HAS_PHONE && (
+        <p class="mt-6">
+          <a href={telHref(PHONE)} class="link-underline font-semibold">
+            {fmt(f.success.urgent, { phone: PHONE })}
+          </a>
+        </p>
+      )
+    }
+    <button type="button" data-again class="mt-8 inline-flex min-h-[2.6875rem] items-center justify-center rounded-full border-2 border-line-strong bg-surface px-6 font-bold text-ink transition-colors duration-200 ease-out hover:border-ink">
+      {f.success.again}
+    </button>
+  </div>
+
+  <div data-failure hidden role="alert" class="mt-4 border border-danger bg-surface p-5">
+    <p class="flex items-center gap-2 font-semibold text-danger"><Icon name="alert" />{f.error.title}</p>
+    <p class="mt-2 text-sm">{fmt(HAS_PHONE ? f.error.text : f.error.textEmail, { phone: PHONE, email: EMAIL })}</p>
+  </div>
+</div>
+
+<script>
+  import { showSummary, submit, validate, type Messages } from '../scripts/forms';
+
+  const STORE = 'quote-form-v1';
+  const root = document.querySelector<HTMLElement>('[data-quote-root]');
+  const form = root?.querySelector<HTMLFormElement>('form');
+
+  if (root && form) {
+    const messages = JSON.parse(form.dataset.messages ?? '{}') as Messages;
+    const steps = [...form.querySelectorAll<HTMLFieldSetElement>('[data-step]')];
+    const total = steps.length;
+    const q = <T extends HTMLElement>(sel: string) => root.querySelector<T>(sel)!;
+    const progress = q('[data-progress]');
+    const stepLabel = q('[data-step-label]');
+    const saved = q('[data-saved]');
+    const summary = q('[data-summary]');
+    const back = q<HTMLButtonElement>('[data-back]');
+    const next = q<HTMLButtonElement>('[data-next]');
+    const skip = q<HTMLButtonElement>('[data-skip]');
+    const send = q<HTMLButtonElement>('[data-submit]');
+    const sendLabel = q('[data-submit-label]');
+    const success = q('[data-success]');
+    const failure = q('[data-failure]');
+    const fileInput = q<HTMLInputElement>('#q-bilagor');
+    const fileList = q('[data-file-list]');
+    const dropzone = q('[data-dropzone]');
+    const maxFiles = Number(form.dataset.maxFiles ?? 5);
+    const maxBytes = Number(form.dataset.maxMb ?? 8) * 1024 * 1024;
+    const stepTitles = steps.map((s) => s.querySelector('legend')?.textContent?.trim() ?? '');
+    let current = 1;
+    let saveTimer: number | undefined;
+
+    // ---- enhance: JS takes over the flow
+    form.noValidate = true;
+    progress.hidden = false;
+    q('[data-nojs]').hidden = true;
+    steps.forEach((s) => s.classList.remove('mt-12'));
+
+    // ---- session save (pattern: HubSpot "Autosaved")
+    const serialize = () => {
+      const values: Record<string, string | string[]> = {};
+      for (const el of form.elements) {
+        const c = el as HTMLInputElement;
+        if (!c.name || c.type === 'file' || c.type === 'hidden' || c.name === 'bot-field' || c.name === 'samtycke') continue;
+        if (c.type === 'checkbox') {
+          const arr = (values[c.name] as string[] | undefined) ?? [];
+          if (c.checked) arr.push(c.value);
+          values[c.name] = arr;
+        } else if (c.type === 'radio') {
+          if (c.checked) values[c.name] = c.value;
+        } else values[c.name] = c.value;
+      }
+      return values;
+    };
+    const save = () => {
+      try {
+        sessionStorage.setItem(STORE, JSON.stringify({ step: current, values: serialize() }));
+        saved.hidden = false;
+      } catch {
+        /* storage unavailable – no autosave */
+      }
+    };
+    const restore = () => {
+      try {
+        const raw = sessionStorage.getItem(STORE);
+        if (!raw) return 1;
+        const { step, values } = JSON.parse(raw) as { step: number; values: Record<string, string | string[]> };
+        for (const el of form.elements) {
+          const c = el as HTMLInputElement;
+          const v = values[c.name];
+          if (v === undefined || c.type === 'file' || c.type === 'hidden') continue;
+          if (c.type === 'checkbox') c.checked = Array.isArray(v) && v.includes(c.value);
+          else if (c.type === 'radio') c.checked = v === c.value;
+          else c.value = String(v);
+        }
+        saved.hidden = false;
+        return Math.min(Math.max(1, step), total);
+      } catch {
+        return 1;
+      }
+    };
+    form.addEventListener('input', () => {
+      window.clearTimeout(saveTimer);
+      saveTimer = window.setTimeout(save, 250);
+    });
+
+    // ---- review list on the last step
+    const renderReview = () => {
+      const list = q('[data-review-list]');
+      const rows: [string, string][] = [];
+      const labelFor = (name: string) => form.querySelector(`[name="${name}"]`)?.closest('[data-field]')?.querySelector('legend, label')?.firstChild?.textContent?.trim() ?? name;
+      const checkedLabels = (name: string) =>
+        [...form.querySelectorAll<HTMLInputElement>(`[name="${name}"]:checked`)].map((i) => i.closest('label')?.textContent?.trim() ?? i.value).join(', ');
+      ['tjanst', 'kundtyp', 'fastighetstyp'].forEach((n) => {
+        const v = checkedLabels(n);
+        if (v) rows.push([labelFor(n), v]);
+      });
+      const address = ['adress', 'postnummer', 'ort'].map((n) => (form.elements.namedItem(n) as HTMLInputElement).value.trim()).filter(Boolean).join(', ');
+      if (address) rows.push([labelFor('adress'), address]);
+      const start = checkedLabels('start');
+      if (start) rows.push([labelFor('start'), start]);
+      if (fileInput.files?.length) rows.push([labelFor('bilagor'), [...fileInput.files].map((f) => f.name).join(', ')]);
+      list.replaceChildren(
+        ...rows.flatMap(([k, v]) => {
+          const dt = document.createElement('dt');
+          dt.className = 'text-ink-muted';
+          dt.textContent = k;
+          const dd = document.createElement('dd');
+          dd.className = 'font-medium';
+          dd.textContent = v;
+          return [dt, dd];
+        }),
+      );
+      q('[data-review]').hidden = rows.length === 0;
+    };
+
+    // ---- step navigation
+    const show = (n: number, focus = true) => {
+      current = n;
+      steps.forEach((s, i) => (s.hidden = i + 1 !== n));
+      root.querySelectorAll<HTMLElement>('[data-step-dot]').forEach((dot) => {
+        const i = Number(dot.dataset.stepDot);
+        dot.dataset.state = i < n ? 'done' : i === n ? 'current' : 'todo';
+      });
+      stepLabel.textContent = `${(form.dataset.stepOf ?? '').replace('{n}', String(n)).replace('{total}', String(total))} – ${stepTitles[n - 1]}`;
+      back.hidden = n === 1;
+      next.hidden = n === total;
+      skip.hidden = n !== 4;
+      send.hidden = n !== total;
+      summary.hidden = true;
+      if (n === total) renderReview();
+      if (focus) {
+        steps[n - 1].querySelector<HTMLElement>('[data-step-heading]')?.focus();
+        root.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      }
+    };
+
+    // ---- files (pattern: WeTransfer dropzone)
+    const fileError = (): string | null => {
+      const files = [...(fileInput.files ?? [])];
+      if (files.length > maxFiles) return messages.fileCount.replace('{count}', String(maxFiles));
+      if (files.reduce((s, f) => s + f.size, 0) > maxBytes) return messages.fileSize.replace('{mb}', String(maxBytes / 1024 / 1024));
+      const bad = files.find((f) => !/\.(jpe?g|png|webp|heic|pdf)$/i.test(f.name));
+      return bad ? messages.fileType.replace('{name}', bad.name) : null;
+    };
+    const renderFiles = () => {
+      const files = [...(fileInput.files ?? [])];
+      if (!files.length) {
+        const li = document.createElement('li');
+        li.className = 'text-sm text-ink-muted';
+        li.textContent = form.dataset.none ?? '';
+        fileList.replaceChildren(li);
+        return;
+      }
+      fileList.replaceChildren(
+        ...files.map((file, idx) => {
+          const li = document.createElement('li');
+          li.className = 'flex items-center justify-between gap-3 border border-line bg-paper px-4 py-2 text-sm';
+          const name = document.createElement('span');
+          name.className = 'truncate';
+          name.textContent = `${file.name} (${(file.size / 1024 / 1024).toFixed(1)} MB)`;
+          const rm = document.createElement('button');
+          rm.type = 'button';
+          rm.className = 'min-h-11 shrink-0 px-2 font-semibold underline underline-offset-2';
+          rm.textContent = '×';
+          rm.setAttribute('aria-label', (form.dataset.remove ?? '{name}').replace('{name}', file.name));
+          rm.addEventListener('click', () => {
+            const dt = new DataTransfer();
+            files.forEach((f, i) => i !== idx && dt.items.add(f));
+            fileInput.files = dt.files;
+            renderFiles();
+            fileInput.focus();
+          });
+          li.append(name, rm);
+          return li;
+        }),
+      );
+    };
+    fileInput.addEventListener('change', () => {
+      renderFiles();
+      validate(steps[3], messages, (field) => ('files' in field.dataset ? fileError() : null));
+    });
+    ['dragenter', 'dragover'].forEach((ev) => dropzone.addEventListener(ev, () => (dropzone.dataset.drag = 'true')));
+    ['dragleave', 'drop'].forEach((ev) => dropzone.addEventListener(ev, () => (dropzone.dataset.drag = 'false')));
+    renderFiles();
+
+    const checkStep = (n: number) => {
+      const errors = validate(steps[n - 1], messages, (field) => ('files' in field.dataset ? fileError() : null));
+      showSummary(summary, errors);
+      return errors.length === 0;
+    };
+
+    next.addEventListener('click', () => {
+      if (!checkStep(current)) return;
+      save();
+      show(current + 1);
+    });
+    skip.addEventListener('click', () => {
+      fileInput.value = '';
+      renderFiles();
+      show(current + 1);
+    });
+    back.addEventListener('click', () => show(current - 1));
+
+    // Enter in a text input moves forward instead of submitting early.
+    form.addEventListener('keydown', (e) => {
+      const target = e.target as HTMLElement;
+      if (e.key === 'Enter' && target instanceof HTMLInputElement && current < total) {
+        e.preventDefault();
+        next.click();
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      // Validate every step; jump to the first one with errors.
+      for (let n = 1; n <= total; n++) {
+        if (!checkStep(n)) {
+          show(n, false);
+          checkStep(n);
+          return;
+        }
+      }
+      failure.hidden = true;
+      send.disabled = true;
+      const label = sendLabel.textContent;
+      sendLabel.textContent = form.dataset.sending ?? '…';
+      const ok = await submit(form);
+      send.disabled = false;
+      sendLabel.textContent = label;
+      if (ok) {
+        window.clearTimeout(saveTimer);
+        try {
+          sessionStorage.removeItem(STORE);
+        } catch {
+          /* ignore */
+        }
+        form.hidden = true;
+        success.hidden = false;
+        q<HTMLElement>('[data-success-heading]').focus();
+      } else {
+        failure.hidden = false;
+        failure.focus();
+      }
+    });
+
+    q('[data-again]').addEventListener('click', () => {
+      form.reset();
+      renderFiles();
+      success.hidden = true;
+      form.hidden = false;
+      saved.hidden = true;
+      show(1);
+    });
+
+    // ---- start: restore session, then preselect service from ?tjanst=
+    const startStep = restore();
+    const pre = new URLSearchParams(location.search).get('tjanst');
+    if (pre) {
+      const box = form.querySelector<HTMLInputElement>(`input[name="tjanst"][value="${CSS.escape(pre)}"]`);
+      if (box) box.checked = true;
+    }
+    show(startStep, false);
+  }
+</script>

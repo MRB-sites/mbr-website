@@ -1,0 +1,135 @@
+---
+import { CERTIFICATIONS, INSURANCE } from '../config/company';
+import { breadcrumbSchema } from '../data/schema';
+import { useT } from '../i18n';
+import { path, type Alternates, type Locale } from '../i18n/routes';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABand from '../components/CTABand.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import ProcessTimeline from '../components/ProcessTimeline.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Text from '../components/Text.astro';
+
+interface Props {
+  locale: Locale;
+  alternates: Alternates;
+}
+const { locale, alternates } = Astro.props;
+const t = useT(locale);
+const e = t.environment;
+const site = Astro.site!;
+const crumbs = [
+  { label: t.nav.home, href: path('home', locale) },
+  { label: t.nav.environment, href: path('environment', locale) },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  title={e.meta.title}
+  description={e.meta.description}
+  alternates={alternates}
+  jsonLd={[breadcrumbSchema(crumbs.map((c) => ({ label: c.label, url: new URL(c.href, site).href })))]}
+>
+  <PageHero eyebrow={e.hero.eyebrow} title={e.hero.title} lead={e.hero.lead} image="placeholders/environment.jpg" breadcrumbs={crumbs} breadcrumbLabel={t.a11y.breadcrumb} />
+
+  <Section labelledby="sorting-title">
+    <SectionHeader id="sorting-title" eyebrow={e.sorting.eyebrow} title={e.sorting.title} lead={e.sorting.lead} />
+    <div class="mt-12">
+      <ProcessTimeline steps={e.sorting.steps} stepLabel={t.common.step} />
+    </div>
+  </Section>
+
+  <Section tone="concrete" labelledby="reuse-title">
+    <div class="grid gap-12 lg:grid-cols-2">
+      <div>
+        <SectionHeader id="reuse-title" eyebrow={e.reuse.eyebrow} title={e.reuse.title} lead={e.reuse.text} />
+        <ul class="mt-8 space-y-3">
+          {
+            e.reuse.points.map((p) => (
+              <li class="flex gap-3">
+                <Icon name="recycle" class="mt-0.5 h-6 w-6 shrink-0 text-accent-strong" />
+                <span>
+                  <Text text={p} />
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="bg-surface p-6 md:p-8">
+        <p class="eyebrow">{e.docs.eyebrow}</p>
+        <h2 id="docs-title" class="mt-2 text-[1.625rem] font-bold">{e.docs.title}</h2>
+        <p class="mt-2 text-ink-muted">{e.docs.lead}</p>
+        <ul class="mt-6 divide-y divide-line border-y border-line">
+          {
+            e.docs.items.map((d) => (
+              <li class="flex items-center gap-3 py-3">
+                <Icon name="file" class="h-5 w-5 shrink-0 text-ink-muted" />
+                {d}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </Section>
+
+  <Section labelledby="safety-title">
+    <div class="grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <SectionHeader id="safety-title" eyebrow={e.safety.eyebrow} title={e.safety.title} lead={e.safety.lead} />
+        <Photo src="placeholders/safety.jpg" alt="" width={900} height={1100} sizes="(min-width: 1024px) 33vw, 100vw" figureClass="mt-8 aspect-[4/5] hidden lg:block" />
+      </div>
+      <ul class="grid gap-6 sm:grid-cols-2 lg:col-span-8">
+        {
+          e.safety.items.map((s) => (
+            <li class="border-t-[3px] border-accent-strong bg-surface p-6">
+              <Icon name="shield" class="h-7 w-7 text-accent-strong" />
+              <h3 class="mt-3 text-[1.375rem] font-bold">{s.title}</h3>
+              <p class="mt-2 text-ink-muted">
+                <Text text={s.text} />
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Section>
+
+  {(CERTIFICATIONS.length > 0 || INSURANCE) && (
+  <Section tone="inverse" labelledby="certs-title">
+    <SectionHeader id="certs-title" eyebrow={e.certs.eyebrow} title={e.certs.title} lead={e.certs.lead} inverse />
+    {CERTIFICATIONS.length > 0 && (
+    <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      {
+        CERTIFICATIONS.map((c) => (
+          <li class="flex min-h-24 items-center gap-3 border border-white/20 p-5 text-[1.375rem] font-bold">
+            <Icon name="shield" class="h-7 w-7 shrink-0 text-accent" />
+            <Text text={c} />
+          </li>
+        ))
+      }
+    </ul>
+    )}
+    {INSURANCE && (
+    <div class="mt-10 max-w-2xl border-l-[3px] border-accent pl-5">
+      <h3 class="text-[1.375rem] font-bold">{e.certs.insurance}</h3>
+      <dl class="mt-3 grid grid-cols-[9rem_1fr] gap-y-2 text-on-inverse-muted">
+        <dt>{e.certs.insurer}</dt>
+        <dd class="text-on-inverse"><Text text={INSURANCE.insurer} /></dd>
+        <dt>{e.certs.type}</dt>
+        <dd class="text-on-inverse"><Text text={INSURANCE.type[locale]} /></dd>
+        <dt>{e.certs.amount}</dt>
+        <dd class="text-on-inverse"><Text text={INSURANCE.amount} /></dd>
+      </dl>
+    </div>
+    )}
+  </Section>
+  )}
+
+  <CTABand locale={locale} />
+</BaseLayout>

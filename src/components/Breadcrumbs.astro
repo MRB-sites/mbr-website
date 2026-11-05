@@ -1,0 +1,27 @@
+---
+interface Props {
+  items: { label: string; href?: string }[];
+  label: string;
+  inverse?: boolean;
+}
+const { items, label, inverse = false } = Astro.props;
+---
+
+<nav aria-label={label} class="mb-6">
+  <ol class:list={['flex flex-wrap items-center gap-x-2 gap-y-1 text-sm', inverse ? 'text-on-inverse-muted' : 'text-ink-muted']}>
+    {
+      items.map((item, i) => (
+        <li class="flex items-center gap-2">
+          {i > 0 && <span aria-hidden="true">/</span>}
+          {item.href && i < items.length - 1 ? (
+            <a href={item.href} class="text-accent-strong hover:underline">
+              {item.label}
+            </a>
+          ) : (
+            <span aria-current={i === items.length - 1 ? 'page' : undefined}>{item.label}</span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

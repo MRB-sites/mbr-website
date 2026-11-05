@@ -1,0 +1,133 @@
+---
+/** Job / spontaneous application. Same submission pipeline as the quote form. */
+import { COMPANY_NAME, EMAIL } from '../config/company';
+import { FORMS } from '../config/site';
+import { fmt, useT } from '../i18n';
+import { path, type Locale } from '../i18n/routes';
+import Consent from './form/Consent.astro';
+import Field from './form/Field.astro';
+import Honeypot from './form/Honeypot.astro';
+import Icon from './Icon.astro';
+import Text from './Text.astro';
+
+interface Props {
+  locale: Locale;
+  /** Preselected position title; empty = spontaneous application. */
+  position?: string;
+  positions?: string[];
+}
+const { locale, position = '', positions = [] } = Astro.props;
+const t = useT(locale);
+const c = t.careers.form;
+const f = t.form;
+const req = { requiredLabel: f.required, optionalLabel: f.optional };
+const action = FORMS.provider === 'netlify' ? path('careersThanks', locale) : FORMS.endpoint;
+---
+
+<div data-application-root>
+  <form
+    name={FORMS.names.application}
+    method="POST"
+    action={action}
+    enctype="multipart/form-data"
+    data-netlify={FORMS.provider === 'netlify' ? 'true' : undefined}
+    netlify-honeypot="bot-field"
+    data-provider={FORMS.provider}
+    data-endpoint={FORMS.endpoint || undefined}
+    data-messages={JSON.stringify(f.errors)}
+    data-max-mb={FORMS.maxTotalMb}
+    data-sending={f.sending}
+    class="space-y-6 bg-surface p-6"
+  >
+    <input type="hidden" name="form-name" value={FORMS.names.application} />
+    <input type="hidden" name="sprak" value={locale} />
+    <Honeypot label={f.honeypot} />
+
+    <div role="alert" tabindex="-1" class="border border-danger p-4 outline-none" data-summary hidden>
+      <p class="flex items-center gap-2 font-semibold text-danger"><Icon name="alert" />{f.errorSummary}</p>
+      <ul class="mt-2 list-disc space-y-1 pl-6 text-sm"></ul>
+    </div>
+
+    <div class="field" data-field>
+      <label for="a-tjanst" class="block font-semibold">{c.position}</label>
+      <select id="a-tjanst" name="tjanst" class="mt-2 block min-h-12 w-full border border-line-strong bg-surface px-4 py-3">
+        <option value={c.positionSpontaneous} selected={!position}>{c.positionSpontaneous}</option>
+        {positions.map((p) => <option value={p} selected={p === position}>{p}</option>)}
+      </select>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2">
+      <Field id="a-namn" name="namn" label={c.name} required autocomplete="name" class="sm:col-span-2" {...req} />
+      <Field id="a-epost" name="epost" type="email" label={c.email} required autocomplete="email" {...req} />
+      <Field id="a-telefon" name="telefon" type="tel" label={c.phone} required autocomplete="tel" inputmode="tel" {...req} />
+    </div>
+    <Field id="a-erfarenhet" name="erfarenhet" as="textarea" label={c.experience} hint={c.experienceHint} required minlength={10} {...req} />
+    <div class="field" data-field>
+      <label for="a-cv" class="block font-semibold">{c.cv}</label>
+      <p id="a-cv-hint" class="mt-1 text-sm text-ink-muted">{fmt(c.cvHint, { mb: FORMS.maxTotalMb })}</p>
+      <input
+        id="a-cv"
+        name="cv"
+        type="file"
+        accept=".pdf,.doc,.docx,application/pdf"
+        aria-describedby="a-cv-hint"
+        class="mt-2 block w-full border border-dashed border-line bg-paper p-4 text-sm file:mr-4 file:min-h-11 file:border-0 file:rounded-full file:bg-inverse file:px-5 file:text-base file:font-bold file:text-on-inverse"
+      />
+    </div>
+    <Consent id="a-samtycke" text={fmt(c.consent, { company: COMPANY_NAME })} linkText={f.consentLink} href={path('privacy', locale)} />
+    <button type="submit" class="inline-flex min-h-[2.6875rem] items-center justify-center rounded-full border-2 border-accent bg-accent px-6 font-bold text-on-accent transition-colors duration-200 ease-out hover:border-accent-strong hover:bg-accent-strong" data-submit>
+      <span data-submit-label>{c.submit}</span><Icon name="arrow" />
+    </button>
+  </form>
+  <div data-success hidden role="status" class="bg-surface p-8">
+    <span class="grid h-12 w-12 place-items-center bg-accent text-on-accent"><Icon name="check" class="h-6 w-6" /></span>
+    <p class="mt-4 text-lg font-semibold" tabindex="-1" data-success-heading>{c.success}</p>
+  </div>
+  <p data-failure hidden role="alert" class="mt-4 border border-danger bg-surface p-4 font-semibold text-danger">
+    <Text text={fmt(c.error, { email: EMAIL })} />
+  </p>
+</div>
+
+<script>
+  import { showSummary, submit, validate, type Messages } from '../scripts/forms';
+
+  document.querySelectorAll<HTMLElement>('[data-application-root]').forEach((root) => {
+    const form = root.querySelector('form')!;
+    const messages = JSON.parse(form.dataset.messages ?? '{}') as Messages;
+    const summary = root.querySelector<HTMLElement>('[data-summary]')!;
+    const btn = root.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const label = root.querySelector<HTMLElement>('[data-submit-label]')!;
+    const maxBytes = Number(form.dataset.maxMb ?? 8) * 1024 * 1024;
+    form.noValidate = true;
+
+    // Preselect position from ?roll=
+    const roll = new URLSearchParams(location.search).get('roll');
+    if (roll) {
+      const select = form.querySelector<HTMLSelectElement>('select[name="tjanst"]');
+      const match = [...(select?.options ?? [])].find((o) => o.value === roll);
+      if (select && match) select.value = match.value;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const errors = validate(form, messages, (field) => {
+        const file = field.querySelector<HTMLInputElement>('input[type="file"]')?.files?.[0];
+        return file && file.size > maxBytes ? messages.fileSize.replace('{mb}', String(maxBytes / 1024 / 1024)) : null;
+      });
+      showSummary(summary, errors);
+      if (errors.length) return;
+      const text = label.textContent;
+      btn.disabled = true;
+      label.textContent = form.dataset.sending ?? '…';
+      const ok = await submit(form);
+      btn.disabled = false;
+      label.textContent = text;
+      const failure = root.querySelector<HTMLElement>('[data-failure]')!;
+      if (ok) {
+        form.hidden = true;
+        failure.hidden = true;
+        root.querySelector<HTMLElement>('[data-success]')!.hidden = false;
+        root.querySelector<HTMLElement>('[data-success-heading]')?.focus();
+      } else failure.hidden = false;
+    });
+  });
+</script>

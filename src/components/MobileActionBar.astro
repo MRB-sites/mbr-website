@@ -1,0 +1,25 @@
+---
+/** Sticky bottom bar on small screens (pattern: Swiggy / talabat dual CTA). */
+import { DIRECT_CONTACT } from '../config/company';
+import { useT } from '../i18n';
+import { quotePath, type Locale } from '../i18n/routes';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useT(locale);
+---
+
+<nav
+  data-chrome="bottom"
+  aria-label={t.a11y.mobileActions}
+  class="fixed inset-x-0 bottom-0 z-30 grid grid-cols-2 gap-2 bg-surface px-4 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[var(--shadow-header)] md:hidden"
+>
+  <a href={DIRECT_CONTACT.href} class="flex min-h-11 items-center justify-center rounded-full border-2 border-line-strong font-bold text-ink">
+    {t.cta[DIRECT_CONTACT.label]}
+  </a>
+  <a href={quotePath(locale)} class="flex min-h-11 items-center justify-center rounded-full bg-accent font-bold text-on-accent">
+    {t.cta.quote}
+  </a>
+</nav>

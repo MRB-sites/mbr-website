@@ -1,0 +1,44 @@
+---
+import Text from './Text.astro';
+
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  level?: 'h1' | 'h2' | 'h3';
+  align?: 'left' | 'center';
+  class?: string;
+  inverse?: boolean;
+}
+const { id, eyebrow, title, lead, level = 'h2', align = 'left', class: className, inverse = false } = Astro.props;
+const Heading = level;
+const size = level === 'h1' ? 'text-[2rem]' : 'text-[1.625rem]';
+---
+
+<div
+  class:list={[
+    'flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-8',
+    align === 'center' && 'items-center text-center md:flex-col md:items-center',
+    className,
+  ]}
+>
+  <div class:list={['max-w-2xl', align === 'center' && 'mx-auto']}>
+    {eyebrow && <p class:list={['eyebrow mb-2', inverse && 'text-on-inverse-muted']}>{eyebrow}</p>}
+    <Heading id={id} class={size}><Text text={title} /></Heading>
+    {
+      lead && (
+        <p class:list={['mt-3', inverse ? 'text-on-inverse-muted' : 'text-ink']}>
+          <Text text={lead} />
+        </p>
+      )
+    }
+  </div>
+  {
+    Astro.slots.has('default') && (
+      <div class="shrink-0">
+        <slot />
+      </div>
+    )
+  }
+</div>

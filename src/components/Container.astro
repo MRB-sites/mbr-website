@@ -1,0 +1,12 @@
+---
+interface Props {
+  class?: string;
+  size?: 'default' | 'narrow';
+}
+const { class: className, size = 'default' } = Astro.props;
+---
+
+<!-- Fixed 960px content column (720px narrow) plus 16px side padding. -->
+<div class:list={['mx-auto w-full px-4', size === 'narrow' ? 'max-w-[47rem]' : 'max-w-[62rem]', className]}>
+  <slot />
+</div>

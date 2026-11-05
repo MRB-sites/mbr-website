@@ -1,0 +1,46 @@
+---
+/** Team member card with direct contact (pattern: Analogue Agency "You'll be working with"). */
+import { telHref } from '../config/company';
+import { fmt } from '../i18n';
+import Icon from './Icon.astro';
+import Photo from './Photo.astro';
+import Text from './Text.astro';
+
+interface Props {
+  name: string;
+  role: string;
+  phone: string;
+  email: string;
+  photo?: string;
+  labels: { call: string; email: string; photoAlt: string };
+}
+const { name, role, phone, email, photo, labels } = Astro.props;
+---
+
+<li class="flex gap-4 bg-surface p-4">
+  {
+    photo ? (
+      <Photo src={photo} alt={fmt(labels.photoAlt, { name })} width={240} height={300} sizes="120px" figureClass="aspect-[4/5] w-24 shrink-0 sm:w-28" />
+    ) : (
+      <div class="grid aspect-[4/5] w-24 shrink-0 place-items-center bg-paper text-[1.625rem] font-bold text-ink-muted sm:w-28" aria-hidden="true">
+        {name.charAt(0)}
+      </div>
+    )
+  }
+  <div class="min-w-0">
+    <h3 class="text-lg leading-[1.2] font-bold"><Text text={name} /></h3>
+    <p class="text-ink-muted"><Text text={role} /></p>
+    <ul class="mt-3 space-y-1 text-sm">
+      <li>
+        <a href={telHref(phone)} class="inline-flex min-h-6 items-center gap-2 hover:underline" aria-label={`${fmt(labels.call, { name })}: ${phone}`}>
+          <Icon name="phone" class="h-4 w-4 text-highlight" /><Text text={phone} />
+        </a>
+      </li>
+      <li>
+        <a href={`mailto:${email}`} class="inline-flex min-h-6 items-center gap-2 break-all hover:underline" aria-label={`${fmt(labels.email, { name })}: ${email}`}>
+          <Icon name="mail" class="h-4 w-4 text-highlight" /><Text text={email} />
+        </a>
+      </li>
+    </ul>
+  </div>
+</li>

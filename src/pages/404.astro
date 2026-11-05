@@ -1,0 +1,24 @@
+---
+import { useT } from '../i18n';
+import { ROUTES, path } from '../i18n/routes';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Container from '../components/Container.astro';
+
+const locale = 'sv';
+const t = useT(locale);
+const en = useT('en');
+---
+
+<BaseLayout locale={locale} title={t.notFound.title} description={t.notFound.text} alternates={ROUTES.home} noindex>
+  <Container size="narrow" class="py-20 md:py-28">
+    <p class="text-[10rem] leading-[1.2] font-bold text-accent-strong" aria-hidden="true">404</p>
+    <h1 class="text-[2rem]">{t.notFound.title}</h1>
+    <p class="mt-3 font-bold">{t.notFound.text}</p>
+    <p class="mt-2 text-ink-muted" lang="en">{en.notFound.title}. {en.notFound.text}</p>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <Button href={path('home', 'sv')} icon="arrow">{t.notFound.home}</Button>
+      <Button href={path('home', 'en')} variant="secondary" lang="en">{en.notFound.home}</Button>
+    </div>
+  </Container>
+</BaseLayout>

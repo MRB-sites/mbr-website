@@ -1,0 +1,27 @@
+---
+import Text from './Text.astro';
+
+interface Props {
+  title: string;
+  facts: { label: string; value?: string }[];
+}
+const { title, facts } = Astro.props;
+---
+
+<aside class="bg-surface" aria-labelledby="facts-title">
+  <h2 id="facts-title" class="mx-6 border-b-[3px] border-accent-strong pt-6 pb-3 text-[1.375rem]">{title}</h2>
+  <dl class="divide-y divide-line">
+    {
+      facts
+        .filter((f) => f.value)
+        .map((f) => (
+          <div class="mx-6 grid grid-cols-[minmax(7rem,40%)_1fr] gap-4 py-3">
+            <dt class="text-sm text-ink-muted">{f.label}</dt>
+            <dd class="font-medium">
+              <Text text={f.value!} />
+            </dd>
+          </div>
+        ))
+    }
+  </dl>
+</aside>

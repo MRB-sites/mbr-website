@@ -1,0 +1,106 @@
+---
+/**
+ * Single route that builds every page in both languages from the route
+ * registry (src/i18n/routes.ts) and the content collections.
+ */
+import type { GetStaticPaths } from 'astro';
+import { type CollectionEntry } from 'astro:content';
+import { published } from '../data/collections';
+import { SERVICE_IDS, SERVICES, type ServiceId } from '../data/services';
+import { hiddenRoutes } from '../data/availability';
+import { LOCALES, ROUTES, detailPath, type Alternates, type Locale, type RouteKey } from '../i18n/routes';
+import AboutView from '../views/AboutView.astro';
+import CareersView from '../views/CareersView.astro';
+import ContactView from '../views/ContactView.astro';
+import EnvironmentView from '../views/EnvironmentView.astro';
+import HomeView from '../views/HomeView.astro';
+import JobView from '../views/JobView.astro';
+import LegalView from '../views/LegalView.astro';
+import NewsPostView from '../views/NewsPostView.astro';
+import NewsView from '../views/NewsView.astro';
+import ProjectView from '../views/ProjectView.astro';
+import ProjectsView from '../views/ProjectsView.astro';
+import ServiceView from '../views/ServiceView.astro';
+import ServicesView from '../views/ServicesView.astro';
+import ThanksView from '../views/ThanksView.astro';
+
+type Page =
+  | { view: 'home' | 'services' | 'projects' | 'environment' | 'about' | 'news' | 'careers' | 'contact' }
+  | { view: 'service'; service: ServiceId }
+  | { view: 'project'; entry: CollectionEntry<'projects'> }
+  | { view: 'newsPost'; entry: CollectionEntry<'news'> }
+  | { view: 'job'; entry: CollectionEntry<'jobs'> }
+  | { view: 'thanks'; kind: 'quote' | 'application' }
+  | { view: 'legal'; doc: 'privacy' | 'cookies' | 'accessibility' };
+
+type Props = { locale: Locale; alternates: Alternates; page: Page };
+
+export const getStaticPaths = (async () => {
+  const toSlug = (url: string) => url.replace(/^\/|\/$/g, '') || undefined;
+  const out: { params: { slug: string | undefined }; props: Props }[] = [];
+  const add = (alternates: Alternates, page: Page) => {
+    for (const locale of LOCALES) out.push({ params: { slug: toSlug(alternates[locale]) }, props: { locale, alternates, page } });
+  };
+  const simple: [RouteKey, Page][] = [
+    ['home', { view: 'home' }],
+    ['services', { view: 'services' }],
+    ['projects', { view: 'projects' }],
+    ['environment', { view: 'environment' }],
+    ['about', { view: 'about' }],
+    ['news', { view: 'news' }],
+    ['careers', { view: 'careers' }],
+    ['contact', { view: 'contact' }],
+    ['contactThanks', { view: 'thanks', kind: 'quote' }],
+    ['careersThanks', { view: 'thanks', kind: 'application' }],
+    ['privacy', { view: 'legal', doc: 'privacy' }],
+    ['cookies', { view: 'legal', doc: 'cookies' }],
+    ['accessibility', { view: 'legal', doc: 'accessibility' }],
+  ];
+  const hidden = await hiddenRoutes();
+  for (const [key, page] of simple) if (!hidden.has(key)) add(ROUTES[key], page);
+  for (const id of SERVICE_IDS) add(ROUTES[SERVICES[id].route], { view: 'service', service: id });
+
+  // Projects: one file holds both languages.
+  for (const entry of await published('projects')) {
+    add({ sv: detailPath('projects', entry.id, 'sv'), en: detailPath('projects', entry.id, 'en') }, { view: 'project', entry });
+  }
+
+  // News and jobs: one file per language (sv/<slug>.md, en/<slug>.md); same slug = translations.
+  const perLocale = async <C extends 'news' | 'jobs'>(collection: C, key: 'news' | 'careers', view: 'newsPost' | 'job') => {
+    const entries = await published(collection);
+    for (const entry of entries) {
+      const [locale, ...rest] = entry.id.split('/') as [Locale, ...string[]];
+      if (!LOCALES.includes(locale)) continue;
+      const slug = rest.join('/');
+      const other: Locale = locale === 'sv' ? 'en' : 'sv';
+      const hasTwin = entries.some((e) => e.id === `${other}/${slug}`);
+      const alternates = {
+        [locale]: detailPath(key, slug, locale),
+        [other]: hasTwin ? detailPath(key, slug, other) : ROUTES[key][other],
+      } as Alternates;
+      out.push({ params: { slug: toSlug(alternates[locale]) }, props: { locale, alternates, page: { view, entry } as Page } });
+    }
+  };
+  await perLocale('news', 'news', 'newsPost');
+  await perLocale('jobs', 'careers', 'job');
+
+  return out;
+}) satisfies GetStaticPaths;
+
+const { locale, alternates, page } = Astro.props;
+---
+
+{page.view === 'home' && <HomeView locale={locale} alternates={alternates} />}
+{page.view === 'services' && <ServicesView locale={locale} alternates={alternates} />}
+{page.view === 'service' && <ServiceView locale={locale} alternates={alternates} service={page.service} />}
+{page.view === 'projects' && <ProjectsView locale={locale} alternates={alternates} />}
+{page.view === 'project' && <ProjectView locale={locale} alternates={alternates} entry={page.entry} />}
+{page.view === 'environment' && <EnvironmentView locale={locale} alternates={alternates} />}
+{page.view === 'about' && <AboutView locale={locale} alternates={alternates} />}
+{page.view === 'news' && <NewsView locale={locale} alternates={alternates} />}
+{page.view === 'newsPost' && <NewsPostView locale={locale} alternates={alternates} entry={page.entry} />}
+{page.view === 'careers' && <CareersView locale={locale} alternates={alternates} />}
+{page.view === 'job' && <JobView locale={locale} alternates={alternates} entry={page.entry} />}
+{page.view === 'contact' && <ContactView locale={locale} alternates={alternates} />}
+{page.view === 'thanks' && <ThanksView locale={locale} alternates={alternates} kind={page.kind} />}
+{page.view === 'legal' && <LegalView locale={locale} alternates={alternates} doc={page.doc} />}

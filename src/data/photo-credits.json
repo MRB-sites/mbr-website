@@ -1,0 +1,107 @@
+{
+  "hero": {
+    "id": 10451774,
+    "photographer": "Helena Jankovičová Kováčová",
+    "photographerUrl": "https://www.pexels.com/@helen1",
+    "url": "https://www.pexels.com/photo/power-shovel-on-concrete-10451774/",
+    "alt": "A bulldozer efficiently demolishing an old building, clearing rubble."
+  },
+  "service-rivning": {
+    "id": 39398598,
+    "photographer": "Jean-Paul Wettstein",
+    "photographerUrl": "https://www.pexels.com/@jean-paul-wettstein-677916508",
+    "url": "https://www.pexels.com/photo/demolition-site-with-dust-control-equipment-39398598/",
+    "alt": "Industrial demolition with dust control machine and debris. Outdoors in daylight."
+  },
+  "service-sanering": {
+    "id": 3985287,
+    "photographer": "Gustavo Fring",
+    "photographerUrl": "https://www.pexels.com/@gustavo-fring",
+    "url": "https://www.pexels.com/photo/person-wearing-protective-suit-3985287/",
+    "alt": "Person in protective equipment outdoors with hand raised, symbolizing caution and safety."
+  },
+  "service-haltagning": {
+    "id": 21366138,
+    "photographer": "Mitch Beard",
+    "photographerUrl": "https://www.pexels.com/@mitch-beard-1161890387",
+    "url": "https://www.pexels.com/photo/concrete-cutting-saw-21366138/",
+    "alt": "Close-up of a concrete saw cutting a floor, showcasing industrial machinery in action."
+  },
+  "service-nybyggnation": {
+    "id": 33405084,
+    "photographer": "Ryan  Stephens",
+    "photographerUrl": "https://www.pexels.com/@rstephens",
+    "url": "https://www.pexels.com/photo/residential-home-construction-in-texas-33405084/",
+    "alt": "Interior view of a residential home under construction in The Colony, Texas."
+  },
+  "service-ombyggnad": {
+    "id": 3562689,
+    "photographer": "Monica Silvestre",
+    "photographerUrl": "https://www.pexels.com/@monica",
+    "url": "https://www.pexels.com/photo/brown-broom-and-white-plastic-bucket-3562689/",
+    "alt": "An empty room in an abandoned house with peeling walls and construction tools."
+  },
+  "service-avfall": {
+    "id": 33842119,
+    "photographer": "Jan van der Wolf",
+    "photographerUrl": "https://www.pexels.com/@jan-van-der-wolf-11680885",
+    "url": "https://www.pexels.com/photo/rusty-blue-industrial-container-against-metal-wall-33842119/",
+    "alt": "A blue rusty industrial container sits against a corrugated metal wall on a paved surface."
+  },
+  "environment": {
+    "id": 36397943,
+    "photographer": "Willians Huerta",
+    "photographerUrl": "https://www.pexels.com/@willians-huerta-2157111846",
+    "url": "https://www.pexels.com/photo/industrial-train-car-in-a-scrap-metal-yard-36397943/",
+    "alt": "Train car at an industrial scrap metal yard with conveyor belt and metal piles."
+  },
+  "safety": {
+    "id": 9669807,
+    "photographer": "Mathias Reding",
+    "photographerUrl": "https://www.pexels.com/@matreding",
+    "url": "https://www.pexels.com/photo/person-carrying-a-white-safety-helmet-9669807/",
+    "alt": "A close-up of a worker holding a white safety helmet, emphasizing safety and professionalism."
+  },
+  "about": {
+    "id": 8961260,
+    "photographer": "Mikael Blomkvist",
+    "photographerUrl": "https://www.pexels.com/@mikael-blomkvist",
+    "url": "https://www.pexels.com/photo/people-with-hard-hard-standing-on-the-construction-site-8961260/",
+    "alt": "Two workers discussing plans on a sandy construction site, wearing safety gear."
+  },
+  "careers": {
+    "id": 6082416,
+    "photographer": "CONSTRUCCIÓN  TOTAL",
+    "photographerUrl": "https://www.pexels.com/@construccion-total-2464540",
+    "url": "https://www.pexels.com/photo/worker-with-gas-mask-operating-concrete-mixer-6082416/",
+    "alt": "A construction worker operating a concrete mixer at an active building site, emphasizing safety gear."
+  },
+  "machine-1": {
+    "id": 29565466,
+    "photographer": "Jef K",
+    "photographerUrl": "https://www.pexels.com/@jef-k-1518692548",
+    "url": "https://www.pexels.com/photo/heavy-excavator-on-construction-site-with-rubble-29565466/",
+    "alt": "Orange excavator on a demolition site amidst rubble, showcasing construction machinery at work."
+  },
+  "machine-2": {
+    "id": 30751525,
+    "photographer": "Mad Knoxx Deluxe",
+    "photographerUrl": "https://www.pexels.com/@madknoxxdeluxe",
+    "url": "https://www.pexels.com/photo/yellow-excavator-at-urban-construction-site-30751525/",
+    "alt": "A yellow excavator working at an urban construction site surrounded by rocks and trees."
+  },
+  "machine-3": {
+    "id": 37556457,
+    "photographer": "Galib Rahman Nadim",
+    "photographerUrl": "https://www.pexels.com/@capturedbynadim",
+    "url": "https://www.pexels.com/photo/construction-worker-holding-concrete-saw-indoors-37556457/",
+    "alt": "Portrait of a construction worker holding a concrete saw inside a worksite, wearing a hard hat and safety vest."
+  },
+  "machine-4": {
+    "id": 35177799,
+    "photographer": "Mark Twineham",
+    "photographerUrl": "https://www.pexels.com/@helixiummark",
+    "url": "https://www.pexels.com/photo/construction-site-with-dump-truck-tipping-stones-35177799/",
+    "alt": "A dump truck unloading rocks at a construction site during sunset."
+  }
+}

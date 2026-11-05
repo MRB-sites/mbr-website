@@ -1,0 +1,21 @@
+---
+/** Trust promise (pattern: Podia four-column trust statements). */
+import Icon from './Icon.astro';
+import Text from './Text.astro';
+
+interface Props {
+  title: string;
+  text: string;
+}
+const { title, text } = Astro.props;
+---
+
+<li class="flex gap-4 bg-surface p-6">
+  <span class="shrink-0 text-highlight" aria-hidden="true">
+    <Icon name="check" class="h-8 w-8" />
+  </span>
+  <div>
+    <p class="text-lg leading-[1.2] font-bold"><Text text={title} /></p>
+    <p class="mt-1 text-sm"><Text text={text} /></p>
+  </div>
+</li>

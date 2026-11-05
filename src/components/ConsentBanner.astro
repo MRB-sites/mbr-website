@@ -1,0 +1,87 @@
+---
+/**
+ * Only rendered when analytics are enabled via env (see src/config/site.ts).
+ * Analytics load after an explicit "accept"; the choice is stored in localStorage.
+ */
+import { ANALYTICS } from '../config/site';
+import { useT } from '../i18n';
+import { path, type Locale } from '../i18n/routes';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useT(locale);
+---
+
+<div
+  id="consent-banner"
+  role="region"
+  aria-label={t.footer.cookies}
+  hidden
+  data-src={ANALYTICS.src}
+  data-domain={ANALYTICS.domain}
+  class="fixed inset-x-3 bottom-20 z-50 mx-auto max-w-2xl border-t-[3px] border-accent-strong bg-surface p-6 shadow-[var(--shadow-header)] md:bottom-6"
+>
+  <p class="text-sm">
+    {t.consent.text}
+    <a href={path('cookies', locale)} class="link-underline">{t.consent.link}</a>
+  </p>
+  <div class="mt-4 flex flex-wrap gap-3">
+    <button type="button" data-consent="granted" class="inline-flex min-h-[2.6875rem] items-center justify-center rounded-full border-2 border-accent bg-accent px-6 font-bold text-on-accent transition-colors duration-200 ease-out hover:border-accent-strong hover:bg-accent-strong">
+      {t.consent.accept}
+    </button>
+    <button type="button" data-consent="denied" class="inline-flex min-h-[2.6875rem] items-center justify-center rounded-full border-2 border-line-strong bg-surface px-6 font-bold text-ink transition-colors duration-200 ease-out hover:border-ink">
+      {t.consent.decline}
+    </button>
+  </div>
+</div>
+
+<script>
+  const KEY = 'analytics-consent';
+  const banner = document.getElementById('consent-banner');
+
+  function read(): string | null {
+    try {
+      return localStorage.getItem(KEY);
+    } catch {
+      return null;
+    }
+  }
+  function load() {
+    if (!banner || document.querySelector('script[data-analytics]')) return;
+    const s = document.createElement('script');
+    s.defer = true;
+    s.src = banner.dataset.src ?? '';
+    s.dataset.domain = banner.dataset.domain ?? '';
+    s.dataset.analytics = '';
+    document.head.appendChild(s);
+  }
+  function decide(value: string) {
+    try {
+      localStorage.setItem(KEY, value);
+    } catch {
+      /* storage blocked – choice applies to this page view only */
+    }
+    if (banner) banner.hidden = true;
+    if (value === 'granted') load();
+  }
+
+  if (banner) {
+    const choice = read();
+    if (choice === 'granted') load();
+    else if (choice === null) banner.hidden = false;
+    banner.querySelectorAll<HTMLButtonElement>('[data-consent]').forEach((b) => b.addEventListener('click', () => decide(b.dataset.consent!)));
+  }
+  // "Change my choice" button on the cookies page.
+  document.querySelectorAll('[data-consent-reset]').forEach((b) =>
+    b.addEventListener('click', () => {
+      try {
+        localStorage.removeItem(KEY);
+      } catch {
+        /* ignore */
+      }
+      if (banner) banner.hidden = false;
+    }),
+  );
+</script>

@@ -1,0 +1,36 @@
+---
+import Photo from './Photo.astro';
+
+interface Props {
+  href: string;
+  title: string;
+  text: string;
+  image: string;
+  items?: string[];
+  headingLevel?: 'h2' | 'h3';
+}
+const { href, title, text, image, items = [], headingLevel = 'h3' } = Astro.props;
+const Heading = headingLevel;
+---
+
+<article class="group relative flex h-full flex-col bg-surface">
+  <Photo src={image} alt="" width={800} height={500} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" figureClass="aspect-[8/5]" />
+  <div class="flex flex-1 flex-col p-6">
+    <Heading class="text-[1.375rem] leading-[1.2] font-bold text-accent-strong">
+      <a href={href} class="after:absolute after:inset-0 group-hover:underline">{title}</a>
+    </Heading>
+    <p class="mt-2">{text}</p>
+    {
+      items.length > 0 && (
+        <ul class="mt-4 space-y-1 text-sm">
+          {items.map((item) => (
+            <li class="flex gap-2">
+              <span class="caret mt-2 shrink-0" aria-hidden="true" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</article>

@@ -1,0 +1,86 @@
+---
+/** Text input / textarea with label, hint and an error slot wired via aria-describedby. */
+interface Props {
+  id: string;
+  name: string;
+  label: string;
+  type?: 'text' | 'email' | 'tel' | 'number' | 'date' | 'file';
+  as?: 'input' | 'textarea';
+  required?: boolean;
+  requiredLabel: string;
+  optionalLabel: string;
+  hint?: string;
+  autocomplete?: string;
+  inputmode?: 'text' | 'numeric' | 'tel' | 'email' | 'decimal';
+  pattern?: string;
+  minlength?: number;
+  maxlength?: number;
+  min?: string;
+  max?: string;
+  rows?: number;
+  value?: string;
+  accept?: string;
+  class?: string;
+}
+const {
+  id,
+  name,
+  label,
+  type = 'text',
+  as = 'input',
+  required = false,
+  requiredLabel,
+  optionalLabel,
+  hint,
+  autocomplete,
+  inputmode,
+  pattern,
+  minlength,
+  maxlength,
+  min,
+  max,
+  rows = 5,
+  value,
+  accept,
+  class: className,
+} = Astro.props;
+const hintId = hint ? `${id}-hint` : undefined;
+const errorId = `${id}-error`;
+const describedBy = [hintId, errorId].filter(Boolean).join(' ');
+const control =
+  'mt-2 block w-full border border-line-strong bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-muted hover:border-ink-muted focus:border-ink focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight aria-invalid:border-danger';
+---
+
+<div class:list={['field', className]} data-field>
+  <label for={id} class="block font-semibold">
+    {label}
+    <span class="ml-1 text-sm font-normal text-ink-muted">({required ? requiredLabel : optionalLabel})</span>
+  </label>
+  {hint && <p id={hintId} class="mt-1 text-sm text-ink-muted">{hint}</p>}
+  {
+    as === 'textarea' ? (
+      <textarea id={id} name={name} rows={rows} required={required} minlength={minlength} maxlength={maxlength} aria-describedby={describedBy} class:list={[control, 'min-h-32']}>
+        {value}
+      </textarea>
+    ) : (
+      <input
+        id={id}
+        name={name}
+        type={type}
+        required={required}
+        autocomplete={autocomplete}
+        inputmode={inputmode}
+        pattern={pattern}
+        minlength={minlength}
+        maxlength={maxlength}
+        min={min}
+        max={max}
+        value={value}
+        accept={accept}
+        aria-describedby={describedBy}
+        class={control}
+      />
+    )
+  }
+  <p id={errorId} class="mt-2 flex items-center gap-2 text-sm font-semibold text-danger" data-error hidden></p>
+</div>

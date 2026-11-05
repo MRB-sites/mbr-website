@@ -1,0 +1,11 @@
+---
+/** Spam trap: hidden from people, filled in by bots. Netlify uses netlify-honeypot="bot-field". */
+interface Props {
+  label: string;
+}
+const { label } = Astro.props;
+---
+
+<p class="hidden" aria-hidden="true">
+  <label>{label} <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+</p>

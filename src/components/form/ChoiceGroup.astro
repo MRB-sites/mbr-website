@@ -1,0 +1,46 @@
+---
+/** Radio or checkbox group rendered as large tappable cards (pattern: Laravel Cloud survey options). */
+interface Props {
+  id: string;
+  name: string;
+  legend: string;
+  type: 'radio' | 'checkbox';
+  options: { value: string; label: string }[];
+  required?: boolean;
+  requiredLabel: string;
+  optionalLabel: string;
+  hint?: string;
+  columns?: 1 | 2 | 3;
+  checked?: string;
+}
+const { id, name, legend, type, options, required = false, requiredLabel, optionalLabel, hint, columns = 2, checked } = Astro.props;
+const hintId = hint ? `${id}-hint` : undefined;
+const errorId = `${id}-error`;
+const cols = { 1: '', 2: 'sm:grid-cols-2', 3: 'sm:grid-cols-2 lg:grid-cols-3' };
+---
+
+<fieldset id={id} class="field" data-field data-choice={type} data-required={required ? 'true' : undefined} aria-describedby={[hintId, errorId].filter(Boolean).join(' ')}>
+  <legend class="font-semibold">
+    {legend}
+    <span class="ml-1 text-sm font-normal text-ink-muted">({required ? requiredLabel : optionalLabel})</span>
+  </legend>
+  {hint && <p id={hintId} class="mt-1 text-sm text-ink-muted">{hint}</p>}
+  <div class:list={['mt-3 grid gap-2', cols[columns]]}>
+    {
+      options.map((opt, i) => (
+        <label class="flex min-h-14 cursor-pointer items-center gap-3 border border-line-strong bg-surface px-4 py-3 hover:border-ink-muted has-checked:border-accent has-checked:bg-paper has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-highlight">
+          <input
+            type={type}
+            name={name}
+            value={opt.value}
+            checked={checked === opt.value}
+            required={type === 'radio' && required && i === 0 ? true : undefined}
+            class="h-5 w-5 shrink-0 accent-[var(--accent)] focus:outline-none"
+          />
+          <span class="font-medium">{opt.label}</span>
+        </label>
+      ))
+    }
+  </div>
+  <p id={errorId} class="mt-2 text-sm font-semibold text-danger" data-error hidden></p>
+</fieldset>

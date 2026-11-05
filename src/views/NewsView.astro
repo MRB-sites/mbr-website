@@ -1,0 +1,88 @@
+---
+import { published } from '../data/collections';
+import { breadcrumbSchema } from '../data/schema';
+import { useT } from '../i18n';
+import { detailPath, path, type Alternates, type Locale } from '../i18n/routes';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import Section from '../components/Section.astro';
+import Text from '../components/Text.astro';
+
+interface Props {
+  locale: Locale;
+  alternates: Alternates;
+}
+const { locale, alternates } = Astro.props;
+const t = useT(locale);
+const n = t.news;
+const site = Astro.site!;
+const posts = (await published('news', (e) => e.id.startsWith(`${locale}/`))).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const slug = (id: string) => id.split('/').slice(1).join('/');
+const crumbs = [
+  { label: t.nav.home, href: path('home', locale) },
+  { label: t.nav.news, href: path('news', locale) },
+];
+const dateParts = (d: Date) => {
+  const fmt = new Intl.DateTimeFormat(locale === 'sv' ? 'sv-SE' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Europe/Stockholm' });
+  const parts = Object.fromEntries(fmt.formatToParts(d).map((p) => [p.type, p.value]));
+  return { day: parts.day, month: parts.month?.replace('.', ''), year: parts.year };
+};
+---
+
+<BaseLayout
+  locale={locale}
+  title={n.meta.title}
+  description={n.meta.description}
+  alternates={alternates}
+  jsonLd={[breadcrumbSchema(crumbs.map((c) => ({ label: c.label, url: new URL(c.href, site).href })))]}
+>
+  <PageHero eyebrow={n.hero.eyebrow} title={n.hero.title} lead={n.hero.lead} breadcrumbs={crumbs} breadcrumbLabel={t.a11y.breadcrumb} />
+
+  <Section labelledby="news-list-title">
+    <h2 id="news-list-title" class="sr-only">{n.hero.title}</h2>
+    {
+      posts.length === 0 ? (
+        <p class="bg-surface p-6">{n.empty}</p>
+      ) : (
+        <ol class="divide-y divide-line border-y border-line">
+          {posts.map((post) => {
+            const d = dateParts(post.data.date);
+            return (
+              <li>
+                <article class="group relative grid gap-6 py-8 md:grid-cols-[9rem_1fr_18rem] md:items-center">
+                  <p>
+                    <span class="sr-only">{n.published} </span>
+                    <time datetime={post.data.date.toISOString().slice(0, 10)} class="flex items-baseline gap-2 md:flex-col md:gap-0">
+                      <span class="text-[2rem] leading-[1.2] font-bold">{d.day}</span>
+                      <span class="text-[1.375rem] font-bold">
+                        {d.month} {d.year}
+                      </span>
+                    </time>
+                  </p>
+                  <div>
+                    <h3 class="text-[1.625rem] leading-[1.2] font-bold">
+                      <a href={detailPath('news', slug(post.id), locale)} class="after:absolute after:inset-0 group-hover:underline group-hover:decoration-accent group-hover:decoration-4">
+                        <Text text={post.data.title} />
+                      </a>
+                    </h3>
+                    <p class="mt-2 text-ink-muted">
+                      <Text text={post.data.description} />
+                    </p>
+                    <p class="mt-4 inline-flex items-center gap-2 font-semibold" aria-hidden="true">
+                      {n.readMore} <Icon name="arrow" class="h-4 w-4" />
+                    </p>
+                  </div>
+                  {post.data.image && (
+                    <Photo src={post.data.image} alt="" width={576} height={324} sizes="(min-width: 768px) 18rem, 100vw" figureClass="aspect-video" />
+                  )}
+                </article>
+              </li>
+            );
+          })}
+        </ol>
+      )
+    }
+  </Section>
+</BaseLayout>

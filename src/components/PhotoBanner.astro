@@ -1,0 +1,31 @@
+---
+/**
+ * Full-width photo banner in the 960px column (spec 6.4): photo with a black
+ * bottom gradient, inset white title + subtitle and an optional pill. The whole
+ * banner is one link, so the pill is drawn as a span.
+ */
+import type { ImageMetadata } from 'astro';
+import Button from './Button.astro';
+import Photo from './Photo.astro';
+
+interface Props {
+  href: string;
+  image: ImageMetadata | string;
+  title: string;
+  text?: string;
+  cta?: string;
+}
+const { href, image, title, text, cta } = Astro.props;
+---
+
+<a href={href} class="group relative isolate flex min-h-[15.625rem] items-end overflow-hidden text-white">
+  <div class="absolute inset-0 -z-10">
+    <Photo src={image} alt="" width={960} height={250} sizes="(min-width: 1000px) 960px, 100vw" figureClass="h-full" />
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 to-black/0" aria-hidden="true"></div>
+  </div>
+  <div class="px-6 pt-16 pb-12 md:px-28">
+    <h2 class="text-[1.625rem] group-hover:underline">{title}</h2>
+    {text && <p class="mt-1">{text}</p>}
+    {cta && <Button as="span" class="mt-4">{cta}</Button>}
+  </div>
+</a>

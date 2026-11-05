@@ -1,0 +1,33 @@
+---
+/**
+ * Page module on the grey canvas. "paper" sits directly on the canvas;
+ * "concrete"/"surface" become a flat white panel and "inverse" a green panel,
+ * both inside the 960px column. Adjacent modules are 48px apart.
+ */
+import Container from './Container.astro';
+
+interface Props {
+  id?: string;
+  tone?: 'paper' | 'concrete' | 'inverse' | 'surface';
+  labelledby?: string;
+  class?: string;
+  size?: 'default' | 'narrow';
+  spacing?: 'default' | 'tight' | 'none';
+}
+const { id, tone = 'paper', labelledby, class: className, size, spacing = 'default' } = Astro.props;
+const panels = {
+  paper: '',
+  concrete: 'bg-surface p-6 md:p-8',
+  surface: 'bg-surface p-6 md:p-8',
+  inverse: 'bg-inverse p-6 text-on-inverse md:p-8',
+};
+const spacings = { default: 'py-6', tight: 'py-4', none: '' };
+---
+
+<section id={id} aria-labelledby={labelledby} class:list={['bg-paper text-ink', spacings[spacing], className]} data-tone={tone}>
+  <Container size={size}>
+    <div class={panels[tone]}>
+      <slot />
+    </div>
+  </Container>
+</section>

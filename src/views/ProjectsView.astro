@@ -1,0 +1,64 @@
+---
+import { published } from '../data/collections';
+import { PROJECT_CATEGORIES } from '../data/services';
+import { breadcrumbSchema } from '../data/schema';
+import { useT } from '../i18n';
+import { detailPath, path, type Alternates, type Locale } from '../i18n/routes';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABand from '../components/CTABand.astro';
+import PageHero from '../components/PageHero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ProjectFilter from '../components/ProjectFilter.astro';
+import Section from '../components/Section.astro';
+
+interface Props {
+  locale: Locale;
+  alternates: Alternates;
+}
+const { locale, alternates } = Astro.props;
+const t = useT(locale);
+const p = t.projects;
+const site = Astro.site!;
+const projects = (await published('projects')).sort((a, b) => b.data.year - a.data.year || a.data.title[locale].localeCompare(b.data.title[locale]));
+const categories = PROJECT_CATEGORIES.map((c) => ({ value: c, label: p.categories[c], count: projects.filter((e) => e.data.category === c).length }));
+const years = [...new Set(projects.map((e) => e.data.year))].sort((a, b) => b - a);
+const crumbs = [
+  { label: t.nav.home, href: path('home', locale) },
+  { label: t.nav.projects, href: path('projects', locale) },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  title={p.meta.title}
+  description={p.meta.description}
+  alternates={alternates}
+  jsonLd={[breadcrumbSchema(crumbs.map((c) => ({ label: c.label, url: new URL(c.href, site).href })))]}
+>
+  <PageHero eyebrow={p.hero.eyebrow} title={p.hero.title} lead={p.hero.lead} breadcrumbs={crumbs} breadcrumbLabel={t.a11y.breadcrumb} />
+
+  <Section labelledby="project-list-title">
+    <h2 id="project-list-title" class="sr-only">{p.filter.label}</h2>
+    <ProjectFilter categories={categories} years={years} total={projects.length} labels={p.filter} />
+    <div class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3" data-project-grid>
+      {
+        projects.map((e) => (
+            <ProjectCard
+              headingLevel="h3"
+              href={detailPath('projects', e.id, locale)}
+              title={e.data.title[locale]}
+              location={e.data.location}
+              year={e.data.year}
+              category={e.data.category}
+              categoryLabel={p.categories[e.data.category]}
+              image={e.data.cover}
+              example={e.data.example}
+              exampleLabel={t.common.example}
+            />
+        ))
+      }
+    </div>
+  </Section>
+
+  <CTABand locale={locale} />
+</BaseLayout>

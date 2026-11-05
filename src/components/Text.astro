@@ -1,0 +1,14 @@
+---
+/**
+ * Renders a string and highlights any [placeholder] segments so they are easy
+ * to spot – and impossible to mistake for real data – until replaced.
+ */
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+const parts = text.split(/(\[[^\]]*\])/g).filter(Boolean);
+const isPlaceholder = (part: string) => /^\[[^\]]*\]$/.test(part);
+---
+
+{parts.map((part) => (isPlaceholder(part) ? <mark class="placeholder-mark text-inherit">{part}</mark> : part))}

@@ -1,0 +1,1352 @@
+{
+  "meta": {
+    "defaultDescription": "Rivning, sanering, håltagning och nybyggnation i Malmö och Skåne. En lokal entreprenör för hela kedjan – från rivningslov till slutbesiktning.",
+    "ogImageAlt": "{company} – rivning, sanering och bygg i Malmö"
+  },
+  "a11y": {
+    "skip": "Hoppa till innehållet",
+    "menuOpen": "Öppna meny",
+    "menuClose": "Stäng meny",
+    "mainNav": "Huvudmeny",
+    "breadcrumb": "Du är här",
+    "langSwitch": "Byt språk till engelska",
+    "newTab": "(öppnas i ny flik)",
+    "footerNav": "Sidfotslänkar",
+    "mobileActions": "Snabbval",
+    "placeholder": "Platshållare – ersätts med riktigt innehåll",
+    "home": "Startsida"
+  },
+  "nav": {
+    "home": "Hem",
+    "services": "Tjänster",
+    "projects": "Projekt",
+    "environment": "Miljö & säkerhet",
+    "about": "Om oss",
+    "news": "Nyheter",
+    "careers": "Karriär",
+    "contact": "Kontakt"
+  },
+  "cta": {
+    "quote": "Begär offert",
+    "call": "Ring oss",
+    "readMore": "Läs mer",
+    "allProjects": "Alla projekt",
+    "allServices": "Alla tjänster",
+    "email": "Mejla oss",
+    "seeProject": "Se projektet"
+  },
+  "common": {
+    "photo": "Foto",
+    "example": "Exempel",
+    "exampleProject": "Exempelprojekt – ersätt med ett riktigt projekt",
+    "openingHours": "Öppettider",
+    "serviceArea": "Arbetsområde",
+    "phone": "Telefon",
+    "email": "E-post",
+    "address": "Adress",
+    "orgNr": "Org.nr",
+    "seat": "Säte",
+    "followUs": "Följ oss",
+    "langShort": "EN",
+    "langName": "English",
+    "step": "Steg"
+  },
+  "home": {
+    "meta": {
+      "title": "Rivning, sanering och bygg i Malmö och Skåne",
+      "description": "Vi river, sanerar och bygger nytt – en entreprenör hela vägen. Rivning, asbestsanering, håltagning, nybyggnation och ombyggnad i Malmö och Skåne."
+    },
+    "hero": {
+      "eyebrow": "Rivning · Sanering · Håltagning · Bygg",
+      "title": "Vi river, sanerar och bygger nytt – en entreprenör hela vägen.",
+      "lead": "Lokal entreprenör från Malmö. Vi tar uppdrag i {area}.",
+      "imageAlt": "Rivningsmaskin i arbete på en byggarbetsplats",
+      "scroll": "Scrolla"
+    },
+    "routing": {
+      "eyebrow": "Var står du?",
+      "title": "Vad behöver du hjälp med?",
+      "tiles": [
+        {
+          "title": "Ska du riva?",
+          "text": "Hus, lokal, badrum eller kök – vi river och tar hand om materialet."
+        },
+        {
+          "title": "Behöver du sanera asbest eller PCB?",
+          "text": "Inventering, sanering och dokumentation innan rivning eller renovering."
+        },
+        {
+          "title": "Ska du bygga nytt eller bygga om?",
+          "text": "Nybyggnation, tillbyggnad och ombyggnad – även när något först ska rivas."
+        },
+        {
+          "title": "Är du byggentreprenör och söker underentreprenör?",
+          "text": "Vi tar rivning, sanering och håltagning som UE i ditt projekt."
+        }
+      ]
+    },
+    "chain": {
+      "eyebrow": "Hela kedjan",
+      "title": "Från rivningslov till slutbesiktning – med en kontakt",
+      "lead": "Du behöver inte samordna flera firmor. Vi tar varje steg och lämnar över till nästa utan glapp.",
+      "steps": [
+        {
+          "title": "Rivningslov",
+          "text": "Vi tar fram underlag och sköter kontakten med kommunen."
+        },
+        {
+          "title": "Miljöinventering",
+          "text": "Vi kartlägger farligt material och det som kan återbrukas."
+        },
+        {
+          "title": "Sanering",
+          "text": "Asbest, PCB och annat farligt material tas bort först."
+        },
+        {
+          "title": "Rivning",
+          "text": "Total, selektiv eller invändig – i rätt ordning och säkert."
+        },
+        {
+          "title": "Källsortering & återvinning",
+          "text": "Materialet sorteras på plats och lämnas till godkänd mottagare."
+        },
+        {
+          "title": "Nybyggnation",
+          "text": "Vi bygger nytt eller bygger om på samma plats."
+        },
+        {
+          "title": "Slutbesiktning",
+          "text": "Kontroll, dokumentation och överlämning till dig."
+        }
+      ]
+    },
+    "services": {
+      "eyebrow": "Tjänster",
+      "title": "Det här gör vi",
+      "lead": "Sex tjänster som hänger ihop. Välj en – eller låt oss ta hela projektet."
+    },
+    "promises": {
+      "title": "Det här kan du räkna med"
+    },
+    "figures": {
+      "eyebrow": "I siffror",
+      "title": "Kort om oss"
+    },
+    "projects": {
+      "eyebrow": "Projekt",
+      "title": "Utvalda projekt",
+      "lead": "Dra i reglaget för att se före och efter."
+    },
+    "environment": {
+      "eyebrow": "Miljö",
+      "title": "Kretslopp, inte containerberg",
+      "lead": "Rivning ger mycket material. Vi ser till att så mycket som möjligt används igen.",
+      "points": [
+        {
+          "title": "Återbruk först",
+          "text": "Byggdelar som håller tas tillvara innan rivningen börjar."
+        },
+        {
+          "title": "Sortering på plats",
+          "text": "Trä, mineral, metall, glas, plast och gips hålls isär från början."
+        },
+        {
+          "title": "Minimal miljöpåverkan",
+          "text": "Dammskydd, planerade transporter och korrekt hantering av farligt avfall."
+        }
+      ],
+      "cta": "Så arbetar vi med miljö och säkerhet"
+    },
+    "instagram": {
+      "eyebrow": "Instagram",
+      "title": "Från våra arbetsplatser",
+      "cta": "Följ {handle} på Instagram",
+      "imageAlt": "Bild från Instagram {n}"
+    },
+    "careers": {
+      "title": "Vill du jobba hos oss?",
+      "text": "Vi söker folk som vill jobba säkert och lära sig hela kedjan.",
+      "cta": "Jobba hos oss"
+    },
+    "ctaBand": {
+      "title": "Berätta vad du ska göra – vi återkommer med pris",
+      "lead": "Skicka en förfrågan på några minuter, eller kontakta oss direkt."
+    },
+    "customers": {
+      "title": "Vi jobbar för",
+      "items": [
+        {
+          "title": "Privatpersoner",
+          "text": "Rivning av badrum och kök, sanering och om- eller nybyggnation av villa och radhus."
+        },
+        {
+          "title": "Bostadsrättsföreningar",
+          "text": "Förberedelse inför stambyte, sanering och ombyggnad med hänsyn till de boende."
+        },
+        {
+          "title": "Fastighetsägare",
+          "text": "Rivning, sanering och anpassning av bostäder och lokaler."
+        },
+        {
+          "title": "Företag",
+          "text": "Ombyggnad av kontor, butiker och industrilokaler."
+        },
+        {
+          "title": "Byggentreprenörer",
+          "text": "Rivning, sanering och håltagning som underentreprenad i ditt projekt."
+        }
+      ]
+    }
+  },
+  "services": {
+    "meta": {
+      "title": "Tjänster – rivning, sanering, håltagning och bygg i Malmö",
+      "description": "Rivning, asbest- och PCB-sanering, håltagning, nybyggnation, ombyggnad och containrar i Malmö och Skåne. En entreprenör för hela kedjan."
+    },
+    "hero": {
+      "eyebrow": "Tjänster",
+      "title": "En entreprenör för hela kedjan",
+      "lead": "Vi kan ta en enskild del av ditt projekt – eller allt från rivningslov till nyckelöverlämning."
+    },
+    "contractors": {
+      "eyebrow": "För byggentreprenörer",
+      "title": "Söker du underentreprenör för rivning?",
+      "lead": "Vi tar rivning, sanering, håltagning och avfallshantering som underentreprenör i ditt projekt.",
+      "points": [
+        "Fast pris eller á-priser enligt överenskommelse",
+        "Egen arbetsledning på plats",
+        "Personalliggare och egenkontroller",
+        "Dokumentation av avfall och sanering till din kontrollplan"
+      ],
+      "cta": "Skicka förfrågningsunderlag"
+    },
+    "chainTitle": "Så hänger tjänsterna ihop",
+    "labels": {
+      "offerings": "Det här gör vi",
+      "includes": "Det här ingår",
+      "process": "Så går det till",
+      "customer": "Det här behöver vi från dig",
+      "faq": "Vanliga frågor",
+      "faqLead": "Hittar du inte svaret? Kontakta oss.",
+      "projects": "Projekt inom {service}",
+      "noProjects": "Inga projekt publicerade inom det här området än.",
+      "other": "Andra tjänster",
+      "ctaTitle": "Behöver du hjälp med {service}?",
+      "ctaLead": "Beskriv uppdraget så återkommer vi med pris och tidplan."
+    },
+    "items": {
+      "rivning": {
+        "name": "Rivning",
+        "short": "Från badrum till hela byggnader. Total-, tung-, selektiv och invändig rivning.",
+        "metaTitle": "Rivning i Malmö och Skåne – total-, selektiv och invändig rivning",
+        "metaDescription": "Vi river villor, flerbostadshus, lokaler och industribyggnader i Malmö och Skåne. Rivningslov, sanering, källsortering och borttransport – en kontakt hela vägen.",
+        "heroTitle": "Rivning i Malmö och Skåne",
+        "intro": "Vi river allt från ett badrum till en hel byggnad. Innan vi börjar inventerar vi farligt material, och under rivningen sorterar vi materialet på plats så att så mycket som möjligt kan återbrukas eller återvinnas. Du har en kontaktperson från offert till städad tomt.",
+        "offerings": [
+          {
+            "title": "Totalrivning",
+            "text": "Hela byggnaden rivs – med eller utan grund. Vi sköter lov, sanering, rivning, sortering och bortforsling."
+          },
+          {
+            "title": "Tungrivning",
+            "text": "Rivning av betong, stomme och bärande konstruktioner med maskiner anpassade för uppdraget."
+          },
+          {
+            "title": "Selektiv rivning",
+            "text": "Vi demonterar byggdelar i ordning så att de kan återbrukas eller återvinnas, i stället för att allt blandas."
+          },
+          {
+            "title": "Invändig rivning",
+            "text": "Väggar, golv, undertak och installationer inför ombyggnad – med dammskydd där det behövs."
+          },
+          {
+            "title": "ROT-rivning (badrum, kök)",
+            "text": "Rivning av badrum och kök i villa eller lägenhet inför renovering. Arbetskostnaden kan ge ROT-avdrag."
+          }
+        ],
+        "includes": [
+          "Platsbesök och skriftlig offert",
+          "Hjälp med rivningslov eller rivningsanmälan",
+          "Inventering av farligt material",
+          "Sanering vid behov",
+          "Avspärrning, skydd och dammskydd",
+          "Källsortering på plats",
+          "Container och borttransport till godkänd mottagare",
+          "Dokumentation av avfall och mottagning",
+          "Städad yta vid överlämning"
+        ],
+        "process": [
+          {
+            "title": "Platsbesök",
+            "text": "Vi går igenom vad som ska rivas och vad som ska stå kvar."
+          },
+          {
+            "title": "Offert",
+            "text": "Du får ett skriftligt pris med omfattning och tidplan."
+          },
+          {
+            "title": "Lov och inventering",
+            "text": "Vi tar fram underlag för lov eller anmälan och inventerar farligt material."
+          },
+          {
+            "title": "Sanering",
+            "text": "Asbest, PCB och annat farligt material tas bort först."
+          },
+          {
+            "title": "Rivning och sortering",
+            "text": "Vi river i rätt ordning och sorterar materialet på plats."
+          },
+          {
+            "title": "Bortforsling och överlämning",
+            "text": "Avfallet körs till godkänd mottagare. Du får dokumentationen och en städad yta."
+          }
+        ],
+        "customer": [
+          "Adress och fastighetsbeteckning",
+          "Ritningar om de finns",
+          "Bilder på det som ska rivas",
+          "Byggår och tidigare renoveringar",
+          "Önskat startdatum och eventuella tidskrav",
+          "Tillgång till el och vatten om möjligt"
+        ],
+        "faq": [
+          {
+            "q": "Behöver jag rivningslov?",
+            "a": "Ofta, ja. Inom detaljplanerat område krävs normalt rivningslov för att riva en byggnad eller del av en byggnad, och utanför detaljplan kan en rivningsanmälan krävas. Det är kommunens byggnadsnämnd som beslutar. Vi tar fram underlaget och sköter kontakten med kommunen."
+          },
+          {
+            "q": "Hur lång tid tar en rivning?",
+            "a": "Det beror på storlek, material och om sanering behövs. Ett badrum tar ofta några dagar, en hel byggnad längre. Du får en tidplan i offerten."
+          },
+          {
+            "q": "Kan jag använda ROT-avdrag?",
+            "a": "Rivning som är en del av en renovering av din bostad, till exempel inför ett nytt badrum eller kök, kan ge ROT-avdrag på arbetskostnaden. Rivning av en hel byggnad ger normalt inte avdrag. Kontrollera aktuella regler hos Skatteverket – vi specificerar arbetskostnaden på fakturan."
+          },
+          {
+            "q": "Vad händer med rivningsmaterialet?",
+            "a": "Vi sorterar på plats i olika fraktioner och lämnar materialet till godkända mottagare. Det som går att återbruka tas tillvara. Du får dokumentation på vad som lämnats och vart."
+          },
+          {
+            "q": "Hur hanteras asbest?",
+            "a": "Om inventeringen visar asbest tas den bort innan rivningen börjar, av personal med rätt utbildning och enligt Arbetsmiljöverkets regler. Läs mer på sidan om sanering."
+          }
+        ]
+      },
+      "sanering": {
+        "name": "Sanering",
+        "short": "Asbest, PCB och mögel. Inventering, skyddsåtgärder och dokumentation.",
+        "metaTitle": "Asbestsanering och PCB-sanering i Skåne",
+        "metaDescription": "Sanering av asbest, PCB och mögel i Malmö och Skåne. Inventering, skyddsåtgärder, säker hantering och dokumentation – inför rivning eller renovering.",
+        "heroTitle": "Asbest-, PCB- och mögelsanering i Skåne",
+        "intro": "Äldre hus kan innehålla material som är farliga att riva i. Vi inventerar, skyddar omgivningen, sanerar och dokumenterar – så att rivning eller renovering kan göras säkert.",
+        "offerings": [
+          {
+            "title": "Asbest",
+            "text": "Asbest finns i många hus byggda eller renoverade före 1982, till exempel i rörisolering, mattor, fix, eternitplattor och ventilationskanaler. Vi tar bort det med inbyggnad, undertryck och rätt skyddsutrustning."
+          },
+          {
+            "title": "PCB",
+            "text": "Hus byggda eller renoverade 1956–1973 kan innehålla PCB i fogmassor, isolerglasrutor och golvmassor. Vi sanerar och lämnar PCB-avfallet till godkänd mottagare."
+          },
+          {
+            "title": "Mögel",
+            "text": "Vi tar bort mögelskadat material och sanerar ytor – och hjälper till att åtgärda orsaken tillsammans med dig eller din konsult."
+          },
+          {
+            "title": "Inventering",
+            "text": "Innan rivning eller ombyggnad går vi igenom byggnaden och tar prover vid behov, så att du vet vad som finns innan arbetet startar."
+          }
+        ],
+        "includes": [
+          "Inventering och provtagning vid behov",
+          "Riskbedömning och arbetsplan",
+          "Avspärrning, inbyggnad och undertryck",
+          "Skyddsutrustning och personlig sanering",
+          "Sanering enligt Arbetsmiljöverkets föreskrifter",
+          "Emballering och transport av farligt avfall",
+          "Dokumentation och mottagningskvitton",
+          "Kontroll och städning efter sanering"
+        ],
+        "process": [
+          {
+            "title": "Inventering",
+            "text": "Vi går igenom byggnaden och tar prover där det behövs."
+          },
+          {
+            "title": "Plan",
+            "text": "Riskbedömning och arbetsplan. När det krävs anmäls arbetet till berörd myndighet."
+          },
+          {
+            "title": "Skydd",
+            "text": "Området byggs in och sätts i undertryck där det behövs."
+          },
+          {
+            "title": "Sanering",
+            "text": "Materialet tas bort och emballeras på plats."
+          },
+          {
+            "title": "Kontroll och städning",
+            "text": "Ytor rengörs och kontrolleras innan inbyggnaden tas bort."
+          },
+          {
+            "title": "Dokumentation",
+            "text": "Du får underlag på vad som tagits bort och vart avfallet lämnats."
+          }
+        ],
+        "customer": [
+          "Byggår och eventuella renoveringsår",
+          "Tidigare miljöinventering om den finns",
+          "Ritningar och bilder",
+          "Vilka utrymmen som berörs",
+          "Kontaktperson hos fastighetsägare eller BRF-styrelse"
+        ],
+        "faq": [
+          {
+            "q": "Hur hanteras asbest?",
+            "a": "Asbest tas bort innan övriga arbeten börjar. Området byggs in och sätts i undertryck, personalen använder andningsskydd och skyddskläder, och avfallet emballeras och lämnas till godkänd mottagare. Arbetet följer Arbetsmiljöverkets föreskrifter, som kräver särskild utbildning och i vissa fall tillstånd."
+          },
+          {
+            "q": "Hur vet jag om huset innehåller asbest eller PCB?",
+            "a": "Byggåret ger en fingervisning: asbest förekommer framför allt i hus byggda eller renoverade före 1982, PCB i hus byggda eller renoverade 1956–1973. Säkert besked får du genom inventering och provtagning."
+          },
+          {
+            "q": "Vem ansvarar för att farligt material inventeras?",
+            "a": "Byggherren – oftast fastighetsägaren – ansvarar för att farligt material identifieras före rivning. Vi kan göra inventeringen åt dig."
+          },
+          {
+            "q": "Måste jag flytta ut under saneringen?",
+            "a": "Det beror på var och hur mycket som ska saneras. Ofta går det att bo kvar om arbetsområdet stängs av. Vi går igenom det vid platsbesöket."
+          },
+          {
+            "q": "Kan jag använda ROT-avdrag?",
+            "a": "Sanering som görs i samband med renovering av din bostad kan i vissa fall ge ROT-avdrag på arbetskostnaden. Reglerna ändras ibland, så kontrollera hos Skatteverket. Vi specificerar arbetskostnaden på fakturan."
+          }
+        ]
+      },
+      "haltagning": {
+        "name": "Håltagning",
+        "short": "Håltagning, vägg- och golvsågning och kärnborrning i betong.",
+        "metaTitle": "Håltagning, betongsågning och kärnborrning i Malmö",
+        "metaDescription": "Håltagning i betong, väggsågning, golvsågning och kärnborrning i Malmö och Skåne. Nya dörr- och fönsteröppningar, schakt och genomföringar.",
+        "heroTitle": "Håltagning och betongsågning i Malmö",
+        "intro": "Behöver du en ny dörröppning, ett schakt för ventilation eller ett hål för rör? Vi sågar och borrar i betong, tegel och lättbetong med raka snitt och så lite damm och vibrationer som möjligt.",
+        "offerings": [
+          {
+            "title": "Håltagning",
+            "text": "Öppningar för dörrar, fönster, trappor och schakt i väggar och bjälklag."
+          },
+          {
+            "title": "Väggsågning",
+            "text": "Raka, exakta snitt i betongväggar – även i tjocka konstruktioner."
+          },
+          {
+            "title": "Golvsågning",
+            "text": "Sågning i golv och bjälklag, till exempel för avlopp, kanaler eller borttagning av plattor."
+          },
+          {
+            "title": "Kärnborrning i betong",
+            "text": "Runda hål för rör, ventilation och el i olika diametrar och djup."
+          }
+        ],
+        "includes": [
+          "Platsbesök och genomgång av ritningar",
+          "Kontroll av dolda installationer innan vi sågar",
+          "Samordning med konstruktör vid bärande konstruktioner",
+          "Tillfällig stämpning vid behov",
+          "Vattenuppsamling och dammskydd",
+          "Bortforsling av sågat material",
+          "Städning efter arbetet"
+        ],
+        "process": [
+          {
+            "title": "Platsbesök",
+            "text": "Vi tittar på konstruktionen och mäter upp."
+          },
+          {
+            "title": "Underlag",
+            "text": "Vid ingrepp i bärande konstruktion behövs underlag från konstruktör. Vi hjälper dig att ta fram det."
+          },
+          {
+            "title": "Förberedelse",
+            "text": "Vi märker ut, skyddar omgivningen och stämpar vid behov."
+          },
+          {
+            "title": "Sågning och borrning",
+            "text": "Snitt och hål görs enligt mått och ritning."
+          },
+          {
+            "title": "Bortforsling och städning",
+            "text": "Sågat material körs bort och ytan lämnas städad."
+          }
+        ],
+        "customer": [
+          "Ritningar och konstruktionsritningar om de finns",
+          "Mått och placering för öppningen",
+          "Om väggen eller bjälklaget är bärande",
+          "Tillgång till el och vatten",
+          "Kontakt till BRF eller fastighetsägare vid lägenhet"
+        ],
+        "faq": [
+          {
+            "q": "Behöver jag lov eller anmälan för en ny öppning?",
+            "a": "Ingrepp i bärande konstruktion kräver normalt en anmälan till kommunen och underlag från en konstruktör. I en bostadsrätt behöver du också styrelsens tillstånd. Vi hjälper dig att reda ut vad som gäller."
+          },
+          {
+            "q": "Blir det mycket damm?",
+            "a": "Vi sågar och borrar i regel med vatten, som binder dammet. Vi skyddar omgivande ytor och samlar upp vattnet."
+          },
+          {
+            "q": "Kan ni ta upp hål i en bostadsrätt?",
+            "a": "Ja. Vi stämmer av med föreningen, planerar arbetet så att grannarna störs så lite som möjligt och håller oss till föreningens arbetstider."
+          }
+        ]
+      },
+      "nybyggnation": {
+        "name": "Nybyggnation",
+        "short": "Småhus, flerbostadshus och tillbyggnader – som total- eller utförandeentreprenad.",
+        "metaTitle": "Nybyggnation i Malmö och Skåne – småhus, flerbostadshus, tillbyggnader",
+        "metaDescription": "Vi bygger småhus, flerbostadshus och tillbyggnader i Malmö och Skåne. Totalentreprenad eller utförandeentreprenad – och rivning av befintligt hus i samma projekt.",
+        "heroTitle": "Nybyggnation i Malmö och Skåne",
+        "intro": "Vi bygger nytt – och eftersom vi också river kan vi ta hela projektet från befintligt hus till ny byggnad. Ett företag, ett kontrakt och en kontaktperson.",
+        "offerings": [
+          {
+            "title": "Småhus",
+            "text": "Villor, parhus och radhus – även där ett befintligt hus först ska rivas."
+          },
+          {
+            "title": "Flerbostadshus",
+            "text": "Mindre flerbostadshus och bostadsprojekt i samarbete med beställare och konsulter."
+          },
+          {
+            "title": "Tillbyggnader",
+            "text": "Tillbyggnader och påbyggnader – vi river det som behövs och bygger till."
+          }
+        ],
+        "contracts": {
+          "title": "Totalentreprenad eller utförandeentreprenad?",
+          "total": {
+            "title": "Totalentreprenad",
+            "text": "Vi ansvarar för både projektering och byggande. Du beskriver vad du vill ha – vi tar fram handlingarna och bygger. Passar om du vill ha en part som ansvarar för helheten."
+          },
+          "execution": {
+            "title": "Utförandeentreprenad",
+            "text": "Du, eller din arkitekt och konstruktör, har redan tagit fram ritningar och beskrivningar. Vi bygger enligt dem. Passar om projektet redan är färdigprojekterat."
+          },
+          "note": "Båda formerna regleras ofta av branschens standardavtal: AB för utförandeentreprenad och ABT för totalentreprenad. Vi går igenom vad som gäller i offerten."
+        },
+        "includes": [
+          "Kalkyl och offert",
+          "Rivning av befintlig byggnad vid behov",
+          "Samordning av mark, grund, stomme och installationer",
+          "Samordning av underentreprenörer",
+          "Egenkontroller enligt kontrollplan",
+          "Kontakt med kommun och kontrollansvarig",
+          "Slutbesiktning och överlämning"
+        ],
+        "process": [
+          {
+            "title": "Behov och förutsättningar",
+            "text": "Vi går igenom tomt, detaljplan, önskemål och budget."
+          },
+          {
+            "title": "Offert och avtal",
+            "text": "Du får pris, tidplan och förslag på entreprenadform."
+          },
+          {
+            "title": "Projektering och lov",
+            "text": "I totalentreprenad tar vi fram handlingar och söker lov. I utförandeentreprenad bygger vi enligt dina handlingar."
+          },
+          {
+            "title": "Rivning och markarbeten",
+            "text": "Befintligt hus rivs och tomten förbereds."
+          },
+          {
+            "title": "Byggnation",
+            "text": "Stomme, tak, installationer och invändigt – med löpande avstämningar."
+          },
+          {
+            "title": "Slutbesiktning",
+            "text": "Besiktning, slutsamråd och överlämning av huset och dokumentationen."
+          }
+        ],
+        "customer": [
+          "Fastighetsbeteckning och detaljplan",
+          "Ritningar eller skisser",
+          "Bygglov om det redan finns",
+          "Önskemål om material, standard och tidplan",
+          "Budget eller ekonomisk ram"
+        ],
+        "faq": [
+          {
+            "q": "Vad är skillnaden mellan totalentreprenad och utförandeentreprenad?",
+            "a": "I en totalentreprenad ansvarar vi för både projektering och byggande. I en utförandeentreprenad bygger vi efter handlingar som du som beställare har tagit fram. Vilket som passar beror på hur långt du har kommit i planeringen."
+          },
+          {
+            "q": "Kan ni riva det gamla huset och bygga nytt?",
+            "a": "Ja. Rivning, sanering och nybyggnation i samma projekt, med en kontaktperson, är precis det vi är till för."
+          },
+          {
+            "q": "Kan jag använda ROT-avdrag för nybyggnation?",
+            "a": "Nej, ROT-avdrag gäller inte nybyggnation. Det kan däremot gälla tillbyggnad av en befintlig bostad. Kontrollera aktuella regler hos Skatteverket."
+          },
+          {
+            "q": "Vem söker bygglov?",
+            "a": "Som byggherre ansvarar du för att lov finns. I en totalentreprenad kan vi ta fram handlingarna och sköta ansökan åt dig."
+          }
+        ]
+      },
+      "ombyggnad": {
+        "name": "Ombyggnad & renovering",
+        "short": "Förberedelse inför stambyte, vindsinredning och lokalanpassning.",
+        "metaTitle": "Ombyggnad och renovering i Malmö – vindsinredning och lokalanpassning",
+        "metaDescription": "Ombyggnad och renovering i Malmö och Skåne: förberedelse inför stambyte, vindsinredning och lokalanpassning. Rivning, håltagning och bygg i samma team.",
+        "heroTitle": "Ombyggnad och renovering i Malmö",
+        "intro": "Ombyggnad börjar ofta med rivning och håltagning. När vi gör alla delar själva slipper du samordna flera firmor och projektet blir lättare att planera.",
+        "offerings": [
+          {
+            "title": "Förberedelse inför stambyte",
+            "text": "Rivning av badrum, schakt och ytskikt så att rörentreprenören kan börja direkt. Vi samordnar med föreningen och de boende."
+          },
+          {
+            "title": "Vindsinredning",
+            "text": "Från kallvind till bostad: rivning, håltagning för trappa och fönster, bjälklag och invändig byggnation."
+          },
+          {
+            "title": "Lokalanpassning",
+            "text": "Ombyggnad av kontor, butiker och lokaler inför ny hyresgäst – med hänsyn till verksamheten runt omkring."
+          },
+          {
+            "title": "Renovering",
+            "text": "Kök, badrum och ytskikt i bostäder – rivning, bygg och samordning av installatörer."
+          }
+        ],
+        "includes": [
+          "Platsbesök och skriftlig offert",
+          "Rivning och håltagning i egen regi",
+          "Skydd av trapphus och gemensamma utrymmen",
+          "Information till boende vid behov",
+          "Samordning med VVS, el och ventilation",
+          "Löpande städning och avfallshantering",
+          "Egenkontroller och slutbesiktning"
+        ],
+        "process": [
+          {
+            "title": "Platsbesök",
+            "text": "Vi går igenom lokalen eller bostaden och dina önskemål."
+          },
+          {
+            "title": "Offert och tidplan",
+            "text": "Pris, omfattning och när arbetet kan göras."
+          },
+          {
+            "title": "Förberedelse och skydd",
+            "text": "Skydd av ytor, information till boende och avspärrning."
+          },
+          {
+            "title": "Rivning och håltagning",
+            "text": "Det som ska bort tas bort och nya öppningar tas upp."
+          },
+          {
+            "title": "Bygg och samordning",
+            "text": "Vi bygger och samordnar installatörerna."
+          },
+          {
+            "title": "Slutbesiktning och överlämning",
+            "text": "Genomgång, åtgärd av eventuella anmärkningar och överlämning."
+          }
+        ],
+        "customer": [
+          "Ritningar och eventuella bygglovshandlingar",
+          "Tillstånd från BRF eller hyresvärd",
+          "Önskemål om material och standard",
+          "Tider då arbete får utföras",
+          "Kontaktperson för boende eller verksamhet"
+        ],
+        "faq": [
+          {
+            "q": "Behöver jag bygglov för vindsinredning?",
+            "a": "Inredning av vind kan kräva bygglov eller anmälan, särskilt om du ändrar fasaden, sätter in takfönster eller gör ingrepp i bärande konstruktion. Kontrollera med kommunen – vi hjälper till med underlaget."
+          },
+          {
+            "q": "Kan ni jobba medan vi har verksamhet i lokalen?",
+            "a": "Ofta ja. Vi delar av, skyddar mot damm och lägger bullriga moment på tider som passar er."
+          },
+          {
+            "q": "Kan jag använda ROT-avdrag?",
+            "a": "Renovering, ombyggnad och tillbyggnad av din bostad kan ge ROT-avdrag på arbetskostnaden. Kontrollera aktuella regler och belopp hos Skatteverket."
+          },
+          {
+            "q": "Vad ingår i förberedelse inför stambyte?",
+            "a": "Normalt rivning av badrum och ytskikt, öppning av schakt och bortforsling – så att rörarbetena kan starta enligt tidplanen. Exakt omfattning bestäms med föreningen och huvudentreprenören."
+          }
+        ]
+      },
+      "avfall": {
+        "name": "Avfall & containrar",
+        "short": "Containerutställning, kärl för trånga utrymmen och borttransport.",
+        "metaTitle": "Container och avfallshantering i Malmö – bygg- och rivningsavfall",
+        "metaDescription": "Container för bygg- och rivningsavfall i Malmö och Skåne. Containerutställning, mindre kärl för trånga utrymmen och borttransport till godkänd mottagare.",
+        "heroTitle": "Containrar och avfallshantering i Malmö",
+        "intro": "Bygg- och rivningsavfall ska sorteras och lämnas på rätt ställe. Vi ställer ut container eller kärl, hämtar när det är fullt och ser till att avfallet hamnar hos godkänd mottagare.",
+        "offerings": [
+          {
+            "title": "Containerutställning",
+            "text": "Container för bygg-, rivnings- och trädgårdsavfall."
+          },
+          {
+            "title": "Kärl för trånga utrymmen",
+            "text": "Mindre kärl och säckar där en container inte får plats – innergårdar, trapphus och smala gator."
+          },
+          {
+            "title": "Borttransport",
+            "text": "Vi hämtar, kör till godkänd mottagare och lämnar dokumentation på vad som lämnats."
+          },
+          {
+            "title": "Sortering",
+            "text": "Vi hjälper dig att sortera rätt från början, vilket ofta sänker kostnaden."
+          }
+        ],
+        "includes": [
+          "Utställning och hämtning enligt överenskommelse",
+          "Råd om sortering och fraktioner",
+          "Hjälp med tillstånd för uppställning på allmän plats",
+          "Transport till godkänd mottagare",
+          "Dokumentation på mottaget avfall"
+        ],
+        "process": [
+          {
+            "title": "Beställning",
+            "text": "Berätta vad som ska slängas, hur mycket och var."
+          },
+          {
+            "title": "Utställning",
+            "text": "Vi ställer ut container eller kärl på överenskommen plats."
+          },
+          {
+            "title": "Fyllning",
+            "text": "Du fyller – vi hjälper till med sorteringen om du vill."
+          },
+          {
+            "title": "Hämtning",
+            "text": "Vi hämtar och kör till godkänd mottagare."
+          },
+          {
+            "title": "Dokumentation",
+            "text": "Du får underlag på mängd och mottagare."
+          }
+        ],
+        "customer": [
+          "Adress och var containern ska stå",
+          "Typ av avfall",
+          "Ungefärlig mängd",
+          "Önskat datum och hur länge den ska stå",
+          "Tillstånd om den ska stå på gata eller trottoar"
+        ],
+        "faq": [
+          {
+            "q": "Får jag ställa containern på gatan?",
+            "a": "På egen tomt behövs normalt inget tillstånd. Ska containern stå på gata, trottoar eller annan allmän plats behövs oftast tillstånd från polisen eller kommunen. Vi hjälper dig med ansökan."
+          },
+          {
+            "q": "Vad får jag inte slänga i containern?",
+            "a": "Farligt avfall som färg, kemikalier, elektronik, asbest och tryckimpregnerat trä ska hållas separat. Fråga oss om du är osäker."
+          },
+          {
+            "q": "Varför måste byggavfall sorteras?",
+            "a": "Bygg- och rivningsavfall ska enligt avfallsförordningen sorteras i flera fraktioner, bland annat trä, mineral, metall, glas, plast och gips. Det gör att mer kan återvinnas, och sorterat avfall är ofta billigare att lämna."
+          }
+        ]
+      }
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Projekt – rivning, sanering och bygg i Malmö och Skåne",
+      "description": "Se exempel på våra projekt inom rivning, sanering, håltagning, nybyggnation och ombyggnad i Malmö och Skåne."
+    },
+    "hero": {
+      "eyebrow": "Projekt",
+      "title": "Utfört arbete",
+      "lead": "Filtrera på typ av uppdrag eller år."
+    },
+    "filter": {
+      "label": "Filtrera projekt",
+      "category": "Kategori",
+      "year": "År",
+      "all": "Alla",
+      "allYears": "Alla år",
+      "showing": "Visar {count} av {total} projekt",
+      "empty": "Inga projekt matchar filtret.",
+      "reset": "Visa alla projekt"
+    },
+    "categories": {
+      "rivning": "Rivning",
+      "sanering": "Sanering",
+      "håltagning": "Håltagning",
+      "nybyggnad": "Nybyggnad",
+      "ombyggnad": "Ombyggnad"
+    },
+    "facts": {
+      "title": "Fakta",
+      "location": "Plats",
+      "client": "Beställare",
+      "contractType": "Entreprenadform",
+      "year": "År",
+      "scope": "Omfattning",
+      "recycled": "Återvunnet material",
+      "category": "Kategori"
+    },
+    "beforeAfter": {
+      "title": "Före och efter",
+      "before": "Före",
+      "after": "Efter",
+      "label": "Jämför före och efter. Använd piltangenterna för att flytta reglaget.",
+      "beforeAlt": "{title} före arbetet",
+      "afterAlt": "{title} efter arbetet"
+    },
+    "gallery": {
+      "title": "Bilder",
+      "credits": "Foto",
+      "open": "Öppna bild {n} i full storlek"
+    },
+    "related": "Fler projekt",
+    "back": "Alla projekt",
+    "description": "Om projektet"
+  },
+  "environment": {
+    "meta": {
+      "title": "Miljö & säkerhet – källsortering, återbruk och arbetsmiljö",
+      "description": "Så arbetar vi med källsortering, återbruk, dokumentation, arbetsmiljö och säkerhet vid rivning, sanering och bygg i Malmö och Skåne."
+    },
+    "hero": {
+      "eyebrow": "Miljö & säkerhet",
+      "title": "Rätt material på rätt ställe – och alla hem oskadda",
+      "lead": "Rivning och sanering påverkar både miljön och de som jobbar. Därför har vi tydliga rutiner för båda."
+    },
+    "sorting": {
+      "eyebrow": "Avfall",
+      "title": "Så sorterar och återvinner vi",
+      "lead": "Bygg- och rivningsavfall ska sorteras i fraktioner på plats. Så här går det till hos oss.",
+      "steps": [
+        {
+          "title": "Inventering",
+          "text": "Vi identifierar farligt avfall och material som kan återbrukas."
+        },
+        {
+          "title": "Selektiv demontering",
+          "text": "Det som kan återbrukas monteras ner varsamt innan resten rivs."
+        },
+        {
+          "title": "Sortering på plats",
+          "text": "Minst trä, mineral, metall, glas, plast och gips hålls isär, enligt avfallsförordningen."
+        },
+        {
+          "title": "Transport",
+          "text": "Avfallet körs till godkända mottagare."
+        },
+        {
+          "title": "Dokumentation",
+          "text": "Du får underlag på mängder, fraktioner och mottagare."
+        }
+      ]
+    },
+    "reuse": {
+      "eyebrow": "Återbruk",
+      "title": "Återbruk före återvinning",
+      "text": "Det bästa avfallet är det som aldrig blir avfall. Där det är möjligt tar vi tillvara byggdelar och material som kan användas igen.",
+      "points": [
+        "Byggdelar och material som kan användas igen identifieras innan rivningen börjar.",
+        "Det som kan återbrukas monteras ner varsamt i stället för att rivas.",
+        "Det som inte kan återbrukas sorteras på plats för återvinning."
+      ]
+    },
+    "docs": {
+      "eyebrow": "Dokumentation",
+      "title": "Det här får du som kund",
+      "lead": "Underlag till din kontrollplan och ditt eget miljöarbete.",
+      "items": [
+        "Plan för material- och avfallshantering",
+        "Inventering av farligt avfall",
+        "Transportdokument och mottagningskvitton",
+        "Sammanställning av mängder per fraktion",
+        "Saneringsdokumentation (asbest/PCB) när det är aktuellt",
+        "Underlag till kontrollplan och slutsamråd"
+      ]
+    },
+    "safety": {
+      "eyebrow": "Arbetsmiljö",
+      "title": "Säkerhetsrutiner",
+      "lead": "Säkerhet planeras innan första maskinen startar.",
+      "items": [
+        {
+          "title": "Riskbedömning",
+          "text": "Varje uppdrag börjar med en riskbedömning och en plan för hur arbetet ska göras säkert."
+        },
+        {
+          "title": "Skyddsutrustning",
+          "text": "Rätt skyddsutrustning för varje moment – andningsskydd, hörselskydd, hjälm och skyddskläder."
+        },
+        {
+          "title": "Personalliggare",
+          "text": "Personalliggare förs på våra byggarbetsplatser."
+        },
+        {
+          "title": "Avspärrning och skydd",
+          "text": "Arbetsområdet spärras av och omgivningen skyddas mot damm, buller och vibrationer."
+        }
+      ]
+    },
+    "certs": {
+      "eyebrow": "Behörigheter",
+      "title": "Certifieringar och försäkring",
+      "lead": "Kopior på intyg och försäkringsbevis skickas på begäran.",
+      "insurance": "Försäkring",
+      "insurer": "Försäkringsbolag",
+      "type": "Typ",
+      "amount": "Belopp"
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "Om oss – lokal entreprenör för rivning och bygg i Malmö",
+      "description": "Vi är en lokal entreprenör i Malmö som river, sanerar och bygger nytt. Möt teamet och se vår maskinpark."
+    },
+    "hero": {
+      "eyebrow": "Om oss",
+      "title": "Malmöentreprenören som tar hela kedjan",
+      "lead": "Rivning, sanering, håltagning och bygg – i ett och samma företag."
+    },
+    "story": {
+      "title": "Vår historia",
+      "paragraphs": [
+        "{company} är en byggentreprenör från Malmö.",
+        "Vi är en lokal entreprenör som river, sanerar, tar upp hål och bygger nytt. Idén är enkel: du ska inte behöva samordna fem olika firmor för att ett gammalt hus ska bli ett nytt."
+      ]
+    },
+    "values": {
+      "title": "Det här står vi för",
+      "items": [
+        {
+          "title": "Ansvar",
+          "text": "Vi tar ansvar för hela kedjan – för arbetet, för materialet och för hur det påverkar omgivningen."
+        },
+        {
+          "title": "Säkerhet",
+          "text": "Ingen tidplan är viktigare än att alla går hem oskadda. Vi planerar för säkerhet innan vi börjar."
+        },
+        {
+          "title": "Pålitlighet",
+          "text": "Vi håller det vi lovar: pris, tid och en kontaktperson som svarar."
+        }
+      ]
+    },
+    "team": {
+      "title": "Teamet",
+      "lead": "Ring eller mejla direkt till den du vill prata med.",
+      "call": "Ring {name}",
+      "email": "Mejla {name}",
+      "photoAlt": "Porträtt av {name}"
+    },
+    "equipment": {
+      "title": "Maskiner och utrustning",
+      "lead": "Rätt maskin för varje uppdrag."
+    },
+    "careersCta": {
+      "title": "Vill du jobba med oss?",
+      "text": "Vi söker folk som vill jobba säkert och göra ett ordentligt jobb.",
+      "cta": "Jobba hos oss"
+    }
+  },
+  "news": {
+    "meta": {
+      "title": "Nyheter",
+      "description": "Nyheter från oss – projekt, nya tjänster och information om rivning och bygg i Malmö och Skåne."
+    },
+    "hero": {
+      "eyebrow": "Nyheter",
+      "title": "Senaste nytt",
+      "lead": "Projekt, nyheter och information från oss."
+    },
+    "published": "Publicerad",
+    "readMore": "Läs nyheten",
+    "back": "Alla nyheter",
+    "empty": "Inga nyheter publicerade än."
+  },
+  "careers": {
+    "meta": {
+      "title": "Karriär – jobba med rivning och bygg i Malmö",
+      "description": "Jobba med rivning, sanering, håltagning och bygg i Malmö och Skåne. Spontanansökan och information för lärlingar."
+    },
+    "hero": {
+      "eyebrow": "Karriär",
+      "title": "Kom och bygg – och riv – med oss",
+      "lead": "Vi söker folk som vill jobba säkert, lära sig hela kedjan och göra ett ordentligt jobb."
+    },
+    "why": {
+      "title": "Därför ska du jobba här",
+      "items": [
+        {
+          "title": "Varierade uppdrag",
+          "text": "Rivning, sanering, håltagning och bygg – du lär dig hela kedjan."
+        },
+        {
+          "title": "Lokala arbetsplatser",
+          "text": "Uppdrag i Malmöregionen och Skåne."
+        },
+        {
+          "title": "Säkerhet först",
+          "text": "Rätt utrustning, utbildning och tid att göra jobbet säkert."
+        }
+      ]
+    },
+    "positions": {
+      "title": "Lediga tjänster",
+      "empty": "Inga lediga tjänster just nu – skicka gärna en spontanansökan.",
+      "location": "Ort",
+      "type": "Anställning",
+      "deadline": "Sista ansökningsdag",
+      "apply": "Ansök"
+    },
+    "apprentices": {
+      "title": "Lärlingar",
+      "text": "Är du lärling eller går du en byggutbildning? Skicka en spontanansökan och berätta vad du vill lära dig."
+    },
+    "cards": {
+      "title": "Kort och behörigheter",
+      "lead": "Beroende på roll behöver du:",
+      "items": [
+        "ID06-kort – standard på svenska byggarbetsplatser",
+        "Asbestutbildning för saneringsuppdrag"
+      ]
+    },
+    "job": {
+      "back": "Alla lediga tjänster",
+      "applyTitle": "Ansök till tjänsten",
+      "applyText": "Fyll i formuläret nedan eller mejla din ansökan till {email}."
+    },
+    "form": {
+      "title": "Spontanansökan",
+      "lead": "Ingen tjänst som passar? Berätta vem du är så hör vi av oss när vi behöver folk.",
+      "position": "Tjänst du söker",
+      "positionSpontaneous": "Spontanansökan",
+      "name": "Namn",
+      "email": "E-post",
+      "phone": "Telefon",
+      "experience": "Erfarenhet och behörigheter",
+      "experienceHint": "T.ex. år i branschen, körkort, ID06, utbildningar.",
+      "cv": "CV (valfritt)",
+      "cvHint": "PDF eller Word, max {mb} MB.",
+      "submit": "Skicka ansökan",
+      "consent": "Jag godkänner att {company} behandlar mina uppgifter för rekrytering enligt",
+      "success": "Tack för din ansökan! Vi återkommer om vi har något som passar.",
+      "error": "Ansökan kunde inte skickas. Försök igen eller mejla {email}."
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Kontakt och offertförfrågan – rivning och bygg i Malmö",
+      "description": "Begär offert på rivning, sanering, håltagning eller bygg i Malmö och Skåne. Mejla oss eller skicka en förfrågan med bilder."
+    },
+    "hero": {
+      "eyebrow": "Kontakt",
+      "title": "Begär offert",
+      "lead": "Fem korta steg. Bilder och ritningar hjälper oss att ge ett rättvisande pris."
+    },
+    "preferCall": "Vill du hellre kontakta oss direkt?",
+    "details": {
+      "title": "Kontaktuppgifter",
+      "mapAlt": "Karta över {address}",
+      "mapLink": "Öppna i Google Maps",
+      "mapNote": "Kartan är en bild. Google Maps öppnas först när du klickar."
+    }
+  },
+  "form": {
+    "required": "obligatoriskt",
+    "optional": "valfritt",
+    "honeypot": "Lämna det här fältet tomt",
+    "consent": "Jag godkänner att {company} behandlar mina uppgifter för att besvara förfrågan enligt",
+    "consentLink": "integritetspolicyn",
+    "next": "Nästa",
+    "back": "Tillbaka",
+    "submit": "Skicka förfrågan",
+    "sending": "Skickar …",
+    "stepOf": "Steg {n} av {total}",
+    "saved": "Sparat i den här fliken",
+    "edit": "Ändra",
+    "summary": "Sammanfattning",
+    "noJs": "Fyll i alla steg nedan och skicka formuläret längst ner.",
+    "errorSummary": "Kontrollera följande:",
+    "errors": {
+      "required": "Fyll i {field}.",
+      "choose": "Välj minst ett alternativ under {field}.",
+      "pick": "Välj {field}.",
+      "email": "Ange en giltig e-postadress, t.ex. namn@exempel.se.",
+      "phone": "Ange ett telefonnummer med minst 8 siffror.",
+      "consent": "Du behöver godkänna behandlingen av dina uppgifter.",
+      "fileCount": "Du kan bifoga högst {count} filer.",
+      "fileSize": "Filerna får vara högst {mb} MB tillsammans.",
+      "fileType": "Filtypen stöds inte: {name}"
+    },
+    "steps": [
+      {
+        "title": "Vad behöver du hjälp med?",
+        "short": "Tjänst"
+      },
+      {
+        "title": "Fastigheten",
+        "short": "Fastighet"
+      },
+      {
+        "title": "Omfattning och tid",
+        "short": "Omfattning"
+      },
+      {
+        "title": "Bilder och ritningar",
+        "short": "Bilder"
+      },
+      {
+        "title": "Dina kontaktuppgifter",
+        "short": "Kontakt"
+      }
+    ],
+    "fields": {
+      "services": "Tjänst",
+      "servicesHint": "Välj en eller flera.",
+      "customerType": "Jag är",
+      "propertyType": "Typ av fastighet",
+      "street": "Gatuadress",
+      "postalCode": "Postnummer",
+      "city": "Ort",
+      "area": "Ungefärlig yta (m²)",
+      "buildYear": "Byggår (ungefär)",
+      "buildYearHint": "Hjälper oss att bedöma risk för asbest och PCB.",
+      "description": "Beskriv uppdraget",
+      "descriptionHint": "Vad ska göras? Finns det tidskrav, begränsad åtkomst eller annat vi bör veta?",
+      "start": "Önskad start",
+      "startDate": "Önskat datum",
+      "files": "Bilder eller ritningar",
+      "name": "Namn",
+      "company": "Företag / BRF",
+      "email": "E-post",
+      "phone": "Telefon",
+      "contactPref": "Hur vill du bli kontaktad?"
+    },
+    "options": {
+      "services": {
+        "rivning": "Rivning",
+        "sanering": "Sanering (asbest, PCB, mögel)",
+        "haltagning": "Håltagning / betongsågning",
+        "nybyggnation": "Nybyggnation",
+        "ombyggnad": "Ombyggnad / renovering",
+        "avfall": "Container / avfall",
+        "underentreprenad": "Underentreprenad (för byggföretag)",
+        "annat": "Annat"
+      },
+      "customerType": {
+        "privat": "Privatperson",
+        "brf": "Bostadsrättsförening",
+        "fastighetsagare": "Fastighetsägare",
+        "foretag": "Företag / verksamhet",
+        "entreprenor": "Byggentreprenör"
+      },
+      "propertyType": {
+        "villa": "Villa / radhus",
+        "lagenhet": "Lägenhet",
+        "flerbostadshus": "Flerbostadshus",
+        "lokal": "Kontor / butik / lokal",
+        "industri": "Industri / lager",
+        "annat": "Annat"
+      },
+      "start": {
+        "snarast": "Så snart som möjligt",
+        "1man": "Inom en månad",
+        "1-3man": "Om 1–3 månader",
+        "senare": "Senare / vet inte än"
+      },
+      "contactPref": {
+        "telefon": "Telefon",
+        "epost": "E-post"
+      }
+    },
+    "upload": {
+      "drop": "Dra och släpp filer här",
+      "or": "eller",
+      "browse": "Välj filer",
+      "hint": "Bilder (JPG, PNG, HEIC) eller PDF. Max {count} filer, totalt {mb} MB.",
+      "remove": "Ta bort {name}",
+      "none": "Inga filer valda. Steget är valfritt.",
+      "selected": "{count} fil(er) valda",
+      "skip": "Hoppa över"
+    },
+    "success": {
+      "title": "Tack! Vi har fått din förfrågan.",
+      "text": "En av oss går igenom underlaget och hör av sig.",
+      "responseTime": "Vi svarar normalt {time}.",
+      "urgent": "Brådskande? Ring {phone}.",
+      "again": "Skicka en ny förfrågan"
+    },
+    "error": {
+      "title": "Det gick inte att skicka.",
+      "text": "Kontrollera anslutningen och försök igen. Fungerar det fortfarande inte – ring {phone} eller mejla {email}.",
+      "retry": "Försök igen",
+      "textEmail": "Kontrollera anslutningen och försök igen. Fungerar det fortfarande inte – mejla {email}."
+    }
+  },
+  "thanks": {
+    "quote": {
+      "title": "Tack för din förfrågan",
+      "text": "Vi har tagit emot underlaget och hör av oss när vi har gått igenom det."
+    },
+    "application": {
+      "title": "Tack för din ansökan",
+      "text": "Vi har tagit emot din ansökan och hör av oss om vi har något som passar."
+    },
+    "back": "Till startsidan"
+  },
+  "legal": {
+    "updated": "Senast uppdaterad",
+    "privacy": {
+      "meta": {
+        "title": "Integritetspolicy",
+        "description": "Så behandlar vi dina personuppgifter enligt GDPR."
+      },
+      "title": "Integritetspolicy",
+      "date": "",
+      "intro": "Här beskriver vi hur {company} behandlar personuppgifter när du kontaktar oss, begär offert eller söker jobb. Mallen ska granskas och kompletteras innan publicering.",
+      "sections": [
+        {
+          "h": "Personuppgiftsansvarig",
+          "p": [
+            "{company}, org.nr {orgnr}, {address}, är personuppgiftsansvarig. Frågor om personuppgifter skickas till {email}."
+          ],
+          "list": []
+        },
+        {
+          "h": "Vilka uppgifter vi behandlar",
+          "p": [
+            "Vi behandlar de uppgifter du själv lämnar till oss:"
+          ],
+          "list": [
+            "Offertförfrågan: namn, företag/BRF, e-post, telefon, fastighetens adress, beskrivning av uppdraget samt bilder och ritningar du bifogar.",
+            "Jobbansökan: namn, kontaktuppgifter, CV och de uppgifter du skriver i ansökan.",
+            "Kontakt via e-post och telefon: de uppgifter som framgår av kontakten."
+          ]
+        },
+        {
+          "h": "Ändamål och rättslig grund",
+          "p": [],
+          "list": [
+            "Besvara förfrågningar och lämna offert – åtgärder innan avtal ingås (art. 6.1 b GDPR).",
+            "Fullgöra uppdrag och avtal – avtal (art. 6.1 b).",
+            "Bokföring och fakturering – rättslig förpliktelse (art. 6.1 c), bokföringslagen.",
+            "Rekrytering – samtycke (art. 6.1 a GDPR), som du lämnar när du skickar din ansökan."
+          ]
+        },
+        {
+          "h": "Hur länge vi sparar uppgifterna",
+          "p": [],
+          "list": [
+            "Offertförfrågningar som inte leder till uppdrag raderas när de inte längre behövs för att besvara förfrågan.",
+            "Jobbansökningar raderas när rekryteringen är avslutad, om du inte samtycker till att vi sparar dem längre.",
+            "Bokföringsmaterial: sju år enligt bokföringslagen."
+          ]
+        },
+        {
+          "h": "Mottagare och personuppgiftsbiträden",
+          "p": [
+            "Vi säljer aldrig dina uppgifter. Vi använder leverantörer som behandlar uppgifter för vår räkning:"
+          ],
+          "list": [
+            "Formulärtjänst som tar emot det du skickar via webbplatsens formulär.",
+            "Webbhotell som driftar webbplatsen.",
+            "E-posttjänst som vi använder för att svara dig."
+          ]
+        },
+        {
+          "h": "Dina rättigheter",
+          "p": [
+            "Du har rätt att begära tillgång till, rättelse eller radering av dina uppgifter, begränsning av behandlingen, att invända mot behandlingen och att få ut dina uppgifter (dataportabilitet). Har du lämnat samtycke kan du när som helst återkalla det. Kontakta oss på {email}.",
+            "Du har rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY), imy.se."
+          ],
+          "list": []
+        },
+        {
+          "h": "Cookies",
+          "p": [
+            "Läs om hur vi använder cookies på sidan Cookies."
+          ],
+          "list": []
+        }
+      ]
+    },
+    "cookies": {
+      "meta": {
+        "title": "Cookies",
+        "description": "Information om cookies och webbplatsstatistik på vår webbplats."
+      },
+      "title": "Cookies",
+      "date": "",
+      "intro": "En cookie är en liten textfil som sparas i din webbläsare. Enligt lagen om elektronisk kommunikation ska du informeras om vilka cookies som används och ge samtycke till sådana som inte är nödvändiga.",
+      "none": "Den här webbplatsen sätter inga cookies. Vi använder ingen spårning och bäddar inte in kartor eller sociala flöden. Kartan på kontaktsidan är en bild – Google Maps öppnas först när du klickar på länken.",
+      "session": "Offertformuläret sparar dina ifyllda uppgifter i webbläsarens sessionslagring (inte en cookie) så att du kan gå fram och tillbaka mellan stegen. Uppgifterna raderas när du stänger fliken eller skickar formuläret.",
+      "analyticsOn": "Om du godkänner det använder vi webbplatsstatistik från {provider} för att se hur sidorna används. Statistiken laddas först efter ditt godkännande och kan när som helst stängas av.",
+      "change": "Ändra mitt val",
+      "manage": "Du kan också radera lagrade uppgifter i din webbläsares inställningar."
+    },
+    "accessibility": {
+      "meta": {
+        "title": "Tillgänglighetsredogörelse",
+        "description": "Tillgänglighetsredogörelse för webbplatsen."
+      },
+      "title": "Tillgänglighetsredogörelse",
+      "date": "",
+      "intro": "{company} står bakom den här webbplatsen. Vi vill att så många som möjligt ska kunna använda den.",
+      "sections": [
+        {
+          "h": "Hur tillgänglig är webbplatsen?",
+          "p": [
+            "Webbplatsen är byggd för att uppfylla WCAG 2.1 nivå AA: semantisk HTML, tangentbordsnavigering, synligt fokus, tillräckliga kontraster, alternativtexter och stöd för skärmläsare."
+          ],
+          "list": []
+        },
+        {
+          "h": "Rapportera brister",
+          "p": [
+            "Upptäcker du något som inte fungerar? Kontakta oss på {email} så åtgärdar vi det."
+          ],
+          "list": []
+        },
+        {
+          "h": "Hur vi har testat webbplatsen",
+          "p": [
+            "Webbplatsen har testats med de automatiska verktygen Lighthouse och axe."
+          ],
+          "list": []
+        }
+      ]
+    }
+  },
+  "consent": {
+    "text": "Vi vill använda webbplatsstatistik för att förbättra sidan. Inget laddas utan ditt godkännande.",
+    "accept": "Godkänn statistik",
+    "decline": "Nej tack",
+    "link": "Läs mer"
+  },
+  "footer": {
+    "tagline": "Rivning, sanering, håltagning och bygg – en entreprenör hela vägen.",
+    "company": "Företaget",
+    "contact": "Kontakt",
+    "links": "Sidor",
+    "legal": "Juridiskt",
+    "privacy": "Integritetspolicy",
+    "cookies": "Cookies",
+    "accessibility": "Tillgänglighet",
+    "rights": "Alla rättigheter förbehållna.",
+    "backToTop": "Till toppen"
+  },
+  "notFound": {
+    "title": "Sidan finns inte",
+    "text": "Länken kan vara fel eller så har sidan flyttats.",
+    "home": "Till startsidan"
+  }
+}

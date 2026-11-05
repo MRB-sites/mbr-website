@@ -1,0 +1,42 @@
+---
+/** Static Instagram grid – no embed, no tracking. Swap images in company.ts → INSTAGRAM_IMAGES. */
+import { INSTAGRAM_HANDLE, INSTAGRAM_IMAGES, INSTAGRAM_URL, isUrl } from '../config/company';
+import { fmt, useT } from '../i18n';
+import type { Locale } from '../i18n/routes';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+import Photo from './Photo.astro';
+import SectionHeader from './SectionHeader.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useT(locale);
+const linked = isUrl(INSTAGRAM_URL);
+const cta = fmt(t.home.instagram.cta, { handle: INSTAGRAM_HANDLE });
+---
+
+<SectionHeader id="instagram-title" eyebrow={t.home.instagram.eyebrow} title={t.home.instagram.title}>
+  {
+    linked ? (
+      <Button href={INSTAGRAM_URL} variant="secondary" icon="instagram" iconPosition="start" target="_blank" rel="noopener">
+        {cta}
+      </Button>
+    ) : (
+      <p class="flex items-center gap-2 border border-dashed border-line px-4 py-3 text-lg font-bold">
+        <Icon name="instagram" />
+        {cta} <mark class="placeholder-mark text-inherit">[url]</mark>
+      </p>
+    )
+  }
+</SectionHeader>
+<ul class="mt-10 grid grid-cols-3 gap-2 md:grid-cols-6">
+  {
+    INSTAGRAM_IMAGES.map((src, i) => (
+      <li>
+        <Photo src={src} alt={fmt(t.home.instagram.imageAlt, { n: i + 1 })} width={400} height={400} sizes="(min-width: 768px) 16vw, 33vw" figureClass="aspect-square" />
+      </li>
+    ))
+  }
+</ul>

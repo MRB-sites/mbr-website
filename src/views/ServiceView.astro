@@ -1,0 +1,208 @@
+---
+import { published } from '../data/collections';
+import { SERVICES, SERVICE_IDS, type ServiceId } from '../data/services';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../data/schema';
+import { fmt, useT } from '../i18n';
+import { detailPath, path, quotePath, type Alternates, type Locale } from '../i18n/routes';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import CTABand from '../components/CTABand.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import ProcessTimeline from '../components/ProcessTimeline.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Text from '../components/Text.astro';
+
+interface Props {
+  locale: Locale;
+  alternates: Alternates;
+  service: ServiceId;
+}
+const { locale, alternates, service } = Astro.props;
+const t = useT(locale);
+const labels = t.services.labels;
+const item = t.services.items[service];
+const config = SERVICES[service];
+const site = Astro.site!;
+const pageUrl = new URL(path(config.route, locale), site).href;
+
+const projects = (await published('projects', (p) => config.categories.includes(p.data.category))).sort((a, b) => b.data.year - a.data.year).slice(0, 3);
+const contracts = 'contracts' in item ? item.contracts : null;
+const others = SERVICE_IDS.filter((id) => id !== service);
+
+const crumbs = [
+  { label: t.nav.home, href: path('home', locale) },
+  { label: t.nav.services, href: path('services', locale) },
+  { label: item.name, href: path(config.route, locale) },
+];
+const jsonLd = [
+  serviceSchema(site, { name: item.heroTitle, description: item.metaDescription, url: pageUrl, serviceType: item.name }),
+  faqSchema(item.faq),
+  breadcrumbSchema(crumbs.map((c) => ({ label: c.label, url: new URL(c.href, site).href }))),
+];
+---
+
+<BaseLayout locale={locale} title={item.metaTitle} description={item.metaDescription} alternates={alternates} jsonLd={jsonLd}>
+  <PageHero
+    eyebrow={t.nav.services}
+    title={item.heroTitle}
+    lead={item.short}
+    image={config.image}
+    breadcrumbs={crumbs}
+    breadcrumbLabel={t.a11y.breadcrumb}
+  >
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <Button href={quotePath(locale, service)} size="lg" icon="arrow">{t.cta.quote}</Button>
+    </div>
+  </PageHero>
+
+  <!-- Intro + included checklist -->
+  <Section labelledby="intro-title">
+    <div class="grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-6">
+        <h2 id="intro-title" class="sr-only">{item.name}</h2>
+        <p class="font-bold"><Text text={item.intro} /></p>
+      </div>
+      <div class="bg-surface p-6 md:p-8 lg:col-span-6">
+        <h2 class="text-[1.625rem] font-bold">{labels.includes}</h2>
+        <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          {
+            item.includes.map((inc) => (
+              <li class="flex gap-3">
+                <span class="mt-0.5 grid h-6 w-6 shrink-0 place-items-center bg-accent text-on-accent" aria-hidden="true">
+                  <Icon name="check" class="h-4 w-4" />
+                </span>
+                <span>
+                  <Text text={inc} />
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Offerings -->
+  <Section tone="concrete" labelledby="offerings-title">
+    <SectionHeader id="offerings-title" title={labels.offerings} />
+    <ul class:list={['mt-10 grid gap-6 sm:grid-cols-2', item.offerings.length % 3 === 0 || item.offerings.length === 5 ? 'lg:grid-cols-3' : 'lg:grid-cols-4']}>
+      {
+        item.offerings.map((o, i) => (
+          <li class="flex flex-col border-t-[3px] border-accent-strong bg-surface p-6">
+            <span class="text-xs text-ink-muted">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-2 text-[1.375rem] font-bold">{o.title}</h3>
+            <p class="mt-2 text-ink-muted">
+              <Text text={o.text} />
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+
+    {
+      contracts && (
+        <div class="mt-14">
+          <h3 class="text-[1.625rem]">{contracts.title}</h3>
+          <div class="mt-6 grid gap-6 md:grid-cols-2">
+            {[contracts.total, contracts.execution].map((c) => (
+              <div class="bg-surface p-6">
+                <h4 class="text-[1.375rem] font-bold">{c.title}</h4>
+                <p class="mt-2">{c.text}</p>
+              </div>
+            ))}
+          </div>
+          <p class="mt-4 text-sm text-ink-muted">{contracts.note}</p>
+        </div>
+      )
+    }
+  </Section>
+
+  <!-- Process + what we need -->
+  <Section labelledby="process-title">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <h2 id="process-title" class="text-[1.625rem]">{labels.process}</h2>
+        <div class="mt-10">
+          <ProcessTimeline steps={item.process} stepLabel={t.common.step} variant="vertical" />
+        </div>
+      </div>
+      <aside class="lg:col-span-5" aria-labelledby="customer-title">
+        <div class="sticky top-28 bg-inverse p-6 text-on-inverse md:p-8">
+          <h2 id="customer-title" class="text-[1.625rem] font-bold">{labels.customer}</h2>
+          <ul class="mt-5 space-y-3">
+            {
+              item.customer.map((c) => (
+                <li class="flex gap-3">
+                  <span class="mt-2 h-2 w-2 shrink-0 bg-accent" aria-hidden="true" />
+                  {c}
+                </li>
+              ))
+            }
+          </ul>
+          <Button href={quotePath(locale, service)} class="mt-8 w-full" icon="arrow">{t.cta.quote}</Button>
+        </div>
+      </aside>
+    </div>
+  </Section>
+
+  <!-- FAQ -->
+  <Section tone="concrete">
+    <FAQAccordion items={item.faq} title={labels.faq} lead={labels.faqLead} id="faq-title" />
+  </Section>
+
+  <!-- Related projects (only when there are any) + other services -->
+  <Section labelledby={projects.length > 0 ? 'related-title' : 'other-title'}>
+    {
+      projects.length > 0 && (
+        <SectionHeader id="related-title" title={fmt(labels.projects, { service: item.name })}>
+          <Button href={path('projects', locale)} variant="secondary" icon="arrow">
+            {t.cta.allProjects}
+          </Button>
+        </SectionHeader>
+      )
+    }
+    {
+      projects.length > 0 && (
+        <ul class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((p) => (
+            <li>
+              <ProjectCard
+                href={detailPath('projects', p.id, locale)}
+                title={p.data.title[locale]}
+                location={p.data.location}
+                year={p.data.year}
+                category={p.data.category}
+                categoryLabel={t.projects.categories[p.data.category]}
+                image={p.data.cover}
+                example={p.data.example}
+                exampleLabel={t.common.example}
+              />
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <nav aria-labelledby="other-title" class:list={[projects.length > 0 && 'mt-16 border-t border-line pt-8']}>
+      <h2 id="other-title" class="eyebrow">{labels.other}</h2>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {
+          others.map((id) => (
+            <li>
+              <a href={path(SERVICES[id].route, locale)} class="inline-flex min-h-[2.6875rem] items-center justify-center rounded-full border-2 border-line-strong bg-surface px-6 font-bold text-ink transition-colors duration-200 ease-out hover:border-ink">
+                {t.services.items[id].name}
+                <Icon name="arrow" class="h-4 w-4" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </Section>
+
+  <CTABand locale={locale} title={fmt(labels.ctaTitle, { service: item.name.toLowerCase() })} lead={labels.ctaLead} service={service} />
+</BaseLayout>

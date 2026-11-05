@@ -1,0 +1,1352 @@
+{
+  "meta": {
+    "defaultDescription": "Demolition, hazardous material removal, concrete cutting and new construction in Malmö and Skåne. One local contractor for the whole chain – from demolition permit to final inspection.",
+    "ogImageAlt": "{company} – demolition, remediation and construction in Malmö"
+  },
+  "a11y": {
+    "skip": "Skip to content",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "mainNav": "Main menu",
+    "breadcrumb": "You are here",
+    "langSwitch": "Switch language to Swedish",
+    "newTab": "(opens in a new tab)",
+    "footerNav": "Footer links",
+    "mobileActions": "Quick actions",
+    "placeholder": "Placeholder – to be replaced with real content",
+    "home": "Home page"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "projects": "Projects",
+    "environment": "Environment & safety",
+    "about": "About us",
+    "news": "News",
+    "careers": "Careers",
+    "contact": "Contact"
+  },
+  "cta": {
+    "quote": "Request a quote",
+    "call": "Call us",
+    "readMore": "Read more",
+    "allProjects": "All projects",
+    "allServices": "All services",
+    "email": "Email us",
+    "seeProject": "View project"
+  },
+  "common": {
+    "photo": "Photo",
+    "example": "Example",
+    "exampleProject": "Example project – replace with a real project",
+    "openingHours": "Opening hours",
+    "serviceArea": "Service area",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "orgNr": "Corp. ID no.",
+    "seat": "Registered office",
+    "followUs": "Follow us",
+    "langShort": "SV",
+    "langName": "Svenska",
+    "step": "Step"
+  },
+  "home": {
+    "meta": {
+      "title": "Demolition, remediation and construction in Malmö and Skåne",
+      "description": "We demolish, remediate and build new – one contractor all the way. Demolition, asbestos removal, concrete cutting, new construction and renovation in Malmö and Skåne."
+    },
+    "hero": {
+      "eyebrow": "Demolition · Remediation · Concrete cutting · Construction",
+      "title": "We demolish, remediate and build new – one contractor all the way.",
+      "lead": "A local contractor from Malmö. We take on work in {area}.",
+      "imageAlt": "Demolition machine at work on a construction site",
+      "scroll": "Scroll"
+    },
+    "routing": {
+      "eyebrow": "Where are you?",
+      "title": "What do you need help with?",
+      "tiles": [
+        {
+          "title": "Planning a demolition?",
+          "text": "House, commercial space, bathroom or kitchen – we demolish and handle the material."
+        },
+        {
+          "title": "Need asbestos or PCB removal?",
+          "text": "Survey, remediation and documentation before demolition or renovation."
+        },
+        {
+          "title": "Building new or renovating?",
+          "text": "New construction, extensions and conversions – even when something has to be demolished first."
+        },
+        {
+          "title": "A contractor looking for a subcontractor?",
+          "text": "We handle demolition, remediation and concrete cutting as a subcontractor on your project."
+        }
+      ]
+    },
+    "chain": {
+      "eyebrow": "The whole chain",
+      "title": "From demolition permit to final inspection – one contact",
+      "lead": "No need to coordinate several companies. We handle every step and hand over to the next without gaps.",
+      "steps": [
+        {
+          "title": "Demolition permit",
+          "text": "We prepare the documents and deal with the municipality."
+        },
+        {
+          "title": "Environmental survey",
+          "text": "We map hazardous materials and what can be reused."
+        },
+        {
+          "title": "Remediation",
+          "text": "Asbestos, PCB and other hazardous materials are removed first."
+        },
+        {
+          "title": "Demolition",
+          "text": "Total, selective or interior – in the right order and safely."
+        },
+        {
+          "title": "Sorting & recycling",
+          "text": "Material is sorted on site and taken to approved facilities."
+        },
+        {
+          "title": "New construction",
+          "text": "We build new or rebuild on the same site."
+        },
+        {
+          "title": "Final inspection",
+          "text": "Inspection, documentation and handover to you."
+        }
+      ]
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "What we do",
+      "lead": "Six services that fit together. Pick one – or let us take the whole project."
+    },
+    "promises": {
+      "title": "What you can count on"
+    },
+    "figures": {
+      "eyebrow": "In numbers",
+      "title": "About us in brief"
+    },
+    "projects": {
+      "eyebrow": "Projects",
+      "title": "Featured projects",
+      "lead": "Drag the handle to see before and after."
+    },
+    "environment": {
+      "eyebrow": "Environment",
+      "title": "Circularity, not mountains of waste",
+      "lead": "Demolition produces a lot of material. We make sure as much as possible is used again.",
+      "points": [
+        {
+          "title": "Reuse first",
+          "text": "Building parts in good condition are salvaged before demolition starts."
+        },
+        {
+          "title": "Sorting on site",
+          "text": "Wood, mineral, metal, glass, plastic and plaster are kept apart from the start."
+        },
+        {
+          "title": "Minimal environmental impact",
+          "text": "Dust control, planned transport and correct handling of hazardous waste."
+        }
+      ],
+      "cta": "How we work with environment and safety"
+    },
+    "instagram": {
+      "eyebrow": "Instagram",
+      "title": "From our sites",
+      "cta": "Follow {handle} on Instagram",
+      "imageAlt": "Instagram image {n}"
+    },
+    "careers": {
+      "title": "Want to work with us?",
+      "text": "We are looking for people who want to work safely and learn the whole chain.",
+      "cta": "Work with us"
+    },
+    "ctaBand": {
+      "title": "Tell us what you need – we’ll come back with a price",
+      "lead": "Send a request in a few minutes, or contact us directly."
+    },
+    "customers": {
+      "title": "Who we work for",
+      "items": [
+        {
+          "title": "Homeowners",
+          "text": "Bathroom and kitchen strip-outs, remediation and renovation or new construction of houses."
+        },
+        {
+          "title": "Housing associations",
+          "text": "Pipe replacement preparation, remediation and conversion with consideration for residents."
+        },
+        {
+          "title": "Property owners",
+          "text": "Demolition, remediation and adaptation of homes and premises."
+        },
+        {
+          "title": "Businesses",
+          "text": "Conversion of offices, shops and industrial premises."
+        },
+        {
+          "title": "Building contractors",
+          "text": "Demolition, remediation and concrete cutting as a subcontractor on your project."
+        }
+      ]
+    }
+  },
+  "services": {
+    "meta": {
+      "title": "Services – demolition, remediation, concrete cutting and construction in Malmö",
+      "description": "Demolition, asbestos and PCB removal, concrete cutting, new construction, renovation and containers in Malmö and Skåne. One contractor for the whole chain."
+    },
+    "hero": {
+      "eyebrow": "Services",
+      "title": "One contractor for the whole chain",
+      "lead": "We can take a single part of your project – or everything from demolition permit to handover."
+    },
+    "contractors": {
+      "eyebrow": "For contractors",
+      "title": "Looking for a demolition subcontractor?",
+      "lead": "We take on demolition, remediation, concrete cutting and waste handling as a subcontractor on your project.",
+      "points": [
+        "Fixed price or unit rates as agreed",
+        "Own site supervision",
+        "Staff register and self-inspections",
+        "Waste and remediation documentation for your inspection plan"
+      ],
+      "cta": "Send tender documents"
+    },
+    "chainTitle": "How the services fit together",
+    "labels": {
+      "offerings": "What we do",
+      "includes": "What’s included",
+      "process": "How it works",
+      "customer": "What we need from you",
+      "faq": "Frequently asked questions",
+      "faqLead": "Can’t find the answer? Get in touch.",
+      "projects": "{service} projects",
+      "noProjects": "No projects published in this area yet.",
+      "other": "Other services",
+      "ctaTitle": "Need help with {service}?",
+      "ctaLead": "Describe the job and we’ll come back with a price and schedule."
+    },
+    "items": {
+      "rivning": {
+        "name": "Demolition",
+        "short": "From bathrooms to whole buildings. Total, heavy, selective and interior demolition.",
+        "metaTitle": "Demolition in Malmö and Skåne – total, selective and interior",
+        "metaDescription": "We demolish houses, apartment buildings, commercial and industrial buildings in Malmö and Skåne. Permits, remediation, waste sorting and removal – one contact all the way.",
+        "heroTitle": "Demolition in Malmö and Skåne",
+        "intro": "We demolish everything from a bathroom to an entire building. Before we start, we survey hazardous materials, and during demolition we sort material on site so that as much as possible can be reused or recycled. You have one contact from quote to cleared site.",
+        "offerings": [
+          {
+            "title": "Total demolition",
+            "text": "The whole building is taken down – with or without the foundation. We handle permits, remediation, demolition, sorting and removal."
+          },
+          {
+            "title": "Heavy demolition",
+            "text": "Demolition of concrete, frames and load-bearing structures with machines suited to the job."
+          },
+          {
+            "title": "Selective demolition",
+            "text": "We dismantle building parts in order so they can be reused or recycled, instead of mixing everything."
+          },
+          {
+            "title": "Interior demolition",
+            "text": "Walls, floors, ceilings and installations ahead of a conversion – with dust protection where needed."
+          },
+          {
+            "title": "ROT demolition (bathroom, kitchen)",
+            "text": "Bathroom and kitchen strip-out in houses and apartments before renovation. The labour cost may qualify for the Swedish ROT tax deduction."
+          }
+        ],
+        "includes": [
+          "Site visit and written quote",
+          "Help with demolition permit or notification",
+          "Hazardous material survey",
+          "Remediation when needed",
+          "Barriers, protection and dust control",
+          "Waste sorting on site",
+          "Container and transport to approved facilities",
+          "Waste and receipt documentation",
+          "Clean site at handover"
+        ],
+        "process": [
+          {
+            "title": "Site visit",
+            "text": "We go through what is to be demolished and what stays."
+          },
+          {
+            "title": "Quote",
+            "text": "You get a written price with scope and schedule."
+          },
+          {
+            "title": "Permit and survey",
+            "text": "We prepare permit or notification documents and survey hazardous materials."
+          },
+          {
+            "title": "Remediation",
+            "text": "Asbestos, PCB and other hazardous materials are removed first."
+          },
+          {
+            "title": "Demolition and sorting",
+            "text": "We demolish in the right order and sort material on site."
+          },
+          {
+            "title": "Removal and handover",
+            "text": "Waste goes to approved facilities. You get the documentation and a clean site."
+          }
+        ],
+        "customer": [
+          "Address and property designation",
+          "Drawings, if available",
+          "Photos of what is to be demolished",
+          "Year of construction and previous renovations",
+          "Preferred start date and any time constraints",
+          "Access to power and water if possible"
+        ],
+        "faq": [
+          {
+            "q": "Do I need a demolition permit?",
+            "a": "Often, yes. Within an area covered by a detailed development plan, a demolition permit is normally required to demolish a building or part of one, and outside such areas a demolition notification may be required. The municipal building committee decides. We prepare the documents and handle contact with the municipality."
+          },
+          {
+            "q": "How long does demolition take?",
+            "a": "It depends on size, materials and whether remediation is needed. A bathroom often takes a few days, a whole building longer. The quote includes a schedule."
+          },
+          {
+            "q": "Can I use the ROT tax deduction?",
+            "a": "Demolition that is part of renovating your home, for example before a new bathroom or kitchen, may qualify for the ROT deduction on labour costs. Demolishing an entire building normally does not. Check the current rules with the Swedish Tax Agency (Skatteverket) – we itemise the labour cost on the invoice."
+          },
+          {
+            "q": "What happens to the demolition material?",
+            "a": "We sort it on site into separate fractions and take it to approved facilities. Anything that can be reused is salvaged. You get documentation of what was delivered and where."
+          },
+          {
+            "q": "How is asbestos handled?",
+            "a": "If the survey finds asbestos, it is removed before demolition starts, by trained staff following the Swedish Work Environment Authority’s regulations. Read more on the remediation page."
+          }
+        ]
+      },
+      "sanering": {
+        "name": "Remediation",
+        "short": "Asbestos, PCB and mould. Surveys, protective measures and documentation.",
+        "metaTitle": "Asbestos and PCB removal in Skåne",
+        "metaDescription": "Removal of asbestos, PCB and mould in Malmö and Skåne. Surveys, protective measures, safe handling and documentation – before demolition or renovation.",
+        "heroTitle": "Asbestos, PCB and mould remediation in Skåne",
+        "intro": "Older buildings can contain materials that are dangerous to demolish. We survey, protect the surroundings, remediate and document – so that demolition or renovation can be done safely.",
+        "offerings": [
+          {
+            "title": "Asbestos",
+            "text": "Asbestos is found in many buildings built or renovated before 1982, for example in pipe insulation, flooring, tile adhesive, fibre-cement sheets and ventilation ducts. We remove it using enclosures, negative pressure and the right protective equipment."
+          },
+          {
+            "title": "PCB",
+            "text": "Buildings built or renovated 1956–1973 may contain PCB in sealants, insulated glazing and floor compounds. We remediate and take PCB waste to approved facilities."
+          },
+          {
+            "title": "Mould",
+            "text": "We remove mould-damaged material and clean surfaces – and help address the cause together with you or your consultant."
+          },
+          {
+            "title": "Surveys",
+            "text": "Before demolition or conversion we inspect the building and take samples when needed, so you know what is there before work starts."
+          }
+        ],
+        "includes": [
+          "Survey and sampling when needed",
+          "Risk assessment and work plan",
+          "Barriers, enclosure and negative pressure",
+          "Protective equipment and decontamination",
+          "Remediation following Swedish Work Environment Authority regulations",
+          "Packaging and transport of hazardous waste",
+          "Documentation and receipts",
+          "Inspection and cleaning after remediation"
+        ],
+        "process": [
+          {
+            "title": "Survey",
+            "text": "We inspect the building and take samples where needed."
+          },
+          {
+            "title": "Plan",
+            "text": "Risk assessment and work plan. When required, the work is notified to the relevant authority."
+          },
+          {
+            "title": "Protection",
+            "text": "The area is enclosed and put under negative pressure where needed."
+          },
+          {
+            "title": "Remediation",
+            "text": "The material is removed and packaged on site."
+          },
+          {
+            "title": "Inspection and cleaning",
+            "text": "Surfaces are cleaned and checked before the enclosure is removed."
+          },
+          {
+            "title": "Documentation",
+            "text": "You get records of what was removed and where the waste was delivered."
+          }
+        ],
+        "customer": [
+          "Year of construction and any renovation years",
+          "Previous environmental survey, if any",
+          "Drawings and photos",
+          "Which spaces are affected",
+          "Contact at the property owner or housing association board"
+        ],
+        "faq": [
+          {
+            "q": "How is asbestos handled?",
+            "a": "Asbestos is removed before any other work starts. The area is enclosed and put under negative pressure, staff use respiratory protection and protective clothing, and the waste is packaged and taken to an approved facility. The work follows the Swedish Work Environment Authority’s regulations, which require special training and in some cases a permit."
+          },
+          {
+            "q": "How do I know if my building contains asbestos or PCB?",
+            "a": "The construction year gives an indication: asbestos mainly occurs in buildings built or renovated before 1982, PCB in buildings built or renovated 1956–1973. A survey with sampling gives a definite answer."
+          },
+          {
+            "q": "Who is responsible for surveying hazardous materials?",
+            "a": "The developer – usually the property owner – is responsible for identifying hazardous materials before demolition. We can carry out the survey for you."
+          },
+          {
+            "q": "Do I have to move out during remediation?",
+            "a": "It depends on where and how much needs to be remediated. You can often stay if the work area is sealed off. We go through this at the site visit."
+          },
+          {
+            "q": "Can I use the ROT tax deduction?",
+            "a": "Remediation done as part of renovating your home may in some cases qualify for the ROT deduction on labour costs. The rules change from time to time, so check with the Swedish Tax Agency. We itemise the labour cost on the invoice."
+          }
+        ]
+      },
+      "haltagning": {
+        "name": "Concrete cutting",
+        "short": "Openings, wall sawing, floor sawing and core drilling in concrete.",
+        "metaTitle": "Concrete cutting, wall sawing and core drilling in Malmö",
+        "metaDescription": "Openings in concrete, wall sawing, floor sawing and core drilling in Malmö and Skåne. New door and window openings, shafts and penetrations.",
+        "heroTitle": "Concrete cutting and drilling in Malmö",
+        "intro": "Need a new doorway, a ventilation shaft or a hole for pipes? We saw and drill concrete, brick and aerated concrete with straight cuts and as little dust and vibration as possible.",
+        "offerings": [
+          {
+            "title": "Openings",
+            "text": "Openings for doors, windows, stairs and shafts in walls and floor slabs."
+          },
+          {
+            "title": "Wall sawing",
+            "text": "Straight, precise cuts in concrete walls – even in thick structures."
+          },
+          {
+            "title": "Floor sawing",
+            "text": "Sawing in floors and slabs, for example for drains, ducts or removing slabs."
+          },
+          {
+            "title": "Core drilling in concrete",
+            "text": "Round holes for pipes, ventilation and electrics in various diameters and depths."
+          }
+        ],
+        "includes": [
+          "Site visit and review of drawings",
+          "Check for hidden installations before cutting",
+          "Coordination with a structural engineer for load-bearing structures",
+          "Temporary propping when needed",
+          "Water collection and dust protection",
+          "Removal of cut material",
+          "Cleaning after the job"
+        ],
+        "process": [
+          {
+            "title": "Site visit",
+            "text": "We look at the structure and take measurements."
+          },
+          {
+            "title": "Documentation",
+            "text": "Work on load-bearing structures requires input from a structural engineer. We help you get it."
+          },
+          {
+            "title": "Preparation",
+            "text": "We mark out, protect the surroundings and prop when needed."
+          },
+          {
+            "title": "Sawing and drilling",
+            "text": "Cuts and holes are made to measurements and drawings."
+          },
+          {
+            "title": "Removal and cleaning",
+            "text": "Cut material is taken away and the area is left clean."
+          }
+        ],
+        "customer": [
+          "Drawings and structural drawings, if available",
+          "Dimensions and position of the opening",
+          "Whether the wall or slab is load-bearing",
+          "Access to power and water",
+          "Contact at the housing association or property owner for apartments"
+        ],
+        "faq": [
+          {
+            "q": "Do I need a permit or notification for a new opening?",
+            "a": "Work on a load-bearing structure normally requires a notification to the municipality and documentation from a structural engineer. In a housing cooperative apartment you also need the board’s permission. We help you work out what applies."
+          },
+          {
+            "q": "Will there be a lot of dust?",
+            "a": "We usually saw and drill with water, which binds the dust. We protect surrounding surfaces and collect the water."
+          },
+          {
+            "q": "Can you cut openings in a cooperative apartment?",
+            "a": "Yes. We coordinate with the association, plan the work to disturb neighbours as little as possible and keep to the association’s working hours."
+          }
+        ]
+      },
+      "nybyggnation": {
+        "name": "New construction",
+        "short": "Houses, apartment buildings and extensions – as design-build or build-only contracts.",
+        "metaTitle": "New construction in Malmö and Skåne – houses, apartment buildings, extensions",
+        "metaDescription": "We build houses, apartment buildings and extensions in Malmö and Skåne. Design-build or build-only – and demolition of the existing building in the same project.",
+        "heroTitle": "New construction in Malmö and Skåne",
+        "intro": "We build new – and because we also demolish, we can take the whole project from existing building to new one. One company, one contract and one contact person.",
+        "offerings": [
+          {
+            "title": "Houses",
+            "text": "Detached, semi-detached and terraced houses – even where an existing house must be demolished first."
+          },
+          {
+            "title": "Apartment buildings",
+            "text": "Smaller apartment buildings and housing projects in cooperation with clients and consultants."
+          },
+          {
+            "title": "Extensions",
+            "text": "Extensions and added storeys – we demolish what’s needed and build on."
+          }
+        ],
+        "contracts": {
+          "title": "Design-build or build-only?",
+          "total": {
+            "title": "Design-build (totalentreprenad)",
+            "text": "We are responsible for both design and construction. You describe what you want – we produce the documents and build. Suits you if you want one party responsible for everything."
+          },
+          "execution": {
+            "title": "Build-only (utförandeentreprenad)",
+            "text": "You, or your architect and engineer, have already produced drawings and specifications. We build to them. Suits projects that are fully designed."
+          },
+          "note": "Both forms are commonly governed by the Swedish industry standard contracts: AB for build-only and ABT for design-build. We explain what applies in the quote."
+        },
+        "includes": [
+          "Cost estimate and quote",
+          "Demolition of existing building when needed",
+          "Coordination of groundworks, foundation, frame and installations",
+          "Coordination of subcontractors",
+          "Self-inspections according to the inspection plan",
+          "Contact with the municipality and the certified inspector",
+          "Final inspection and handover"
+        ],
+        "process": [
+          {
+            "title": "Needs and conditions",
+            "text": "We review the plot, zoning plan, wishes and budget."
+          },
+          {
+            "title": "Quote and contract",
+            "text": "You get price, schedule and a proposed contract form."
+          },
+          {
+            "title": "Design and permits",
+            "text": "In design-build we produce documents and apply for permits. In build-only we build to your documents."
+          },
+          {
+            "title": "Demolition and groundworks",
+            "text": "The existing building is demolished and the plot prepared."
+          },
+          {
+            "title": "Construction",
+            "text": "Frame, roof, installations and interiors – with regular check-ins."
+          },
+          {
+            "title": "Final inspection",
+            "text": "Inspection, final consultation and handover of the building and documentation."
+          }
+        ],
+        "customer": [
+          "Property designation and zoning plan",
+          "Drawings or sketches",
+          "Building permit if you already have one",
+          "Preferences for materials, standard and schedule",
+          "Budget or financial framework"
+        ],
+        "faq": [
+          {
+            "q": "What is the difference between design-build and build-only?",
+            "a": "In design-build we are responsible for both design and construction. In build-only we build according to documents that you as the client have produced. Which suits you depends on how far you have come in planning."
+          },
+          {
+            "q": "Can you demolish the old house and build a new one?",
+            "a": "Yes. Demolition, remediation and new construction in one project, with one contact person, is exactly what we are here for."
+          },
+          {
+            "q": "Can I use the ROT deduction for new construction?",
+            "a": "No, the ROT deduction does not apply to new construction. It may apply to extending an existing home. Check the current rules with the Swedish Tax Agency."
+          },
+          {
+            "q": "Who applies for the building permit?",
+            "a": "As the developer, you are responsible for having a permit. In a design-build contract we can produce the documents and handle the application for you."
+          }
+        ]
+      },
+      "ombyggnad": {
+        "name": "Conversion & renovation",
+        "short": "Pipe replacement preparation, loft conversions and tenant fit-outs.",
+        "metaTitle": "Conversion and renovation in Malmö – loft conversions and fit-outs",
+        "metaDescription": "Conversion and renovation in Malmö and Skåne: preparation for pipe replacement, loft conversions and tenant fit-outs. Demolition, concrete cutting and construction in one team.",
+        "heroTitle": "Conversion and renovation in Malmö",
+        "intro": "Conversions often start with demolition and concrete cutting. When we do every part ourselves, you avoid coordinating several companies and the project is easier to plan.",
+        "offerings": [
+          {
+            "title": "Pipe replacement preparation",
+            "text": "Strip-out of bathrooms, shafts and finishes so the plumbing contractor can start straight away. We coordinate with the association and residents."
+          },
+          {
+            "title": "Loft conversions",
+            "text": "From cold loft to living space: demolition, openings for stairs and windows, floor structure and interior construction."
+          },
+          {
+            "title": "Tenant fit-outs",
+            "text": "Conversion of offices, shops and premises for new tenants – with consideration for surrounding operations."
+          },
+          {
+            "title": "Renovation",
+            "text": "Kitchens, bathrooms and finishes in homes – demolition, construction and coordination of installers."
+          }
+        ],
+        "includes": [
+          "Site visit and written quote",
+          "In-house demolition and concrete cutting",
+          "Protection of stairwells and common areas",
+          "Information to residents when needed",
+          "Coordination with plumbing, electrical and ventilation",
+          "Ongoing cleaning and waste handling",
+          "Self-inspections and final inspection"
+        ],
+        "process": [
+          {
+            "title": "Site visit",
+            "text": "We go through the premises or home and your wishes."
+          },
+          {
+            "title": "Quote and schedule",
+            "text": "Price, scope and when the work can be done."
+          },
+          {
+            "title": "Preparation and protection",
+            "text": "Surface protection, information to residents and barriers."
+          },
+          {
+            "title": "Demolition and openings",
+            "text": "What needs to go is removed and new openings are made."
+          },
+          {
+            "title": "Construction and coordination",
+            "text": "We build and coordinate the installers."
+          },
+          {
+            "title": "Final inspection and handover",
+            "text": "Walk-through, fixing any remarks and handover."
+          }
+        ],
+        "customer": [
+          "Drawings and any building permit documents",
+          "Permission from the housing association or landlord",
+          "Preferences for materials and standard",
+          "Times when work may be carried out",
+          "Contact person for residents or the business"
+        ],
+        "faq": [
+          {
+            "q": "Do I need a building permit for a loft conversion?",
+            "a": "A loft conversion may require a building permit or notification, especially if you change the facade, add roof windows or alter load-bearing structures. Check with the municipality – we help with the documents."
+          },
+          {
+            "q": "Can you work while our business is operating?",
+            "a": "Often, yes. We partition off, protect against dust and schedule noisy work at times that suit you."
+          },
+          {
+            "q": "Can I use the ROT tax deduction?",
+            "a": "Renovation, conversion and extension of your home may qualify for the ROT deduction on labour costs. Check the current rules and amounts with the Swedish Tax Agency."
+          },
+          {
+            "q": "What does pipe replacement preparation include?",
+            "a": "Normally strip-out of bathrooms and finishes, opening of shafts and removal – so the pipe work can start on schedule. The exact scope is agreed with the association and the main contractor."
+          }
+        ]
+      },
+      "avfall": {
+        "name": "Waste & containers",
+        "short": "Container placement, small bins for tight spaces and removal.",
+        "metaTitle": "Containers and waste handling in Malmö – construction and demolition waste",
+        "metaDescription": "Containers for construction and demolition waste in Malmö and Skåne. Container placement, smaller bins for tight spaces and transport to approved facilities.",
+        "heroTitle": "Containers and waste handling in Malmö",
+        "intro": "Construction and demolition waste must be sorted and delivered to the right place. We place a container or bins, collect them when full and make sure the waste reaches an approved facility.",
+        "offerings": [
+          {
+            "title": "Container placement",
+            "text": "Containers for construction, demolition and garden waste."
+          },
+          {
+            "title": "Bins for tight spaces",
+            "text": "Smaller bins and bags where a container won’t fit – courtyards, stairwells and narrow streets."
+          },
+          {
+            "title": "Removal",
+            "text": "We collect, drive to an approved facility and provide documentation of what was delivered."
+          },
+          {
+            "title": "Sorting",
+            "text": "We help you sort correctly from the start, which often lowers the cost."
+          }
+        ],
+        "includes": [
+          "Placement and collection as agreed",
+          "Advice on sorting and fractions",
+          "Help with permits for placement on public land",
+          "Transport to approved facilities",
+          "Documentation of received waste"
+        ],
+        "process": [
+          {
+            "title": "Order",
+            "text": "Tell us what needs to go, how much and where."
+          },
+          {
+            "title": "Placement",
+            "text": "We place a container or bins at the agreed spot."
+          },
+          {
+            "title": "Filling",
+            "text": "You fill it – we can help with sorting if you like."
+          },
+          {
+            "title": "Collection",
+            "text": "We collect and drive to an approved facility."
+          },
+          {
+            "title": "Documentation",
+            "text": "You get records of quantity and facility."
+          }
+        ],
+        "customer": [
+          "Address and where the container should stand",
+          "Type of waste",
+          "Approximate quantity",
+          "Preferred date and how long it should stay",
+          "Permit if it will stand on the street or pavement"
+        ],
+        "faq": [
+          {
+            "q": "Can I put the container on the street?",
+            "a": "On your own property, no permit is normally needed. If the container will stand on a street, pavement or other public place, a permit from the police or the municipality is usually required. We help you with the application."
+          },
+          {
+            "q": "What must not go in the container?",
+            "a": "Hazardous waste such as paint, chemicals, electronics, asbestos and pressure-treated wood must be kept separate. Ask us if you are unsure."
+          },
+          {
+            "q": "Why does construction waste have to be sorted?",
+            "a": "Under the Swedish Waste Ordinance, construction and demolition waste must be sorted into several fractions, including wood, mineral, metal, glass, plastic and plaster. This means more can be recycled, and sorted waste is often cheaper to deliver."
+          }
+        ]
+      }
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Projects – demolition, remediation and construction in Malmö and Skåne",
+      "description": "Examples of our projects in demolition, remediation, concrete cutting, new construction and renovation in Malmö and Skåne."
+    },
+    "hero": {
+      "eyebrow": "Projects",
+      "title": "Completed work",
+      "lead": "Filter by type of job or year."
+    },
+    "filter": {
+      "label": "Filter projects",
+      "category": "Category",
+      "year": "Year",
+      "all": "All",
+      "allYears": "All years",
+      "showing": "Showing {count} of {total} projects",
+      "empty": "No projects match the filter.",
+      "reset": "Show all projects"
+    },
+    "categories": {
+      "rivning": "Demolition",
+      "sanering": "Remediation",
+      "håltagning": "Concrete cutting",
+      "nybyggnad": "New construction",
+      "ombyggnad": "Conversion"
+    },
+    "facts": {
+      "title": "Facts",
+      "location": "Location",
+      "client": "Client",
+      "contractType": "Contract form",
+      "year": "Year",
+      "scope": "Scope",
+      "recycled": "Material recycled",
+      "category": "Category"
+    },
+    "beforeAfter": {
+      "title": "Before and after",
+      "before": "Before",
+      "after": "After",
+      "label": "Compare before and after. Use the arrow keys to move the handle.",
+      "beforeAlt": "{title} before the work",
+      "afterAlt": "{title} after the work"
+    },
+    "gallery": {
+      "title": "Photos",
+      "credits": "Photo",
+      "open": "Open image {n} in full size"
+    },
+    "related": "More projects",
+    "back": "All projects",
+    "description": "About the project"
+  },
+  "environment": {
+    "meta": {
+      "title": "Environment & safety – waste sorting, reuse and work environment",
+      "description": "How we work with waste sorting, reuse, documentation, work environment and safety in demolition, remediation and construction in Malmö and Skåne."
+    },
+    "hero": {
+      "eyebrow": "Environment & safety",
+      "title": "The right material in the right place – and everyone home safe",
+      "lead": "Demolition and remediation affect both the environment and the people doing the work. That’s why we have clear routines for both."
+    },
+    "sorting": {
+      "eyebrow": "Waste",
+      "title": "How we sort and recycle",
+      "lead": "Construction and demolition waste must be sorted into fractions on site. This is how we do it.",
+      "steps": [
+        {
+          "title": "Survey",
+          "text": "We identify hazardous waste and materials that can be reused."
+        },
+        {
+          "title": "Selective dismantling",
+          "text": "Anything reusable is carefully dismantled before the rest is demolished."
+        },
+        {
+          "title": "Sorting on site",
+          "text": "At least wood, mineral, metal, glass, plastic and plaster are kept apart, as required by the Waste Ordinance."
+        },
+        {
+          "title": "Transport",
+          "text": "Waste is taken to approved facilities."
+        },
+        {
+          "title": "Documentation",
+          "text": "You get records of quantities, fractions and facilities."
+        }
+      ]
+    },
+    "reuse": {
+      "eyebrow": "Reuse",
+      "title": "Reuse before recycling",
+      "text": "The best waste is the waste that never becomes waste. Where possible we salvage building parts and materials that can be used again.",
+      "points": [
+        "Building parts and materials that can be used again are identified before demolition starts.",
+        "Reusable items are carefully dismantled instead of demolished.",
+        "What cannot be reused is sorted on site for recycling."
+      ]
+    },
+    "docs": {
+      "eyebrow": "Documentation",
+      "title": "What you receive as a customer",
+      "lead": "Documents for your inspection plan and your own environmental work.",
+      "items": [
+        "Material and waste management plan",
+        "Hazardous waste survey",
+        "Transport documents and receipts",
+        "Summary of quantities per fraction",
+        "Remediation documentation (asbestos/PCB) where relevant",
+        "Documents for the inspection plan and final consultation"
+      ]
+    },
+    "safety": {
+      "eyebrow": "Work environment",
+      "title": "Safety routines",
+      "lead": "Safety is planned before the first machine starts.",
+      "items": [
+        {
+          "title": "Risk assessment",
+          "text": "Every job starts with a risk assessment and a plan for doing the work safely."
+        },
+        {
+          "title": "Protective equipment",
+          "text": "The right protective equipment for every task – respiratory and hearing protection, helmets and protective clothing."
+        },
+        {
+          "title": "Staff register",
+          "text": "A staff register is kept on our construction sites."
+        },
+        {
+          "title": "Barriers and protection",
+          "text": "The work area is fenced off and the surroundings protected from dust, noise and vibration."
+        }
+      ]
+    },
+    "certs": {
+      "eyebrow": "Credentials",
+      "title": "Certifications and insurance",
+      "lead": "Copies of certificates and insurance documents are available on request.",
+      "insurance": "Insurance",
+      "insurer": "Insurer",
+      "type": "Type",
+      "amount": "Amount"
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "About us – local demolition and construction contractor in Malmö",
+      "description": "We are a local contractor in Malmö that demolishes, remediates and builds new. Meet the team and see our equipment."
+    },
+    "hero": {
+      "eyebrow": "About us",
+      "title": "The Malmö contractor that handles the whole chain",
+      "lead": "Demolition, remediation, concrete cutting and construction – in one company."
+    },
+    "story": {
+      "title": "Our story",
+      "paragraphs": [
+        "{company} is a construction contractor from Malmö.",
+        "We are a local contractor that demolishes, remediates, cuts concrete and builds new. The idea is simple: you shouldn’t have to coordinate five different companies to turn an old building into a new one."
+      ]
+    },
+    "values": {
+      "title": "What we stand for",
+      "items": [
+        {
+          "title": "Responsibility",
+          "text": "We take responsibility for the whole chain – for the work, for the material and for how it affects the surroundings."
+        },
+        {
+          "title": "Safety",
+          "text": "No schedule is more important than everyone going home unharmed. We plan for safety before we start."
+        },
+        {
+          "title": "Reliability",
+          "text": "We keep our promises: price, time and a contact person who answers."
+        }
+      ]
+    },
+    "team": {
+      "title": "The team",
+      "lead": "Call or email the person you want to talk to directly.",
+      "call": "Call {name}",
+      "email": "Email {name}",
+      "photoAlt": "Portrait of {name}"
+    },
+    "equipment": {
+      "title": "Machinery and equipment",
+      "lead": "The right machine for every job."
+    },
+    "careersCta": {
+      "title": "Want to work with us?",
+      "text": "We’re looking for people who want to work safely and do a proper job.",
+      "cta": "Work with us"
+    }
+  },
+  "news": {
+    "meta": {
+      "title": "News",
+      "description": "News from us – projects, new services and information about demolition and construction in Malmö and Skåne."
+    },
+    "hero": {
+      "eyebrow": "News",
+      "title": "Latest news",
+      "lead": "Projects, news and information from us."
+    },
+    "published": "Published",
+    "readMore": "Read article",
+    "back": "All news",
+    "empty": "No news published yet."
+  },
+  "careers": {
+    "meta": {
+      "title": "Careers – work in demolition and construction in Malmö",
+      "description": "Work in demolition, remediation, concrete cutting and construction in Malmö and Skåne. Open applications and information for apprentices."
+    },
+    "hero": {
+      "eyebrow": "Careers",
+      "title": "Come build – and demolish – with us",
+      "lead": "We’re looking for people who want to work safely, learn the whole chain and do a proper job."
+    },
+    "why": {
+      "title": "Why work here",
+      "items": [
+        {
+          "title": "Varied work",
+          "text": "Demolition, remediation, concrete cutting and construction – you learn the whole chain."
+        },
+        {
+          "title": "Local sites",
+          "text": "Jobs in the Malmö region and Skåne."
+        },
+        {
+          "title": "Safety first",
+          "text": "The right equipment, training and time to do the job safely."
+        }
+      ]
+    },
+    "positions": {
+      "title": "Open positions",
+      "empty": "No open positions right now – feel free to send an open application.",
+      "location": "Location",
+      "type": "Employment",
+      "deadline": "Apply by",
+      "apply": "Apply"
+    },
+    "apprentices": {
+      "title": "Apprentices",
+      "text": "Are you an apprentice or studying construction? Send an open application and tell us what you want to learn."
+    },
+    "cards": {
+      "title": "Cards and qualifications",
+      "lead": "Depending on the role, you need:",
+      "items": [
+        "ID06 card – standard on Swedish construction sites",
+        "Asbestos training for remediation work"
+      ]
+    },
+    "job": {
+      "back": "All open positions",
+      "applyTitle": "Apply for this position",
+      "applyText": "Fill in the form below or email your application to {email}."
+    },
+    "form": {
+      "title": "Open application",
+      "lead": "No position that fits? Tell us who you are and we’ll get in touch when we need people.",
+      "position": "Position",
+      "positionSpontaneous": "Open application",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "experience": "Experience and qualifications",
+      "experienceHint": "E.g. years in the industry, driving licence, ID06, training.",
+      "cv": "CV (optional)",
+      "cvHint": "PDF or Word, max {mb} MB.",
+      "submit": "Send application",
+      "consent": "I agree that {company} may process my data for recruitment in accordance with the",
+      "success": "Thank you for your application! We’ll be in touch if we have something that fits.",
+      "error": "The application could not be sent. Try again or email {email}."
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact and quote request – demolition and construction in Malmö",
+      "description": "Request a quote for demolition, remediation, concrete cutting or construction in Malmö and Skåne. Email us or send a request with photos."
+    },
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Request a quote",
+      "lead": "Five short steps. Photos and drawings help us give an accurate price."
+    },
+    "preferCall": "Prefer to contact us directly?",
+    "details": {
+      "title": "Contact details",
+      "mapAlt": "Map of {address}",
+      "mapLink": "Open in Google Maps",
+      "mapNote": "The map is an image. Google Maps only opens when you click."
+    }
+  },
+  "form": {
+    "required": "required",
+    "optional": "optional",
+    "honeypot": "Leave this field empty",
+    "consent": "I agree that {company} may process my data to answer my request in accordance with the",
+    "consentLink": "privacy policy",
+    "next": "Next",
+    "back": "Back",
+    "submit": "Send request",
+    "sending": "Sending …",
+    "stepOf": "Step {n} of {total}",
+    "saved": "Saved in this tab",
+    "edit": "Edit",
+    "summary": "Summary",
+    "noJs": "Fill in all steps below and submit the form at the bottom.",
+    "errorSummary": "Please check the following:",
+    "errors": {
+      "required": "Enter {field}.",
+      "choose": "Choose at least one option under {field}.",
+      "pick": "Choose {field}.",
+      "email": "Enter a valid email address, e.g. name@example.com.",
+      "phone": "Enter a phone number with at least 8 digits.",
+      "consent": "You need to agree to the processing of your data.",
+      "fileCount": "You can attach at most {count} files.",
+      "fileSize": "Files can be at most {mb} MB in total.",
+      "fileType": "File type not supported: {name}"
+    },
+    "steps": [
+      {
+        "title": "What do you need help with?",
+        "short": "Service"
+      },
+      {
+        "title": "The property",
+        "short": "Property"
+      },
+      {
+        "title": "Scope and timing",
+        "short": "Scope"
+      },
+      {
+        "title": "Photos and drawings",
+        "short": "Photos"
+      },
+      {
+        "title": "Your contact details",
+        "short": "Contact"
+      }
+    ],
+    "fields": {
+      "services": "Service",
+      "servicesHint": "Choose one or more.",
+      "customerType": "I am a",
+      "propertyType": "Type of property",
+      "street": "Street address",
+      "postalCode": "Postcode",
+      "city": "Town",
+      "area": "Approximate area (m²)",
+      "buildYear": "Year built (approx.)",
+      "buildYearHint": "Helps us assess the risk of asbestos and PCB.",
+      "description": "Describe the job",
+      "descriptionHint": "What needs doing? Any deadlines, limited access or anything else we should know?",
+      "start": "Preferred start",
+      "startDate": "Preferred date",
+      "files": "Photos or drawings",
+      "name": "Name",
+      "company": "Company / housing association",
+      "email": "Email",
+      "phone": "Phone",
+      "contactPref": "How would you like to be contacted?"
+    },
+    "options": {
+      "services": {
+        "rivning": "Demolition",
+        "sanering": "Remediation (asbestos, PCB, mould)",
+        "haltagning": "Concrete cutting / drilling",
+        "nybyggnation": "New construction",
+        "ombyggnad": "Conversion / renovation",
+        "avfall": "Container / waste",
+        "underentreprenad": "Subcontracting (for contractors)",
+        "annat": "Other"
+      },
+      "customerType": {
+        "privat": "Private individual",
+        "brf": "Housing association",
+        "fastighetsagare": "Property owner",
+        "foretag": "Company / business",
+        "entreprenor": "Building contractor"
+      },
+      "propertyType": {
+        "villa": "House / terraced house",
+        "lagenhet": "Apartment",
+        "flerbostadshus": "Apartment building",
+        "lokal": "Office / shop / premises",
+        "industri": "Industrial / warehouse",
+        "annat": "Other"
+      },
+      "start": {
+        "snarast": "As soon as possible",
+        "1man": "Within a month",
+        "1-3man": "In 1–3 months",
+        "senare": "Later / not sure yet"
+      },
+      "contactPref": {
+        "telefon": "Phone",
+        "epost": "Email"
+      }
+    },
+    "upload": {
+      "drop": "Drag and drop files here",
+      "or": "or",
+      "browse": "Choose files",
+      "hint": "Images (JPG, PNG, HEIC) or PDF. Max {count} files, {mb} MB in total.",
+      "remove": "Remove {name}",
+      "none": "No files selected. This step is optional.",
+      "selected": "{count} file(s) selected",
+      "skip": "Skip"
+    },
+    "success": {
+      "title": "Thank you! We’ve received your request.",
+      "text": "One of us will review the details and get back to you.",
+      "responseTime": "We normally reply {time}.",
+      "urgent": "Urgent? Call {phone}.",
+      "again": "Send a new request"
+    },
+    "error": {
+      "title": "The request could not be sent.",
+      "text": "Check your connection and try again. If it still doesn’t work, call {phone} or email {email}.",
+      "retry": "Try again",
+      "textEmail": "Check your connection and try again. If it still doesn’t work, email {email}."
+    }
+  },
+  "thanks": {
+    "quote": {
+      "title": "Thank you for your request",
+      "text": "We’ve received your details and will get back to you once we have reviewed them."
+    },
+    "application": {
+      "title": "Thank you for your application",
+      "text": "We’ve received your application and will be in touch if we have something that fits."
+    },
+    "back": "Back to the home page"
+  },
+  "legal": {
+    "updated": "Last updated",
+    "privacy": {
+      "meta": {
+        "title": "Privacy policy",
+        "description": "How we process your personal data under the GDPR."
+      },
+      "title": "Privacy policy",
+      "date": "",
+      "intro": "This describes how {company} processes personal data when you contact us, request a quote or apply for a job. The template must be reviewed and completed before publication.",
+      "sections": [
+        {
+          "h": "Data controller",
+          "p": [
+            "{company}, corporate ID no. {orgnr}, {address}, is the data controller. Questions about personal data can be sent to {email}."
+          ],
+          "list": []
+        },
+        {
+          "h": "What data we process",
+          "p": [
+            "We process the data you provide to us:"
+          ],
+          "list": [
+            "Quote requests: name, company/housing association, email, phone, property address, description of the job and any photos and drawings you attach.",
+            "Job applications: name, contact details, CV and the information you write in your application.",
+            "Contact by email and phone: the information included in the contact."
+          ]
+        },
+        {
+          "h": "Purposes and legal basis",
+          "p": [],
+          "list": [
+            "Answering requests and providing quotes – steps prior to entering a contract (Art. 6(1)(b) GDPR).",
+            "Carrying out jobs and contracts – contract (Art. 6(1)(b)).",
+            "Bookkeeping and invoicing – legal obligation (Art. 6(1)(c)), Swedish Bookkeeping Act.",
+            "Recruitment – consent (Art. 6(1)(a) GDPR), which you give when you submit your application."
+          ]
+        },
+        {
+          "h": "How long we keep data",
+          "p": [],
+          "list": [
+            "Quote requests that do not lead to a job are deleted when they are no longer needed to answer the request.",
+            "Job applications are deleted when the recruitment has ended, unless you consent to us keeping them longer.",
+            "Accounting records: seven years under the Swedish Bookkeeping Act."
+          ]
+        },
+        {
+          "h": "Recipients and processors",
+          "p": [
+            "We never sell your data. We use suppliers that process data on our behalf:"
+          ],
+          "list": [
+            "A form service that receives what you send through the website’s forms.",
+            "A web host that runs the website.",
+            "An email service we use to reply to you."
+          ]
+        },
+        {
+          "h": "Your rights",
+          "p": [
+            "You have the right to request access to, rectification or erasure of your data, restriction of processing, to object to processing and to receive your data (data portability). If you have given consent, you can withdraw it at any time. Contact us at {email}.",
+            "You have the right to lodge a complaint with the Swedish Authority for Privacy Protection (IMY), imy.se."
+          ],
+          "list": []
+        },
+        {
+          "h": "Cookies",
+          "p": [
+            "Read about how we use cookies on the Cookies page."
+          ],
+          "list": []
+        }
+      ]
+    },
+    "cookies": {
+      "meta": {
+        "title": "Cookies",
+        "description": "Information about cookies and website analytics on our website."
+      },
+      "title": "Cookies",
+      "date": "",
+      "intro": "A cookie is a small text file stored in your browser. Under the Swedish Electronic Communications Act, you must be informed about which cookies are used and consent to those that are not strictly necessary.",
+      "none": "This website does not set any cookies. We use no tracking and do not embed maps or social feeds. The map on the contact page is an image – Google Maps only opens when you click the link.",
+      "session": "The quote form stores what you have entered in your browser’s session storage (not a cookie) so you can move back and forth between steps. The data is deleted when you close the tab or submit the form.",
+      "analyticsOn": "If you agree, we use website analytics from {provider} to see how the pages are used. Analytics only load after your consent and can be switched off at any time.",
+      "change": "Change my choice",
+      "manage": "You can also delete stored data in your browser settings."
+    },
+    "accessibility": {
+      "meta": {
+        "title": "Accessibility statement",
+        "description": "Accessibility statement for this website."
+      },
+      "title": "Accessibility statement",
+      "date": "",
+      "intro": "{company} is responsible for this website. We want as many people as possible to be able to use it.",
+      "sections": [
+        {
+          "h": "How accessible is the website?",
+          "p": [
+            "The website is built to meet WCAG 2.1 level AA: semantic HTML, keyboard navigation, visible focus, sufficient contrast, text alternatives and screen reader support."
+          ],
+          "list": []
+        },
+        {
+          "h": "Report a problem",
+          "p": [
+            "Found something that doesn’t work? Contact us at {email} and we’ll fix it."
+          ],
+          "list": []
+        },
+        {
+          "h": "How we tested the website",
+          "p": [
+            "The website has been tested with the automated tools Lighthouse and axe."
+          ],
+          "list": []
+        }
+      ]
+    }
+  },
+  "consent": {
+    "text": "We would like to use website analytics to improve the site. Nothing loads without your consent.",
+    "accept": "Allow analytics",
+    "decline": "No thanks",
+    "link": "Read more"
+  },
+  "footer": {
+    "tagline": "Demolition, remediation, concrete cutting and construction – one contractor all the way.",
+    "company": "Company",
+    "contact": "Contact",
+    "links": "Pages",
+    "legal": "Legal",
+    "privacy": "Privacy policy",
+    "cookies": "Cookies",
+    "accessibility": "Accessibility",
+    "rights": "All rights reserved.",
+    "backToTop": "Back to top"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The link may be wrong or the page may have moved.",
+    "home": "Back to the home page"
+  }
+}

@@ -1,0 +1,118 @@
+---
+import '../styles/global.css';
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+import sans400 from '@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2?url';
+import sans700 from '@fontsource/source-sans-3/files/source-sans-3-latin-700-normal.woff2?url';
+import brandLogo from '../assets/brand/mbr-logo.png';
+import { COMPANY_NAME, HERO_IMAGE } from '../config/company';
+import { analyticsEnabled } from '../config/site';
+import { fmt, useT } from '../i18n';
+import { HTML_LANG, OG_LOCALE, type Alternates, type Locale } from '../i18n/routes';
+import { getAsset } from '../data/images';
+import { organizationSchema } from '../data/schema';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileActionBar from '../components/MobileActionBar.astro';
+import ConsentBanner from '../components/ConsentBanner.astro';
+import JsonLd from '../components/JsonLd.astro';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  alternates: Alternates;
+  ogImage?: ImageMetadata;
+  ogImageAlt?: string;
+  ogType?: 'website' | 'article';
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+  /** Home page uses "Company – title" instead of "title | Company". */
+  isHome?: boolean;
+  /** Hide header and mobile action bar until the visitor starts scrolling. */
+  intro?: boolean;
+}
+
+const { locale, title, description, alternates, ogImage, ogImageAlt, ogType = 'website', jsonLd = [], noindex = false, isHome = false, intro = false } = Astro.props;
+const t = useT(locale);
+const site = Astro.site ?? new URL(Astro.url.origin);
+const fullTitle = isHome ? `${COMPANY_NAME} – ${title}` : `${title} | ${COMPANY_NAME}`;
+const canonical = new URL(alternates[locale], site).href;
+
+const og = await getImage({ src: ogImage ?? getAsset(HERO_IMAGE), width: 1200, height: 630, fit: 'cover', format: 'jpg' });
+const ogUrl = new URL(og.src, site).href;
+const logo = await getImage({ src: brandLogo, width: 344, format: 'png' });
+const otherLocale: Locale = locale === 'sv' ? 'en' : 'sv';
+---
+
+<!doctype html>
+<html lang={HTML_LANG[locale]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, follow" />
+      ) : (
+        <>
+          <link rel="canonical" href={canonical} />
+          <link rel="alternate" hreflang="sv" href={new URL(alternates.sv, site).href} />
+          <link rel="alternate" hreflang="en" href={new URL(alternates.en, site).href} />
+          <link rel="alternate" hreflang="x-default" href={new URL(alternates.sv, site).href} />
+        </>
+      )
+    }
+
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    {intro && <script is:inline>document.documentElement.classList.add('intro');</script>}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <link rel="preload" href={sans400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={sans700} as="font" type="font/woff2" crossorigin />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={COMPANY_NAME} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={OG_LOCALE[locale]} />
+    <meta property="og:locale:alternate" content={OG_LOCALE[otherLocale]} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt ?? fmt(t.meta.ogImageAlt, { company: COMPANY_NAME })} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <JsonLd data={[organizationSchema(site, new URL(logo.src, site).href), ...jsonLd]} />
+  </head>
+  <body class="flex min-h-dvh flex-col pb-[calc(3.5rem+env(safe-area-inset-bottom))] antialiased md:pb-0">
+    <a
+      href="#main"
+      class="sr-only z-50 bg-accent px-4 py-3 font-semibold text-on-accent focus:not-sr-only focus:fixed focus:top-2 focus:left-2">{t.a11y.skip}</a
+    >
+    <Header locale={locale} alternates={alternates} />
+    <main id="main" tabindex="-1" class="flex-1 outline-none">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <MobileActionBar locale={locale} />
+    {analyticsEnabled && <ConsentBanner locale={locale} />}
+    {
+      intro && (
+        <script is:inline>
+          (() => {
+            const root = document.documentElement;
+            const update = () => root.classList.toggle('intro-open', window.scrollY > 24);
+            addEventListener('scroll', update, { passive: true });
+            update();
+          })();
+        </script>
+      )
+    }
+  </body>
+</html>

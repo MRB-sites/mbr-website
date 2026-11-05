@@ -1,0 +1,144 @@
+---
+/** Green footer: three caret-link columns, bottom bar with legal links and socials, back-to-top pill. */
+import {
+  ADDRESS,
+  COMPANY_NAME,
+  EMAIL,
+  FACEBOOK_URL,
+  F_TAX_TEXT,
+  HAS_PHONE,
+  INSTAGRAM_URL,
+  LINKEDIN_URL,
+  OPENING_HOURS,
+  ORG_NR,
+  PHONE,
+  SERVICE_AREA,
+  WORDMARK,
+  hasValue,
+  isUrl,
+  telHref,
+} from '../config/company';
+import { hiddenRoutes } from '../data/availability';
+import { useT } from '../i18n';
+import { path, type Locale, type RouteKey } from '../i18n/routes';
+import Container from './Container.astro';
+import Icon from './Icon.astro';
+import Text from './Text.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const hidden = await hiddenRoutes();
+const t = useT(locale);
+const year = new Date().getFullYear();
+
+const pages: { key: RouteKey; label: string }[] = [
+  { key: 'services', label: t.nav.services },
+  { key: 'projects', label: t.nav.projects },
+  { key: 'environment', label: t.nav.environment },
+  { key: 'about', label: t.nav.about },
+  { key: 'news', label: t.nav.news },
+  { key: 'careers', label: t.nav.careers },
+  { key: 'contact', label: t.nav.contact },
+];
+const legal: { key: RouteKey; label: string }[] = [
+  { key: 'privacy', label: t.footer.privacy },
+  { key: 'cookies', label: t.footer.cookies },
+  { key: 'accessibility', label: t.footer.accessibility },
+];
+const socials = [
+  { name: 'Instagram', url: INSTAGRAM_URL, icon: 'instagram' as const },
+  { name: 'LinkedIn', url: LINKEDIN_URL, icon: 'linkedin' as const },
+  { name: 'Facebook', url: FACEBOOK_URL, icon: 'facebook' as const },
+].filter((s) => isUrl(s.url));
+---
+
+<footer class="relative bg-inverse pt-16 pb-8 text-on-inverse">
+  <Container class="relative">
+    <a
+      href="#main"
+      class="absolute -top-[5.25rem] right-4 grid h-10 w-[4.0625rem] place-items-center rounded-full bg-[#c2510e] text-white transition-colors duration-200 ease-out hover:bg-[#a3440b]"
+    >
+      <Icon name="arrow" class="h-4 w-4 -rotate-90" />
+      <span class="sr-only">{t.footer.backToTop}</span>
+    </a>
+
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+      <div>
+        <h2 class="mb-3 text-base font-bold">{WORDMARK}</h2>
+        <p class="max-w-xs text-sm text-on-inverse-muted">{t.footer.tagline}</p>
+        <address class="mt-4 space-y-1 text-sm not-italic">
+          <p class="font-semibold"><Text text={COMPANY_NAME} /></p>
+          <p><Text text={ADDRESS} /></p>
+          <p>{t.common.orgNr} <Text text={ORG_NR} /></p>
+          <p>{F_TAX_TEXT[locale]}</p>
+        </address>
+      </div>
+      <div>
+        <h2 class="mb-3 text-base font-bold">{t.footer.contact}</h2>
+        <ul class="space-y-2 text-sm">
+          {
+            HAS_PHONE && (
+              <li class="flex items-center gap-2">
+                <span class="caret" aria-hidden="true" />
+                <a href={telHref(PHONE)} class="hover:underline">{PHONE}</a>
+              </li>
+            )
+          }
+          <li class="flex items-center gap-2">
+            <span class="caret" aria-hidden="true" /><a href={`mailto:${EMAIL}`} class="break-all hover:underline"><Text text={EMAIL} /></a>
+          </li>
+          {hasValue(OPENING_HOURS[locale]) && <li class="text-on-inverse-muted">{t.common.openingHours}: {OPENING_HOURS[locale]}</li>}
+          <li class="text-on-inverse-muted">{t.common.serviceArea}: <Text text={SERVICE_AREA[locale]} /></li>
+        </ul>
+      </div>
+      <nav aria-label={t.a11y.footerNav}>
+        <h2 class="mb-3 text-base font-bold">{t.footer.links}</h2>
+        <ul class="space-y-2 text-sm">
+          {
+            pages.filter((p) => !hidden.has(p.key)).map((p) => (
+              <li class="flex items-center gap-2">
+                <span class="caret" aria-hidden="true" />
+                <a href={path(p.key, locale)} class="hover:underline">
+                  {p.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-4 border-t border-white/30 pt-6 text-sm sm:flex-row sm:items-center sm:justify-between">
+      <ul class="flex flex-wrap gap-x-6 gap-y-2">
+        {
+          legal.map((p) => (
+            <li>
+              <a href={path(p.key, locale)} class="hover:underline">
+                {p.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="text-on-inverse-muted">© {year} <Text text={COMPANY_NAME} /></li>
+      </ul>
+      {
+        socials.length > 0 && (
+          <ul class="flex items-center gap-6" aria-label={t.common.followUs}>
+            {socials.map((s) => (
+              <li>
+                <a href={s.url} rel="noopener" target="_blank" class="block hover:opacity-80">
+                  <Icon name={s.icon} class="h-5 w-5" />
+                  <span class="sr-only">
+                    {s.name} {t.a11y.newTab}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </Container>
+</footer>

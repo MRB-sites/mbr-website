@@ -1,0 +1,57 @@
+---
+/**
+ * Numbered process. "horizontal" = Zaro-style step rail on wide screens that
+ * stacks vertically on smaller screens (Samara vertical timeline).
+ */
+import Text from './Text.astro';
+
+interface Props {
+  steps: { title: string; text: string }[];
+  /** Small "Step n" label above each title. Omit to hide it. */
+  stepLabel?: string;
+  variant?: 'horizontal' | 'vertical';
+  inverse?: boolean;
+}
+const { steps, stepLabel, variant = 'horizontal', inverse = false } = Astro.props;
+// Seven steps do not fit side by side in the 960px column, so long processes always stack.
+const horizontal = variant === 'horizontal' && steps.length <= 5;
+const cols: Record<number, string> = { 4: 'xl:grid-cols-4', 5: 'xl:grid-cols-5', 6: 'xl:grid-cols-6', 7: 'xl:grid-cols-7' };
+---
+
+<ol class:list={['relative grid', horizontal && cols[steps.length]]}>
+  {
+    steps.map((step, i) => (
+      <li class:list={['relative flex gap-5 pb-8 last:pb-0', horizontal && 'xl:flex-col xl:gap-4 xl:pr-6 xl:pb-0']}>
+        <span
+          aria-hidden="true"
+          class:list={[
+            'absolute top-12 bottom-0 left-[1.4rem] w-0.5',
+            inverse ? 'bg-white/25' : 'bg-line',
+            horizontal && 'xl:top-[1.4rem] xl:right-0 xl:bottom-auto xl:left-12 xl:h-0.5 xl:w-auto',
+            i === steps.length - 1 && 'hidden',
+          ]}
+        />
+        <span
+          class:list={[
+            'relative z-10 grid h-12 w-12 shrink-0 place-items-center rounded-full border-2 text-lg font-bold',
+            i === steps.length - 1 ? 'border-accent bg-accent text-on-accent' : inverse ? 'border-white bg-inverse text-white' : 'border-highlight bg-surface text-ink',
+          ]}
+          aria-hidden="true"
+        >
+          {i + 1}
+        </span>
+        <div class:list={[stepLabel ? 'pt-1' : 'pt-2.5']}>
+          {stepLabel && (
+            <p class:list={['text-xs', inverse ? 'text-on-inverse-muted' : 'text-ink-muted']}>
+              {stepLabel} {i + 1}
+            </p>
+          )}
+          <h3 class:list={['text-lg leading-[1.2] font-bold', stepLabel && 'mt-1']}>{step.title}</h3>
+          <p class:list={['mt-1 text-sm', inverse ? 'text-on-inverse-muted' : 'text-ink']}>
+            <Text text={step.text} />
+          </p>
+        </div>
+      </li>
+    ))
+  }
+</ol>

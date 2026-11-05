@@ -1,0 +1,38 @@
+---
+/** Fallback thank-you pages for form posts without JavaScript (Netlify redirects here). */
+import { HAS_PHONE, PHONE, RESPONSE_TIME, hasValue, telHref } from '../config/company';
+import { fmt, useT } from '../i18n';
+import { path, type Alternates, type Locale } from '../i18n/routes';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Container from '../components/Container.astro';
+import Icon from '../components/Icon.astro';
+
+interface Props {
+  locale: Locale;
+  alternates: Alternates;
+  kind: 'quote' | 'application';
+}
+const { locale, alternates, kind } = Astro.props;
+const t = useT(locale);
+const copy = t.thanks[kind];
+---
+
+<BaseLayout locale={locale} title={copy.title} description={copy.title} alternates={alternates} noindex>
+  <Container size="narrow" class="py-20 md:py-28">
+    <span class="grid h-16 w-16 place-items-center bg-accent text-on-accent"><Icon name="check" class="h-8 w-8" /></span>
+    <h1 class="mt-8 text-[2rem]">{copy.title}</h1>
+    <p class="mt-3 font-bold">{copy.text}</p>
+    {kind === 'quote' && hasValue(RESPONSE_TIME[locale]) && <p class="mt-2">{fmt(t.form.success.responseTime, { time: RESPONSE_TIME[locale] })}</p>}
+    {
+      kind === 'quote' && HAS_PHONE && (
+        <p class="mt-4">
+          <a href={telHref(PHONE)} class="link-underline font-semibold">
+            {fmt(t.form.success.urgent, { phone: PHONE })}
+          </a>
+        </p>
+      )
+    }
+    <Button href={path('home', locale)} variant="secondary" class="mt-10" icon="arrow">{t.thanks.back}</Button>
+  </Container>
+</BaseLayout>

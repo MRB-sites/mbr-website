@@ -1,0 +1,86 @@
+---
+import { SERVICES, SERVICE_IDS } from '../data/services';
+import { useT } from '../i18n';
+import { path, quotePath, type Alternates, type Locale } from '../i18n/routes';
+import { breadcrumbSchema } from '../data/schema';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import CTABand from '../components/CTABand.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import ProcessTimeline from '../components/ProcessTimeline.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+interface Props {
+  locale: Locale;
+  alternates: Alternates;
+}
+const { locale, alternates } = Astro.props;
+const t = useT(locale);
+const s = t.services;
+const site = Astro.site!;
+const crumbs = [
+  { label: t.nav.home, href: path('home', locale) },
+  { label: t.nav.services, href: path('services', locale) },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  title={s.meta.title}
+  description={s.meta.description}
+  alternates={alternates}
+  jsonLd={[breadcrumbSchema(crumbs.map((c) => ({ label: c.label, url: new URL(c.href, site).href })))]}
+>
+  <PageHero eyebrow={s.hero.eyebrow} title={s.hero.title} lead={s.hero.lead} breadcrumbs={crumbs} breadcrumbLabel={t.a11y.breadcrumb} />
+
+  <Section labelledby="services-list" spacing="default">
+    <h2 id="services-list" class="sr-only">{t.nav.services}</h2>
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        SERVICE_IDS.map((id) => {
+          const item = s.items[id];
+          return (
+            <li>
+              <ServiceCard href={path(SERVICES[id].route, locale)} title={item.name} text={item.short} image={SERVICES[id].image} items={item.offerings.map((o) => o.title)} />
+            </li>
+          );
+        })
+      }
+    </ul>
+  </Section>
+
+  <Section id="entreprenorer" tone="inverse" labelledby="contractors-title">
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+      <div>
+        <SectionHeader id="contractors-title" eyebrow={s.contractors.eyebrow} title={s.contractors.title} lead={s.contractors.lead} inverse />
+        <ul class="mt-8 space-y-3">
+          {
+            s.contractors.points.map((p) => (
+              <li class="flex gap-3">
+                <span class="grid h-7 w-7 shrink-0 place-items-center bg-accent text-on-accent" aria-hidden="true">
+                  <Icon name="check" class="h-4 w-4" />
+                </span>
+                {p}
+              </li>
+            ))
+          }
+        </ul>
+        <Button href={quotePath(locale, 'underentreprenad')} class="mt-8" icon="arrow">{s.contractors.cta}</Button>
+      </div>
+      <Photo src="placeholders/service-rivning.jpg" alt="" width={1200} height={900} sizes="(min-width: 1024px) 50vw, 100vw" figureClass="aspect-[4/3]" />
+    </div>
+  </Section>
+
+  <Section labelledby="chain-title">
+    <SectionHeader id="chain-title" eyebrow={t.home.chain.eyebrow} title={s.chainTitle} lead={t.home.chain.lead} />
+    <div class="mt-12">
+      <ProcessTimeline steps={t.home.chain.steps} />
+    </div>
+  </Section>
+
+  <CTABand locale={locale} />
+</BaseLayout>

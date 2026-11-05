@@ -1,0 +1,173 @@
+---
+/** Two-tier sticky header: logo + utility links, then main nav + offer button. */
+import { Image } from 'astro:assets';
+import brandLogo from '../assets/brand/mbr-logo.png';
+import { COMPANY_NAME, DIRECT_CONTACT, EMAIL, HAS_PHONE, OPENING_HOURS, PHONE, WORDMARK, hasValue, telHref } from '../config/company';
+import { hiddenRoutes } from '../data/availability';
+import { useT } from '../i18n';
+import { path, quotePath, type Alternates, type Locale, type RouteKey } from '../i18n/routes';
+import Button from './Button.astro';
+import Container from './Container.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  locale: Locale;
+  alternates: Alternates;
+}
+const { locale, alternates } = Astro.props;
+const t = useT(locale);
+const other: Locale = locale === 'sv' ? 'en' : 'sv';
+const current = Astro.url.pathname;
+
+const hidden = await hiddenRoutes();
+const items: { key: RouteKey; label: string }[] = [
+  { key: 'services', label: t.nav.services },
+  { key: 'projects', label: t.nav.projects },
+  { key: 'environment', label: t.nav.environment },
+  { key: 'about', label: t.nav.about },
+  { key: 'news', label: t.nav.news },
+].filter((item) => !hidden.has(item.key as RouteKey)) as { key: RouteKey; label: string }[];
+const utility: { key: RouteKey; label: string }[] = [
+  { key: 'careers', label: t.nav.careers },
+  { key: 'contact', label: t.nav.contact },
+];
+const isActive = (key: RouteKey) => current.startsWith(path(key, locale));
+---
+
+<header data-chrome="top" class="sticky top-0 z-40 bg-surface shadow-[var(--shadow-header)]">
+  <!-- Tier 1: logo and utility links -->
+  <Container class="flex h-20 items-center gap-8">
+    <a href={path('home', locale)} class="mr-auto flex shrink-0 items-center" aria-label={`${COMPANY_NAME} – ${t.a11y.home}`}>
+      <Image src={brandLogo} alt="" height={64} densities={[1, 2]} class="h-16 w-auto" loading="eager" />
+    </a>
+
+    <ul class="hidden items-center gap-8 lg:flex">
+      {
+        utility.map((item) => (
+          <li>
+            <a href={path(item.key, locale)} aria-current={isActive(item.key) ? 'page' : undefined} class="text-accent-strong hover:underline aria-[current=page]:font-semibold">
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        {
+          HAS_PHONE ? (
+            <a href={telHref(PHONE)} class="font-semibold text-accent-strong hover:underline">{PHONE}</a>
+          ) : (
+            <a href={`mailto:${EMAIL}`} class="font-semibold text-accent-strong hover:underline">{EMAIL}</a>
+          )
+        }
+      </li>
+      <li>
+        <a href={alternates[other]} hreflang={other} class="flex items-center gap-1 text-accent-strong hover:underline">
+          <span lang={other}>{t.common.langShort}</span><span class="sr-only"> – {t.a11y.langSwitch}</span>
+          <Icon name="chevron" class="h-3.5 w-3.5" />
+        </a>
+      </li>
+    </ul>
+
+    <button
+      type="button"
+      class="grid h-11 w-11 place-items-center text-ink lg:hidden"
+      aria-haspopup="dialog"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      data-menu-open
+    >
+      <Icon name="menu" class="h-7 w-7" />
+      <span class="sr-only">{t.a11y.menuOpen}</span>
+    </button>
+  </Container>
+
+  <!-- Tier 2: main navigation -->
+  <div class="hidden border-t border-line lg:block">
+    <Container class="flex h-[3.75rem] items-center gap-8">
+      <nav aria-label={t.a11y.mainNav} class="mr-auto self-stretch">
+        <ul class="flex h-full items-stretch gap-8">
+          {
+            items.map((item) => (
+              <li class="flex">
+                <a
+                  href={path(item.key, locale)}
+                  aria-current={isActive(item.key) ? 'page' : undefined}
+                  class="flex items-center border-b-[3px] border-transparent pt-[3px] font-bold whitespace-nowrap text-ink transition-colors duration-200 ease-out hover:text-accent-strong aria-[current=page]:border-accent-strong aria-[current=page]:text-accent-strong"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <Button href={quotePath(locale)} class="whitespace-nowrap">{t.cta.quote}</Button>
+    </Container>
+  </div>
+
+  <dialog
+    id="mobile-menu"
+    aria-label={t.a11y.mainNav}
+    class="m-0 h-dvh max-h-none w-full max-w-none bg-inverse p-0 text-on-inverse backdrop:bg-black/50 open:flex open:flex-col"
+  >
+    <div class="flex h-20 items-center justify-between border-b border-white/30 px-4">
+      <span class="text-lg font-bold">{WORDMARK}</span>
+      <button type="button" class="grid h-11 w-11 place-items-center" data-menu-close>
+        <Icon name="close" class="h-7 w-7" />
+        <span class="sr-only">{t.a11y.menuClose}</span>
+      </button>
+    </div>
+    <nav aria-label={t.a11y.mainNav} class="flex-1 overflow-y-auto px-4 py-6">
+      <ul class="divide-y divide-white/30 border-y border-white/30">
+        {
+          [{ key: 'home' as RouteKey, label: t.nav.home }, ...items, ...utility].map((item) => (
+            <li>
+              <a
+                href={path(item.key, locale)}
+                aria-current={item.key !== 'home' && isActive(item.key) ? 'page' : undefined}
+                class="flex items-center gap-3 py-3.5 text-lg font-bold aria-[current=page]:underline"
+              >
+                <span class="caret" aria-hidden="true" />
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a href={alternates[other]} hreflang={other} class="flex items-center gap-3 py-3.5 text-lg">
+            <span class="caret" aria-hidden="true" />
+            <span lang={other}>{t.common.langShort}</span><span class="sr-only"> – {t.a11y.langSwitch}</span>
+          </a>
+        </li>
+      </ul>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <Button href={quotePath(locale)}>{t.cta.quote}</Button>
+        <Button href={DIRECT_CONTACT.href} variant="secondary">{t.cta[DIRECT_CONTACT.label]}</Button>
+      </div>
+      <dl class="mt-8 grid gap-2 text-sm text-on-inverse-muted">
+        {HAS_PHONE && <div class="flex gap-2"><dt class="sr-only">{t.common.phone}</dt><dd>{PHONE}</dd></div>}
+        <div class="flex gap-2"><dt class="sr-only">{t.common.email}</dt><dd>{EMAIL}</dd></div>
+        {hasValue(OPENING_HOURS[locale]) && <div class="flex gap-2"><dt>{t.common.openingHours}:</dt><dd>{OPENING_HOURS[locale]}</dd></div>}
+      </dl>
+    </nav>
+  </dialog>
+</header>
+
+<script>
+  const dialog = document.getElementById('mobile-menu') as HTMLDialogElement | null;
+  const opener = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+  if (dialog && opener) {
+    opener.addEventListener('click', () => {
+      dialog.showModal();
+      opener.setAttribute('aria-expanded', 'true');
+    });
+    dialog.querySelector('[data-menu-close]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', () => {
+      opener.setAttribute('aria-expanded', 'false');
+      opener.focus();
+    });
+    // Close when a link inside is followed (same-page anchors) and when the viewport grows to desktop.
+    dialog.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => dialog.close()));
+    window.matchMedia('(min-width: 64rem)').addEventListener('change', (e) => e.matches && dialog.close());
+  }
+</script>

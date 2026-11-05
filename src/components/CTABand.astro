@@ -1,0 +1,49 @@
+---
+/** Contact CTA: flat white panel on the grey canvas with heading, lead and pill buttons. */
+import { EMAIL, HAS_PHONE, PHONE, telHref } from '../config/company';
+import { useT } from '../i18n';
+import { quotePath, type Locale } from '../i18n/routes';
+import Button from './Button.astro';
+import Container from './Container.astro';
+
+interface Props {
+  locale: Locale;
+  title?: string;
+  lead?: string;
+  service?: string;
+}
+const { locale, title, lead, service } = Astro.props;
+const t = useT(locale);
+---
+
+<section class="bg-paper pt-6 pb-12" aria-labelledby="cta-band-title">
+  <Container>
+    <div class="grid gap-6 border-t-[3px] border-accent-strong bg-surface p-6 md:grid-cols-[1fr_auto] md:items-center md:gap-8 md:p-8">
+      <div>
+        <h2 id="cta-band-title" class="text-[1.625rem]">{title ?? t.home.ctaBand.title}</h2>
+        <p class="mt-2">{lead ?? t.home.ctaBand.lead}</p>
+        {
+          HAS_PHONE && (
+            <p class="mt-3 text-sm">
+              <a href={`mailto:${EMAIL}`} class="underline">{EMAIL}</a>
+            </p>
+          )
+        }
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <Button href={quotePath(locale, service)}>{t.cta.quote}</Button>
+        {
+          HAS_PHONE ? (
+            <Button href={telHref(PHONE)} variant="secondary">
+              {t.cta.call}: {PHONE}
+            </Button>
+          ) : (
+            <Button href={`mailto:${EMAIL}`} variant="secondary">
+              {t.cta.email}: {EMAIL}
+            </Button>
+          )
+        }
+      </div>
+    </div>
+  </Container>
+</section>
