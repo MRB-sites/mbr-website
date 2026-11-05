@@ -33,6 +33,7 @@
     "allProjects": "All projects",
     "allServices": "All services",
     "email": "Email us",
+    "advice": "Contact for advice",
     "seeProject": "View project"
   },
   "common": {
@@ -1348,5 +1349,14 @@
     "title": "Page not found",
     "text": "The link may be wrong or the page may have moved.",
     "home": "Back to the home page"
+  },
+  "advice": {
+    "label": "Your email address",
+    "placeholder": "you@example.com",
+    "send": "Send",
+    "close": "Close",
+    "thanks": "Thanks! We will be in touch.",
+    "invalid": "Enter a valid email address, e.g. name@example.com.",
+    "error": "Could not send. Please try again."
   }
 }

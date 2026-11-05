@@ -2,10 +2,11 @@
 import { published } from '../data/collections';
 import { Image } from 'astro:assets';
 import brandLogo from '../assets/brand/mbr-logo.png';
-import { COMPANY_NAME, DIRECT_CONTACT, KEY_FIGURES, PROMISES, SERVICE_AREA } from '../config/company';
+import { COMPANY_NAME, DIRECT_CONTACT, HAS_PHONE, KEY_FIGURES, PROMISES, SERVICE_AREA } from '../config/company';
 import { SERVICES, SERVICE_IDS } from '../data/services';
 import { fmt, useT } from '../i18n';
 import { detailPath, path, quotePath, type Alternates, type Locale } from '../i18n/routes';
+import AdviceButton from '../components/AdviceButton.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BeforeAfterSlider from '../components/BeforeAfterSlider.astro';
 import Button from '../components/Button.astro';
@@ -63,7 +64,7 @@ const logoClass = 'h-[min(55vh,30.25rem)] w-auto max-w-[80vw] object-contain';
       <p class="mt-3 max-w-2xl"><Text text={fmt(h.hero.lead, { area: SERVICE_AREA[locale] })} /></p>
       <div class="mt-6 flex flex-wrap gap-3">
         <Button href={quotePath(locale)}>{t.cta.quote}</Button>
-        <Button href={DIRECT_CONTACT.href} variant="secondary">{t.cta[DIRECT_CONTACT.label]}</Button>
+        {HAS_PHONE ? <Button href={DIRECT_CONTACT.href} variant="secondary">{t.cta.call}</Button> : <AdviceButton locale={locale} />}
       </div>
     </Container>
 
@@ -123,7 +124,7 @@ const logoClass = 'h-[min(55vh,30.25rem)] w-auto max-w-[80vw] object-contain';
           />
           <div class="mt-6 flex flex-wrap gap-3">
             <Button href={quotePath(locale)}>{t.cta.quote}</Button>
-            <Button href={DIRECT_CONTACT.href} variant="secondary">{t.cta[DIRECT_CONTACT.label]}</Button>
+            {HAS_PHONE ? <Button href={DIRECT_CONTACT.href} variant="secondary">{t.cta.call}</Button> : <AdviceButton locale={locale} />}
           </div>
         </div>
         <ProcessTimeline steps={h.chain.steps} variant="vertical" />

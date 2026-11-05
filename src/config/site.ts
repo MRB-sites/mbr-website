@@ -13,7 +13,7 @@ export const FORMS = {
   maxFiles: 5,
   maxTotalMb: 8,
   accept: 'image/jpeg,image/png,image/webp,image/heic,application/pdf',
-  names: { quote: 'offertforfragan', application: 'jobbansokan' },
+  names: { quote: 'offertforfragan', application: 'jobbansokan', advice: 'radgivning' },
 };
 
 export const ANALYTICS = {

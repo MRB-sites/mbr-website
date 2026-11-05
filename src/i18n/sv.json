@@ -33,6 +33,7 @@
     "allProjects": "Alla projekt",
     "allServices": "Alla tjänster",
     "email": "Mejla oss",
+    "advice": "Kontakt för rådgivning",
     "seeProject": "Se projektet"
   },
   "common": {
@@ -1348,5 +1349,14 @@
     "title": "Sidan finns inte",
     "text": "Länken kan vara fel eller så har sidan flyttats.",
     "home": "Till startsidan"
+  },
+  "advice": {
+    "label": "Din e-postadress",
+    "placeholder": "din@epost.se",
+    "send": "Skicka",
+    "close": "Stäng",
+    "thanks": "Tack! Vi hör av oss.",
+    "invalid": "Ange en giltig e-postadress, t.ex. namn@exempel.se.",
+    "error": "Det gick inte att skicka. Försök igen."
   }
 }

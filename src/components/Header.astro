@@ -6,6 +6,7 @@ import { COMPANY_NAME, DIRECT_CONTACT, EMAIL, HAS_PHONE, OPENING_HOURS, PHONE, W
 import { hiddenRoutes } from '../data/availability';
 import { useT } from '../i18n';
 import { path, quotePath, type Alternates, type Locale, type RouteKey } from '../i18n/routes';
+import AdviceButton from './AdviceButton.astro';
 import Button from './Button.astro';
 import Container from './Container.astro';
 import Icon from './Icon.astro';
@@ -142,7 +143,7 @@ const isActive = (key: RouteKey) => current.startsWith(path(key, locale));
       </ul>
       <div class="mt-8 flex flex-wrap gap-3">
         <Button href={quotePath(locale)}>{t.cta.quote}</Button>
-        <Button href={DIRECT_CONTACT.href} variant="secondary">{t.cta[DIRECT_CONTACT.label]}</Button>
+        {HAS_PHONE ? <Button href={DIRECT_CONTACT.href} variant="secondary">{t.cta.call}</Button> : <AdviceButton locale={locale} />}
       </div>
       <dl class="mt-8 grid gap-2 text-sm text-on-inverse-muted">
         {HAS_PHONE && <div class="flex gap-2"><dt class="sr-only">{t.common.phone}</dt><dd>{PHONE}</dd></div>}

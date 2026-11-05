@@ -1,0 +1,439 @@
+---
+/**
+ * "Kontakt för rådgivning": a pill that widens into an email field. Enter (or the arrow)
+ * sends the address and the pill folds into a checkmark.
+ * Without JS the pill is a plain mailto link. Submits like the other forms (Netlify Forms
+ * or PUBLIC_FORM_ENDPOINT); in `astro dev` the request is simulated so the flow can be tried.
+ */
+import { EMAIL } from '../config/company';
+import { FORMS } from '../config/site';
+import { useT } from '../i18n';
+import type { Locale } from '../i18n/routes';
+
+interface Props {
+  locale: Locale;
+  /** Fill the parent (mobile action bar) instead of sizing to the label. */
+  fill?: boolean;
+  class?: string;
+}
+const { locale, fill = false, class: className } = Astro.props;
+const t = useT(locale);
+const a = t.advice;
+const uid = Math.random().toString(36).slice(2, 8);
+const inputId = `advice-${uid}`;
+const msgId = `advice-msg-${uid}`;
+---
+
+<div class:list={['advice-wrap', fill && 'is-fill', className]} data-advice-root data-state="closed">
+  <form
+    class="advice"
+    data-advice
+    data-state="closed"
+    name={FORMS.names.advice}
+    method="POST"
+    action={FORMS.endpoint || '/'}
+    data-netlify={FORMS.provider === 'netlify' ? 'true' : undefined}
+    netlify-honeypot="bot-field"
+    data-provider={FORMS.provider}
+    data-endpoint={FORMS.endpoint || undefined}
+    data-dev={import.meta.env.DEV ? 'true' : undefined}
+    data-invalid-msg={a.invalid}
+    data-error-msg={a.error}
+    data-thanks-msg={a.thanks}
+    novalidate
+  >
+    <input type="hidden" name="form-name" value={FORMS.names.advice} />
+    <input type="hidden" name="sida" value="" data-advice-page />
+    <p hidden><label>Lämna tomt <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+    <a href={`mailto:${EMAIL}`} class="advice-trigger" data-advice-trigger aria-expanded="false" aria-controls={inputId}>
+      {t.cta.advice}
+    </a>
+
+    <div class="advice-field">
+      <label for={inputId} class="sr-only">{a.label}</label>
+      <input
+        id={inputId}
+        name="epost"
+        type="email"
+        required
+        autocomplete="email"
+        inputmode="email"
+        enterkeyhint="send"
+        placeholder={a.placeholder}
+        aria-describedby={msgId}
+        tabindex="-1"
+      />
+      <button type="submit" class="advice-send" aria-label={a.send} tabindex="-1">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+      </button>
+    </div>
+
+    <span class="advice-check" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.25 4.25L18.5 8" /></svg>
+    </span>
+  </form>
+  <span id={msgId} class="advice-msg" role="status" aria-live="polite" data-advice-msg></span>
+</div>
+
+<style>
+  .advice-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 100%;
+    vertical-align: middle;
+  }
+  .advice-wrap.is-fill {
+    display: flex;
+    width: 100%;
+  }
+
+  .advice {
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    flex: none;
+    height: 2.6875rem;
+    max-width: 100%;
+    overflow: hidden;
+    border: 2px solid var(--line-strong);
+    border-radius: 9999px;
+    background: var(--surface);
+    color: var(--ink);
+    transition:
+      width 0.55s var(--ease),
+      border-color 0.3s ease,
+      background-color 0.35s ease,
+      box-shadow 0.3s ease;
+  }
+  .is-fill .advice {
+    width: 100%;
+    height: 2.75rem;
+  }
+  .advice:hover:not([data-state='done']) {
+    border-color: var(--ink);
+  }
+  .advice[data-state='open'],
+  .advice[data-state='sending'] {
+    border-color: var(--ink);
+    box-shadow: 0 6px 18px -10px rgba(0, 0, 0, 0.35);
+  }
+  .advice[data-invalid] {
+    border-color: var(--danger);
+    animation: advice-shake 0.4s var(--ease);
+  }
+
+  /* Closed label – sits in the flow so it sets the closed width. */
+  .advice-trigger {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    transition:
+      opacity 0.2s ease,
+      transform 0.35s var(--ease);
+  }
+  .is-fill .advice-trigger {
+    padding: 0 0.75rem;
+    font-size: 0.9375rem;
+  }
+  .advice:not([data-state='closed']) .advice-trigger {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateX(-0.75rem);
+    pointer-events: none;
+  }
+
+  /* Email field + round send button */
+  .advice-field {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(0.75rem);
+    pointer-events: none;
+    transition:
+      opacity 0.25s ease,
+      transform 0.45s var(--ease);
+  }
+  .advice[data-state='open'] .advice-field,
+  .advice[data-state='sending'] .advice-field {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition-delay: 0.15s;
+  }
+  .advice-field input {
+    min-width: 0;
+    flex: 1;
+    height: 100%;
+    padding: 0 0.5rem 0 1.25rem;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    outline: none;
+  }
+  .advice-field input::placeholder {
+    color: var(--ink-muted);
+  }
+  .advice-send {
+    display: grid;
+    flex: none;
+    width: 2.0625rem;
+    height: 2.0625rem;
+    margin-right: 0.25rem;
+    place-items: center;
+    border-radius: 9999px;
+    background: var(--accent);
+    color: var(--on-accent);
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s var(--ease);
+  }
+  .advice-send:hover {
+    background: var(--accent-strong);
+  }
+  .advice-send:active {
+    transform: scale(0.92);
+  }
+  .advice-send:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+  .advice-send svg,
+  .advice-check svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .advice[data-state='sending'] .advice-send svg {
+    animation: advice-nudge 0.8s ease-in-out infinite;
+  }
+
+  /* Done: pill folds into a green circle and the check draws itself */
+  .advice[data-state='done'] {
+    border-color: var(--success);
+    background: var(--success);
+    color: #fff;
+  }
+  .advice[data-state='done'] .advice-field {
+    opacity: 0;
+    transition-delay: 0s;
+  }
+  .advice-check {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    transform: scale(0.6);
+    transition:
+      opacity 0.25s ease 0.3s,
+      transform 0.5s var(--ease) 0.3s;
+  }
+  .advice-check path {
+    stroke-dasharray: 22;
+    stroke-dashoffset: 22;
+    transition: stroke-dashoffset 0.45s var(--ease) 0.5s;
+  }
+  .advice[data-state='done'] .advice-check {
+    opacity: 1;
+    transform: none;
+  }
+  .advice[data-state='done'] .advice-check path {
+    stroke-dashoffset: 0;
+  }
+
+  .advice-msg {
+    min-width: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.3;
+    opacity: 0;
+    transform: translateX(-0.5rem);
+    transition:
+      opacity 0.35s ease,
+      transform 0.45s var(--ease);
+  }
+  .advice-msg:empty {
+    display: none;
+  }
+  .advice-msg.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  .advice-msg.is-error {
+    color: var(--danger);
+  }
+  /* Error text while the field is open would squeeze it – show it under the pill instead. */
+  .advice-wrap:has(.advice:not([data-state='done'])) {
+    flex-wrap: wrap;
+  }
+  .advice-wrap:has(.advice:not([data-state='done'])) .advice-msg {
+    flex-basis: 100%;
+    padding-left: 1.25rem;
+  }
+
+  /* On green panels the page accent turns white – keep the send button orange and the check visible. */
+  :global(.bg-inverse) .advice {
+    --accent: #c2510e;
+    --accent-strong: #a3440b;
+    --on-accent: #ffffff;
+  }
+  :global(.bg-inverse) .advice[data-state='done'] {
+    border-color: #fff;
+  }
+  :global(.bg-inverse) .advice-msg.is-error {
+    color: #fff;
+  }
+
+  @keyframes advice-shake {
+    20%,
+    60% {
+      transform: translateX(-5px);
+    }
+    40%,
+    80% {
+      transform: translateX(5px);
+    }
+  }
+  @keyframes advice-nudge {
+    50% {
+      transform: translateX(3px);
+      opacity: 0.6;
+    }
+  }
+</style>
+
+<script>
+  import { submit } from '../scripts/forms';
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-advice-root]')) {
+    const form = root.querySelector<HTMLFormElement>('[data-advice]')!;
+    const trigger = root.querySelector<HTMLAnchorElement>('[data-advice-trigger]')!;
+    const input = form.querySelector<HTMLInputElement>('input[type="email"]')!;
+    const send = form.querySelector<HTMLButtonElement>('.advice-send')!;
+    const msg = root.querySelector<HTMLElement>('[data-advice-msg]')!;
+    const page = form.querySelector<HTMLInputElement>('[data-advice-page]')!;
+    const fill = root.classList.contains('is-fill');
+    let closedWidth = 0;
+
+    const state = () => form.dataset.state;
+    const setState = (s: 'closed' | 'open' | 'sending' | 'done') => {
+      form.dataset.state = s;
+      root.dataset.state = s;
+      const active = s === 'open' || s === 'sending';
+      input.tabIndex = send.tabIndex = active ? 0 : -1;
+      trigger.tabIndex = s === 'closed' ? 0 : -1;
+      trigger.setAttribute('aria-expanded', String(active));
+    };
+
+    const say = (text: string, error = false) => {
+      msg.textContent = text;
+      msg.classList.toggle('is-error', error);
+      requestAnimationFrame(() => msg.classList.toggle('is-visible', text !== ''));
+    };
+
+    /** Animate the pill from its current width to `to` px; `release` drops the inline width afterwards. */
+    const animateWidth = (to: number, release = false) => {
+      form.style.width = `${form.offsetWidth}px`;
+      void form.offsetWidth; // commit the start width so the transition runs
+      form.style.width = `${to}px`;
+      if (release) {
+        form.addEventListener('transitionend', function done(e) {
+          if (e.propertyName !== 'width') return;
+          form.removeEventListener('transitionend', done);
+          if (state() === 'closed') form.style.width = '';
+        });
+      }
+    };
+
+    const openField = () => {
+      closedWidth = form.offsetWidth;
+      // Pin the width first: once open, the label leaves the flow and would collapse the pill.
+      if (!fill) form.style.width = `${closedWidth}px`;
+      setState('open');
+      if (!fill) {
+        const room = root.parentElement?.clientWidth ?? 360;
+        animateWidth(Math.min(Math.max(closedWidth + 96, 336), room));
+      }
+      input.focus({ preventScroll: true });
+    };
+
+    const closeField = () => {
+      setState('closed');
+      say('');
+      if (!fill) animateWidth(closedWidth, true);
+    };
+
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      openField();
+    });
+
+    input.addEventListener('input', () => {
+      delete form.dataset.invalid;
+      if (msg.classList.contains('is-error')) say('');
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeField();
+        trigger.focus();
+      }
+    });
+
+    // Collapse again when the visitor leaves an empty field.
+    form.addEventListener('focusout', () => {
+      setTimeout(() => {
+        if (state() === 'open' && !form.contains(document.activeElement) && input.value.trim() === '') closeField();
+      }, 120);
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (state() !== 'open') return;
+      const value = input.value.trim();
+      if (!EMAIL_RE.test(value)) {
+        delete form.dataset.invalid;
+        void form.offsetWidth; // restart the shake
+        form.dataset.invalid = '';
+        say(form.dataset.invalidMsg ?? '', true);
+        input.focus();
+        return;
+      }
+
+      input.value = value;
+      page.value = location.pathname;
+      setState('sending');
+      say('');
+      const ok = form.dataset.dev ? await new Promise<boolean>((r) => setTimeout(() => r(true), 650)) : await submit(form);
+
+      if (!ok) {
+        setState('open');
+        say(form.dataset.errorMsg ?? '', true);
+        input.focus();
+        return;
+      }
+
+      input.blur();
+      animateWidth(form.offsetHeight);
+      setState('done');
+      setTimeout(() => say(form.dataset.thanksMsg ?? ''), 450);
+    });
+  }
+</script>

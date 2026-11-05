@@ -3,6 +3,7 @@
 import { EMAIL, HAS_PHONE, PHONE, telHref } from '../config/company';
 import { useT } from '../i18n';
 import { quotePath, type Locale } from '../i18n/routes';
+import AdviceButton from './AdviceButton.astro';
 import Button from './Button.astro';
 import Container from './Container.astro';
 
@@ -38,9 +39,7 @@ const t = useT(locale);
               {t.cta.call}: {PHONE}
             </Button>
           ) : (
-            <Button href={`mailto:${EMAIL}`} variant="secondary">
-              {t.cta.email}: {EMAIL}
-            </Button>
+            <AdviceButton locale={locale} />
           )
         }
       </div>
