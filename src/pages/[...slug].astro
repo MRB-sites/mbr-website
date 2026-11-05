@@ -8,7 +8,7 @@ import { type CollectionEntry } from 'astro:content';
 import { published } from '../data/collections';
 import { SERVICE_IDS, SERVICES, type ServiceId } from '../data/services';
 import { hiddenRoutes } from '../data/availability';
-import { LOCALES, ROUTES, detailPath, type Alternates, type Locale, type RouteKey } from '../i18n/routes';
+import { LOCALES, detailPath, path, routeAlternates, stripBase, type Alternates, type Locale, type RouteKey } from '../i18n/routes';
 import AboutView from '../views/AboutView.astro';
 import CareersView from '../views/CareersView.astro';
 import ContactView from '../views/ContactView.astro';
@@ -36,7 +36,7 @@ type Page =
 type Props = { locale: Locale; alternates: Alternates; page: Page };
 
 export const getStaticPaths = (async () => {
-  const toSlug = (url: string) => url.replace(/^\/|\/$/g, '') || undefined;
+  const toSlug = (url: string) => stripBase(url).replace(/^\/|\/$/g, '') || undefined;
   const out: { params: { slug: string | undefined }; props: Props }[] = [];
   const add = (alternates: Alternates, page: Page) => {
     for (const locale of LOCALES) out.push({ params: { slug: toSlug(alternates[locale]) }, props: { locale, alternates, page } });
@@ -57,8 +57,8 @@ export const getStaticPaths = (async () => {
     ['accessibility', { view: 'legal', doc: 'accessibility' }],
   ];
   const hidden = await hiddenRoutes();
-  for (const [key, page] of simple) if (!hidden.has(key)) add(ROUTES[key], page);
-  for (const id of SERVICE_IDS) add(ROUTES[SERVICES[id].route], { view: 'service', service: id });
+  for (const [key, page] of simple) if (!hidden.has(key)) add(routeAlternates(key), page);
+  for (const id of SERVICE_IDS) add(routeAlternates(SERVICES[id].route), { view: 'service', service: id });
 
   // Projects: one file holds both languages.
   for (const entry of await published('projects')) {
@@ -76,7 +76,7 @@ export const getStaticPaths = (async () => {
       const hasTwin = entries.some((e) => e.id === `${other}/${slug}`);
       const alternates = {
         [locale]: detailPath(key, slug, locale),
-        [other]: hasTwin ? detailPath(key, slug, other) : ROUTES[key][other],
+        [other]: hasTwin ? detailPath(key, slug, other) : path(key, other),
       } as Alternates;
       out.push({ params: { slug: toSlug(alternates[locale]) }, props: { locale, alternates, page: { view, entry } as Page } });
     }

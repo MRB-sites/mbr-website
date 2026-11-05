@@ -32,13 +32,22 @@ export const ROUTES = {
 
 export type RouteKey = keyof typeof ROUTES;
 
-export const path = (key: RouteKey, locale: Locale): string => ROUTES[key][locale];
+/**
+ * Base path when the site is served from a subfolder, e.g. '/mbr-website' on the
+ * GitHub Pages preview (set PUBLIC_BASE_PATH). Empty on the real domain.
+ */
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+export const withBase = (p: string) => `${BASE}${p}`;
+export const stripBase = (p: string) => (BASE && p.startsWith(BASE) ? p.slice(BASE.length) || '/' : p);
+
+export const path = (key: RouteKey, locale: Locale): string => withBase(ROUTES[key][locale]);
+export const routeAlternates = (key: RouteKey): Record<Locale, string> => ({ sv: path(key, 'sv'), en: path(key, 'en') });
 
 /** Detail pages (projects, news, jobs) live below their list page. */
-export const detailPath = (key: 'projects' | 'news' | 'careers', slug: string, locale: Locale) => `${ROUTES[key][locale]}${slug}/`;
+export const detailPath = (key: 'projects' | 'news' | 'careers', slug: string, locale: Locale) => `${path(key, locale)}${slug}/`;
 
 /** Anchor to the quote form. */
 export const quotePath = (locale: Locale, service?: string) =>
-  `${ROUTES.contact[locale]}${service ? `?tjanst=${encodeURIComponent(service)}` : ''}#offert`;
+  `${path('contact', locale)}${service ? `?tjanst=${encodeURIComponent(service)}` : ''}#offert`;
 
 export type Alternates = Record<Locale, string>;

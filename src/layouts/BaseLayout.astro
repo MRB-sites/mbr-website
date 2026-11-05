@@ -8,7 +8,7 @@ import brandLogo from '../assets/brand/mbr-logo.png';
 import { COMPANY_NAME, HERO_IMAGE } from '../config/company';
 import { analyticsEnabled } from '../config/site';
 import { fmt, useT } from '../i18n';
-import { HTML_LANG, OG_LOCALE, type Alternates, type Locale } from '../i18n/routes';
+import { HTML_LANG, OG_LOCALE, withBase, type Alternates, type Locale } from '../i18n/routes';
 import { getAsset } from '../data/images';
 import { organizationSchema } from '../data/schema';
 import Header from '../components/Header.astro';
@@ -38,6 +38,8 @@ const t = useT(locale);
 const site = Astro.site ?? new URL(Astro.url.origin);
 const fullTitle = isHome ? `${COMPANY_NAME} – ${title}` : `${title} | ${COMPANY_NAME}`;
 const canonical = new URL(alternates[locale], site).href;
+/** Preview builds (e.g. GitHub Pages) set PUBLIC_NOINDEX=true so they never compete with the real domain in search. */
+const hideFromSearch = noindex || import.meta.env.PUBLIC_NOINDEX === 'true';
 
 const og = await getImage({ src: ogImage ?? getAsset(HERO_IMAGE), width: 1200, height: 630, fit: 'cover', format: 'jpg' });
 const ogUrl = new URL(og.src, site).href;
@@ -53,7 +55,7 @@ const otherLocale: Locale = locale === 'sv' ? 'en' : 'sv';
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     {
-      noindex ? (
+      hideFromSearch ? (
         <meta name="robots" content="noindex, follow" />
       ) : (
         <>
@@ -67,10 +69,10 @@ const otherLocale: Locale = locale === 'sv' ? 'en' : 'sv';
 
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="icon" href="/favicon.png" type="image/png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" href={withBase('/favicon.png')} type="image/png" />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
     {intro && <script is:inline>document.documentElement.classList.add('intro');</script>}
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
 
     <link rel="preload" href={sans400} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={sans700} as="font" type="font/woff2" crossorigin />
