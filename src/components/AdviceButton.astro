@@ -2,12 +2,10 @@
 /**
  * "Kontakt för rådgivning": a pill that widens into an email field. Enter (or the arrow)
  * sends the address and the pill folds into a checkmark.
- * Without JS the pill is a plain mailto link. Submits like the other forms (Netlify Forms
- * or PUBLIC_FORM_ENDPOINT); in `astro dev` and when PUBLIC_FORMS_DEMO=true (GitHub Pages preview)
- * the request is simulated so the flow can be tried.
+ * Without JS the pill is a plain mailto link. Sends to the n8n webhook WEBHOOKS.advice (config/site.ts).
  */
 import { EMAIL } from '../config/company';
-import { FORMS } from '../config/site';
+import { FORMS, WEBHOOKS } from '../config/site';
 import { useT } from '../i18n';
 import type { Locale } from '../i18n/routes';
 
@@ -32,19 +30,15 @@ const msgId = `advice-msg-${uid}`;
     data-state="closed"
     name={FORMS.names.advice}
     method="POST"
-    action={FORMS.endpoint || '/'}
-    data-netlify={FORMS.provider === 'netlify' ? 'true' : undefined}
-    netlify-honeypot="bot-field"
-    data-provider={FORMS.provider}
-    data-endpoint={FORMS.endpoint || undefined}
-    data-dev={import.meta.env.DEV || import.meta.env.PUBLIC_FORMS_DEMO === 'true' ? 'true' : undefined}
+    action={WEBHOOKS.advice}
+    data-provider="webhook"
+    data-endpoint={WEBHOOKS.advice}
     data-invalid-msg={a.invalid}
     data-error-msg={a.error}
     data-thanks-msg={a.thanks}
     novalidate
   >
     <input type="hidden" name="form-name" value={FORMS.names.advice} />
-    <input type="hidden" name="sida" value="" data-advice-page />
     <p hidden><label>Lämna tomt <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
 
     <a href={`mailto:${EMAIL}`} class="advice-trigger" data-advice-trigger aria-expanded="false" aria-controls={inputId}>
@@ -330,7 +324,6 @@ const msgId = `advice-msg-${uid}`;
     const input = form.querySelector<HTMLInputElement>('input[type="email"]')!;
     const send = form.querySelector<HTMLButtonElement>('.advice-send')!;
     const msg = root.querySelector<HTMLElement>('[data-advice-msg]')!;
-    const page = form.querySelector<HTMLInputElement>('[data-advice-page]')!;
     const fill = root.classList.contains('is-fill');
     let closedWidth = 0;
 
@@ -420,10 +413,9 @@ const msgId = `advice-msg-${uid}`;
       }
 
       input.value = value;
-      page.value = location.pathname;
       setState('sending');
       say('');
-      const ok = form.dataset.dev ? await new Promise<boolean>((r) => setTimeout(() => r(true), 650)) : await submit(form);
+      const ok = await submit(form);
 
       if (!ok) {
         setState('open');

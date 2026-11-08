@@ -10,6 +10,8 @@ interface Props {
   requiredLabel: string;
   optionalLabel: string;
   hint?: string;
+  /** 'below' puts the hint under the input – use it when the field sits next to one without a hint, so the boxes line up. */
+  hintPosition?: 'above' | 'below';
   autocomplete?: string;
   inputmode?: 'text' | 'numeric' | 'tel' | 'email' | 'decimal';
   pattern?: string;
@@ -32,6 +34,7 @@ const {
   requiredLabel,
   optionalLabel,
   hint,
+  hintPosition = 'above',
   autocomplete,
   inputmode,
   pattern,
@@ -56,7 +59,7 @@ const control =
     {label}
     <span class="ml-1 text-sm font-normal text-ink-muted">({required ? requiredLabel : optionalLabel})</span>
   </label>
-  {hint && <p id={hintId} class="mt-1 text-sm text-ink-muted">{hint}</p>}
+  {hint && hintPosition === 'above' && <p id={hintId} class="mt-1 text-sm text-ink-muted">{hint}</p>}
   {
     as === 'textarea' ? (
       <textarea id={id} name={name} rows={rows} required={required} minlength={minlength} maxlength={maxlength} aria-describedby={describedBy} class:list={[control, 'min-h-32']}>
@@ -82,5 +85,6 @@ const control =
       />
     )
   }
+  {hint && hintPosition === 'below' && <p id={hintId} class="mt-2 text-sm text-ink-muted">{hint}</p>}
   <p id={errorId} class="mt-2 flex items-center gap-2 text-sm font-semibold text-danger" data-error hidden></p>
 </div>

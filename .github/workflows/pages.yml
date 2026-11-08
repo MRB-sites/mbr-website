@@ -34,7 +34,6 @@ jobs:
           PUBLIC_SITE_URL: https://mrb-sites.github.io
           PUBLIC_BASE_PATH: /mbr-website
           PUBLIC_NOINDEX: 'true'
-          PUBLIC_FORMS_DEMO: 'true'
       - name: Push dist to gh-pages
         run: |
           cd dist

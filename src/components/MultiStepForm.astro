@@ -6,11 +6,11 @@
  * WeTransfer upload dropzone, Upwork "Save & Continue".
  *
  * Without JavaScript every step is shown at once and the form posts normally
- * (Netlify redirects to the thank-you page). With JavaScript it becomes a
+ * (straight to the n8n webhook, see WEBHOOKS in config/site.ts). With JavaScript it becomes a
  * stepped flow with validation, session save and an inline success screen.
  */
 import { COMPANY_NAME, EMAIL, HAS_PHONE, PHONE, RESPONSE_TIME, hasValue, telHref } from '../config/company';
-import { FORMS } from '../config/site';
+import { FORMS, WEBHOOKS } from '../config/site';
 import { fmt, useT } from '../i18n';
 import { path, type Locale } from '../i18n/routes';
 import ChoiceGroup from './form/ChoiceGroup.astro';
@@ -28,7 +28,6 @@ const f = t.form;
 const req = { requiredLabel: f.required, optionalLabel: f.optional };
 const opts = (o: Record<string, string>) => Object.entries(o).map(([value, label]) => ({ value, label }));
 const steps = f.steps;
-const action = FORMS.provider === 'netlify' ? path('contactThanks', locale) : FORMS.endpoint;
 const today = new Date().toISOString().slice(0, 10);
 ---
 
@@ -37,12 +36,10 @@ const today = new Date().toISOString().slice(0, 10);
     id="offert-form"
     name={FORMS.names.quote}
     method="POST"
-    action={action}
+    action={WEBHOOKS.quote}
     enctype="multipart/form-data"
-    data-netlify={FORMS.provider === 'netlify' ? 'true' : undefined}
-    netlify-honeypot="bot-field"
-    data-provider={FORMS.provider}
-    data-endpoint={FORMS.endpoint || undefined}
+    data-provider="webhook"
+    data-endpoint={WEBHOOKS.quote}
     data-messages={JSON.stringify(f.errors)}
     data-max-files={FORMS.maxFiles}
     data-max-mb={FORMS.maxTotalMb}
@@ -111,7 +108,7 @@ const today = new Date().toISOString().slice(0, 10);
         <Field id="q-beskrivning" name="beskrivning" as="textarea" label={f.fields.description} hint={f.fields.descriptionHint} required minlength={10} maxlength={4000} {...req} />
         <div class="grid gap-6 sm:grid-cols-2">
           <Field id="q-yta" name="yta" label={f.fields.area} inputmode="numeric" maxlength={8} {...req} />
-          <Field id="q-byggar" name="byggar" label={f.fields.buildYear} hint={f.fields.buildYearHint} inputmode="numeric" maxlength={4} {...req} />
+          <Field id="q-byggar" name="byggar" label={f.fields.buildYear} hint={f.fields.buildYearHint} hintPosition="below" inputmode="numeric" maxlength={4} {...req} />
         </div>
         <ChoiceGroup id="q-start" name="start" legend={f.fields.start} type="radio" required options={opts(f.options.start)} {...req} />
         <Field id="q-startdatum" name="startdatum" type="date" min={today} label={f.fields.startDate} class="sm:max-w-xs" {...req} />

@@ -16,6 +16,20 @@ export const FORMS = {
   names: { quote: 'offertforfragan', application: 'jobbansokan', advice: 'radgivning' },
 };
 
+/**
+ * n8n webhooks for the quote form ("Begär offert") and the advice button ("Kontakt för rådgivning").
+ * 'test'       → /webhook-test/ URLs. Only answer while "Listen for test event" is running in the n8n editor.
+ * 'production' → /webhook/ URLs. Only answer while the n8n workflow is switched to Active.
+ */
+export const N8N_MODE = 'production' as 'test' | 'production';
+const N8N_BASE = 'https://meggamind.app.n8n.cloud';
+const n8nHook = (name: string) => `${N8N_BASE}/${N8N_MODE === 'production' ? 'webhook' : 'webhook-test'}/${name}`;
+
+export const WEBHOOKS = {
+  quote: n8nHook('mbr-offert'),
+  advice: n8nHook('mbr'),
+};
+
 export const ANALYTICS = {
   provider: (import.meta.env.PUBLIC_ANALYTICS_PROVIDER || '') as '' | 'plausible',
   domain: import.meta.env.PUBLIC_ANALYTICS_DOMAIN || '',
