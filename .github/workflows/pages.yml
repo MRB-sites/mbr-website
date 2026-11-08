@@ -1,11 +1,11 @@
-# Client preview on GitHub Pages: https://mrb-sites.github.io/mbr-website/
-# Builds on every push to main. The preview is hidden from search engines (PUBLIC_NOINDEX).
+# Live site on GitHub Pages: https://www.malmombr.se/ (custom domain; malmombr.se redirects to www)
+# Builds on every push to main.
 # Forms do not submit here (Netlify Forms only work on Netlify) – they show the error screen with the email address.
 #
 # The built site is pushed to the gh-pages branch, and Pages serves that branch
 # (Settings → Pages → Source: Deploy from a branch → gh-pages / root).
 # actions/deploy-pages kept timing out for this repo, so the branch route is used instead.
-name: Deploy preview to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -31,13 +31,12 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          PUBLIC_SITE_URL: https://mrb-sites.github.io
-          PUBLIC_BASE_PATH: /mbr-website
-          PUBLIC_NOINDEX: 'true'
+          PUBLIC_SITE_URL: https://www.malmombr.se
       - name: Push dist to gh-pages
         run: |
           cd dist
           touch .nojekyll # serve the _astro/ folder as-is (Jekyll would drop underscore folders)
+          echo www.malmombr.se > CNAME # custom domain (the force-push below would otherwise wipe it)
           git init -q -b gh-pages
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
