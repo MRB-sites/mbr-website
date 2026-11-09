@@ -78,7 +78,7 @@ The finished workflow looks like this:
 1. Hover over the right edge of the Webhook node, click **+**, search for **Gmail**, and choose **Send a message**.
 2. **Credential:** choose your Gmail account. The first time, click **Create new credential**, then **Sign in with Google**.
 3. Fill in. For **Subject** and **Message**, first hover the field and click **Expression**, then paste.
-   - **To:** `info@mbr.se`
+   - **To:** `info@malmombr.se`
    - **Subject:**
      ```
      Ny offertförfrågan – {{ $json.body.namn }} – {{ $json.body.ort }}
@@ -162,7 +162,7 @@ It sends only an email address, so there are no attachments.
    - Respond `Immediately`
    - Options → **Allowed Origins (CORS)** `*`
 3. **Gmail → Send a message** node after it:
-   - **To:** `info@mbr.se`
+   - **To:** `info@malmombr.se`
    - **Subject (Expression):** `Ny rådgivningsförfrågan – {{ $json.body.epost }}`
    - **Email Type:** `HTML`
    - **Message (Expression):**

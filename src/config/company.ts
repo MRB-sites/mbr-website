@@ -47,7 +47,7 @@ export const ADDRESS_PARTS = {
 export const SERVICE_AREA: Localized = { sv: 'Malmö och Skåne', en: 'Malmö and Skåne' };
 /** Individual places for JSON-LD "areaServed". */
 export const AREA_SERVED = ['Malmö', 'Skåne'];
-export const EMAIL = 'info@mbr.se';
+export const EMAIL = 'info@malmombr.se';
 /** e.g. '+46 40 123 45 67'. Empty = phone buttons become "Mejla oss". */
 export const PHONE = '';
 /** e.g. { sv: 'Mån–Fre 07–16', en: 'Mon–Fri 07–16' }. Empty = not shown. */
@@ -119,7 +119,7 @@ export const PROMISES: { title: Localized; text: Localized }[] = [
 export const KEY_FIGURES: { label: Localized; value: string; unit: Localized }[] = [];
 
 // --- Team ---------------------------------------------------------------------
-/** e.g. { name: 'Anna Andersson', role: { sv: 'Projektledare', en: 'Project manager' }, phone: '+46 …', email: 'anna@mbr.se', photo: 'stock/team-1.jpg' }. Empty = team section hidden. */
+/** e.g. { name: 'Anna Andersson', role: { sv: 'Projektledare', en: 'Project manager' }, phone: '+46 …', email: 'anna@malmombr.se', photo: 'stock/team-1.jpg' }. Empty = team section hidden. */
 export const TEAM: { name: string; role: Localized; phone: string; email: string; photo?: string }[] = [];
 
 // --- Maskinpark ---------------------------------------------------------------
